@@ -137,7 +137,7 @@ $SIDEBAR = array (
 	array($lng_home,"index.php"),
 //	array($lng_learn_more,"info/more.php"), // old style info pages
 // [CDM] uncomment line below to activate new style info pages 	
-//  array("Information","pages.php?id=1"),
+  array("Nikswijzer","pages.php?id=6"),
 	array($lng_news_and_events,"news.php"),
 	array($lng_offered,"listings.php?type=Offer"),
 	array($lng_wanted,"listings.php?type=Want"),
