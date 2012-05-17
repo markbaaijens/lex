@@ -19,12 +19,18 @@ $output .= $member->DisplayMember();
 $output .= "<BR><P><STRONG><I>".$lng_offerd_listings_cap."</I></STRONG><P>";
 $listings = new cListingGroup(OFFER_LISTING);
 $listings->LoadListingGroup(null, null, $_REQUEST["member_id"]);
+
+$output .= "<table width=100%><tr valign=top><td width=50%>";
 $output .= $listings->DisplayListingGroup();
+$output .= "</td></tr></table>";
 
 $output .= "<BR><P><STRONG><I>".$lng_wanted_listings_cap."</I></STRONG><P>";
 $listings = new cListingGroup(WANT_LISTING);
 $listings->LoadListingGroup(null, null, $_REQUEST["member_id"]);
+
+$output .= "<table width=100%><tr valign=top><td width=50%>";
 $output .= $listings->DisplayListingGroup();
+$output .= "</td></tr></table>";
 
 $p->DisplayPage($output); 
 

@@ -579,9 +579,10 @@ class cMember
 		
 	$output .= "</td></tr></table>";
 	
-	if (SOC_NETWORK_FIELDS==true) {
-	
+	if (SOC_NETWORK_FIELDS==true) {	
 		$output .= "<p><STRONG><I>".$lng_personal_information."</I></STRONG><P>";
+
+		$output .= "<table width=100%><tr valign=top><td width=50%>";
 		
 		$pAge = (strlen($this->person[0]->age)<1) ? $lng_unspecified : $agesArr[$this->person[0]->age];
 		$pSex = (!$this->person[0]->sex) ? $lng_unspecified : $sexArr[$this->person[0]->sex];
@@ -592,6 +593,9 @@ class cMember
 		$output .= "<STRONG>".$lng_sex.":</STRONG> ".$pSex."<p>";
 		
 		$output .= "<STRONG>".$lng_about_me.":</STRONG><p> ".$pAbout."<br>";
+		
+		$output .= "</td></tr></table>";
+		
 	}
 
 	return $output;	
