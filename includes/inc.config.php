@@ -135,7 +135,7 @@ define ("PAGE_FOOTER_CONTENT", "<tr><td id=\"footer\" colspan=2><p align=center>
 
 $SIDEBAR = array (
 	array($lng_home,"index.php"),
-	array($lng_learn_more,"info/more.php"), // old style info pages
+//	array($lng_learn_more,"info/more.php"), // old style info pages
 // [CDM] uncomment line below to activate new style info pages 	
 //  array("Information","pages.php?id=1"),
 	array($lng_news_and_events,"news.php"),
