@@ -46,7 +46,7 @@ class cPage {
 		else
 			$title = "";
 		
-		$output = '<HTML><HEAD><link rel="stylesheet" href="http://'. HTTP_BASE .'/'. SITE_STYLESHEET .'" type="text/css"></link><META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1"><meta name="description" content="'.$this->page_title.'"><meta NAME="keywords" content="'. $this->keywords .'"><TITLE>'. PAGE_TITLE_HEADER . $title .'</TITLE></HEAD><BODY>';
+		$output = '<HTML><HEAD><link rel="stylesheet" href="'. SITE_STYLESHEET .'" type="text/css"></link><META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1"><meta name="description" content="'.$this->page_title.'"><meta NAME="keywords" content="'. $this->keywords .'"><TITLE>'. PAGE_TITLE_HEADER . $title .'</TITLE></HEAD><BODY>';
 		
 		//$output .= "<HTML><BODY>";
 		//$output .= $this->page_header.$cUser->UserLoginLogout()."</h1></td></tr>";
@@ -80,7 +80,7 @@ class cPage {
 			if (!isset($this->page_title_image))
 				$this->page_title_image = $SECTIONS[$this->site_section][2];
 				
-			return '<H2><IMG SRC="http://'. IMAGES_PATH . $this->page_title_image .'" align=middle>'. $this->page_title .'</H2><P>';
+			return '<H2><IMG SRC="'. IMAGES_PATH . $this->page_title_image .'" align=middle>'. $this->page_title .'</H2><P>';
 		}		
 	}
 									
@@ -90,7 +90,7 @@ class cPage {
 		
 		if ($cUser->IsLoggedOn()) {
 		$tmp .= "</td></tr><tr><td id=\"footer\" colspan=2><p align=center>
-			<a href=".$_SERVER["PHP_SELF"]."?printer_view=1&".$_SERVER["QUERY_STRING"]." target=_blank><img src=http://".IMAGES_PATH ."print.gif border=0><br><font size=1>".$lng_printer_friendly_view."</font></a>";
+			<a href=".$_SERVER["PHP_SELF"]."?printer_view=1&".$_SERVER["QUERY_STRING"]." target=_blank><img src=".IMAGES_PATH ."print.gif border=0><br><font size=1>".$lng_printer_friendly_view."</font></a>";
 		}
 		
 		$tmp .= "</TD></TR>". $this->page_footer ."";
@@ -106,7 +106,7 @@ class cPage {
 			$cErr->Error($lng_displaypage_with_no_content,ERROR_SEVERITY_HIGH,__FILE__,__LINE__);
 		
 		if (EMBEDDED) { // added to view page content embedded in e.g. Joomla frame - by ejkv
-		print '<HTML><head><link rel="stylesheet" href="http://'. HTTP_BASE .'/embedded.css" type="text/css"></link><META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1"></head><BODY>';
+		print '<HTML><head><link rel="stylesheet" href="'.'/embedded.css" type="text/css"></link><META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1"></head><BODY>';
 		print $this->MakePageTitle();
 		print $cErr->ErrorBox().$content."</BODY></HTML>"; // added error messages - ejkv
 		return;
@@ -118,7 +118,7 @@ class cPage {
 		}
 		else {
 	
-			print '<head><link rel="stylesheet" href="http://'. HTTP_BASE .'/print.css" type="text/css"></link></head>';
+			print '<head><link rel="stylesheet" href="'.'print.css" type="text/css"></link></head>';
 		}
 		
 		print $this->MakePageTitle();
@@ -143,7 +143,7 @@ class cMenuItem {
 	}
 	
 	function DisplayButton() {
-		return "<li><div align=left><a href=\"http://". HTTP_BASE ."/". $this->url ."\">". $this->button_text ."</a></div></li>";
+		return "<li><div align=left><a href=\"" . $this->url ."\">". $this->button_text ."</a></div></li>";
 
         // The following is for url-based sessions.
 //		return "<li><div align=left><a href=\"" . $this->url ."\">". $this->button_text ."</a></div></li>";

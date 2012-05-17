@@ -290,9 +290,9 @@ class cListingGroup
 				$memInfo = " (<em>".stripslashes($row["first_name"])." ".stripslashes($row["mid_name"])." ".stripslashes($row["last_name"])."</em> - <a href=member_summary.php?member_id=".$listing->member_id.">". $listing->member_id ."</a>)"; // added mid_name, moved ")", removed </center> - by ejkv
 				
 				if ($cUser->IsLoggedOn())
-					$output .= "<A HREF=http://".HTTP_BASE."/listing_detail.php?type=". $this->type ."&title=" . urlencode($listing->title) ."&member_id=". $listing->member_id .">" . $listing->title ."</A><br>". $details; // removed <FONT SIZE=2> .. </FONT>, line-break added by ejkv
+					$output .= "<A HREF=" . "listing_detail.php?type=". $this->type ."&title=" . urlencode($listing->title) ."&member_id=". $listing->member_id .">" . $listing->title ."</A><br>". $details; // removed <FONT SIZE=2> .. </FONT>, line-break added by ejkv
 				else
-					$output .= "<A HREF=http://".HTTP_BASE."/member_login.php>" . $listing->title ."</A><br>". $details; // link to login page, removed <FONT SIZE=2> .. </FONT>, and line-break added by ejkv
+					$output .= "<A HREF=" . "member_login.php>" . $listing->title ."</A><br>". $details; // link to login page, removed <FONT SIZE=2> .. </FONT>, and line-break added by ejkv
 						
 				// Rate
 				if (SHOW_RATE_ON_LISTINGS==true && $listing->rate)

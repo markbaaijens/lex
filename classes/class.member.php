@@ -190,7 +190,7 @@ class cMember
 
 	function UserLoginPage() // A free-standing login page
 	{   global $lng_member_id, $lng_pwd, $lng_login, $lng_if_you_dont_have_account;
-		$output = "<DIV STYLE='width=60%; padding: 5px;'><FORM ACTION=".SERVER_PATH_URL."/login.php METHOD=POST>
+		$output = "<DIV STYLE='width=60%; padding: 5px;'><FORM ACTION="."login.php METHOD=POST>
 					<INPUT TYPE=HIDDEN NAME=action VALUE=login>
 					<INPUT TYPE=HIDDEN NAME=location VALUE='".$_SERVER["REQUEST_URI"]."'>
 					<TABLE class=NoBorder><TR><TD ALIGN=LEFT>".$lng_member_id.":</TD><TD ALIGN=LEFT><INPUT TYPE=TEXT SIZE=12 NAME=user></TD></TR>
@@ -207,11 +207,9 @@ class cMember
 		global $lng_logout, $lng_login;
 		if ($this->IsLoggedOn())
 		{
-			//$output = "<FONT SIZE=1><A HREF='".SERVER_PATH_URL."/member_logout.php'>Logout</A>&nbsp;&nbsp;&nbsp;";
-			$output = "<A HREF='".SERVER_PATH_URL."/member_logout.php'>".$lng_logout."</A>&nbsp;&nbsp;&nbsp;";
+			$output = "<A HREF='"."member_logout.php'>".$lng_logout."</A>&nbsp;&nbsp;&nbsp;";
 		} else {
-			//$output = "<FONT SIZE=1><A HREF='".SERVER_PATH_URL."/member_login.php'>Login</A>&nbsp;&nbsp;&nbsp;";
-			$output = "<A HREF='".SERVER_PATH_URL."/member_login.php'>".$lng_login."</A>&nbsp;&nbsp;&nbsp;";
+			$output = "<A HREF='"."member_login.php'>".$lng_login."</A>&nbsp;&nbsp;&nbsp;";
 		}
 
 		return $output;		
@@ -227,7 +225,7 @@ class cMember
 		// user isn't logged on, but is in a section of the site where they should be logged on.
 		$_SESSION['REQUEST_URI'] = $_SERVER['REQUEST_URI'];
 		$cErr->SaveErrors();
-		header("location:http://".HTTP_BASE."/login_redirect.php");
+		header("location:" . "login_redirect.php");
 				
 		exit;
 	}

@@ -15,39 +15,31 @@ if (file_exists("upgrade.php") && $running_upgrade_script!=true) {
 /**********************************************************/
 /******************* SITE LOCATIONS ***********************/
 
-// What is the domain name of the site?  
-define ("SERVER_DOMAIN","www.LETSdomain.nl");	// no http://
-
-// What is the path to the site? This is null for many sites.
-define ("SERVER_PATH_URL","/lex");	// no ending slash
-
 // The following only needs to be set if Pear has been
 // installed manually by downloading the files
 define ("PEAR_PATH", "/pear"); // no ending slash
 
-
 // Ok, then lets define some paths (no need to edit these)
-define ("HTTP_BASE",SERVER_DOMAIN.SERVER_PATH_URL);
-define ("CLASSES_PATH",$_SERVER["DOCUMENT_ROOT"].SERVER_PATH_URL."/classes/");
-define ("IMAGES_PATH",SERVER_DOMAIN.SERVER_PATH_URL."/images/");
-define ("UPLOADS_PATH",$_SERVER["DOCUMENT_ROOT"].SERVER_PATH_URL."/uploads/");
+define ("CLASSES_PATH","classes/");
+define ("IMAGES_PATH","images/");
+define ("UPLOADS_PATH","uploads/");
 
 /**********************************************************/
 /***************** DATABASE LOGIN  ************************/
 
-define ("DATABASE_USERNAME","dbuser");
-define ("DATABASE_PASSWORD","password");
-define ("DATABASE_NAME","dbname");
+define ("DATABASE_USERNAME","root");
+define ("DATABASE_PASSWORD","root");
+define ("DATABASE_NAME","lex");
 define ("DATABASE_SERVER","localhost"); // often "localhost"
 
 /**********************************************************/
 /********************* SITE NAMES *************************/
 
 // What is the name of the site?
-define ("SITE_LONG_TITLE", "LETSlongname");
+define ("SITE_LONG_TITLE", "Ruilsysteem van de Bossche Ruilkring");
 
 // What is the short, friendly, name of the site?
-define ("SITE_SHORT_TITLE", "LETSname");
+define ("SITE_SHORT_TITLE", "Lekker ruilen, voor niks!");
 
 /**********************************************************/
 /***************** FOR MAINTENANCE ************************/
@@ -109,9 +101,9 @@ define("SEARCHABLE_MEMBERS_LIST",true);
 
 // email addresses & phone number to be listed in the site
 define ("EMAIL_FEATURE_REQUEST",""); // (is this actually used anywhere???)
-define ("EMAIL_ADMIN","info@LETSdomain.nl"); // email address Sanne / Marjan
+define ("EMAIL_ADMIN","info@niksvoorniks.nl"); // email address Sanne / Marjan
 
-define ("PHONE_ADMIN","Phone number"); // an email address may be substituted...
+define ("PHONE_ADMIN",""); // an email address may be substituted...
 
 // What should appear at the front of all pages?
 // Titles will look like "PAGE_TITLE_HEADER - PAGE_TITLE", or something 
@@ -122,7 +114,7 @@ define ("PAGE_TITLE_HEADER", SITE_LONG_TITLE);
 define ("SITE_KEYWORDS", $lng_sitekeywords. SITE_LONG_TITLE .",php");
 
 // Logo Graphic for Header
-define ("HEADER_LOGO", "localx_logo.png"); // changed by ejkv
+define ("HEADER_LOGO", "logo_niksvoorniks.gif"); // changed by ejkv
 
 // Title Graphic for Header
 define ("HEADER_TITLE", "localx_title.png");
@@ -134,9 +126,9 @@ define ("HOME_LOGO", "localx_black.png");
 define ("HOME_PIC", "localx_home.png");
 
 // What content should be in the site header and footer?
-define ("PAGE_HEADER_CONTENT", "<table align=center cellpadding=15 cellspacing=0 id=\"mainTable\"><tr><td id=\"header\" align=center><a href=\"index.php\"><img src=\"http://".HTTP_BASE."/images/". HEADER_LOGO ."\" alt=\"". SITE_SHORT_TITLE . " logo\" border=0></a></td><td id=\"header\"><h1 align=right><img src=\"http://".HTTP_BASE."/images/". HEADER_TITLE ."\"></h1></td></tr>");
+define ("PAGE_HEADER_CONTENT", "<table align=center cellpadding=15 cellspacing=0 id=\"mainTable\"><tr><td id=\"header\" align=center><a href=\"index.php\"><img src=\"" . "images/". HEADER_LOGO ."\" alt=\"". SITE_SHORT_TITLE . " logo\" border=0></a></td><td id=\"header\"><h1 align=right><img src=\"" . "images/". HEADER_TITLE ."\"></h1></td></tr>");
 
-define ("PAGE_FOOTER_CONTENT", "<tr><td id=\"footer\" colspan=2><p align=center><strong>". SITE_LONG_TITLE ." </strong>&#8226; <a href=\"http://". SERVER_DOMAIN . SERVER_PATH_URL ."\">". SERVER_DOMAIN ."</a><br><a href=\"mailto:". EMAIL_ADMIN ."\">" . EMAIL_ADMIN ."</a> &#8226; ". PHONE_ADMIN ."<br><font size=\"-2\">".$lng_licenced_under." <a href=\"http://www.gnu.org/copyleft/gpl.html\">".$lng_gpl."</a> &#8226; ".$lng_local_exchange_uk_ver." ".LOCALX_VERSION." <a href=\"http://". SERVER_DOMAIN . SERVER_PATH_URL ."/info/credits.php\">".$lng_credits."</a></td></tr></table><br>");
+define ("PAGE_FOOTER_CONTENT", "<tr><td id=\"footer\" colspan=2><p align=center><strong>". SITE_LONG_TITLE ." </strong><br><a href=\"mailto:". EMAIL_ADMIN ."\">" . EMAIL_ADMIN ."</a> &#8226; ". PHONE_ADMIN ."<br><font size=\"-2\">".$lng_licenced_under." <a href=\"http://www.gnu.org/copyleft/gpl.html\">".$lng_gpl."</a> &#8226; ".$lng_local_exchange_uk_ver." ".LOCALX_VERSION." <a href=\""."info/credits.php\">".$lng_credits."</a></td></tr></table><br>");
 
 /**********************************************************/
 /**************** DEFINE SIDEBAR MENU *********************/
@@ -194,7 +186,7 @@ $monthly_fee_exempt_list = array("ADMIN", SYSTEM_ACCOUNT_ID, "extra_admin"); // 
 define ("MAX_FILE_UPLOAD","1000000"); // Maximum file size, in bytes, allowed for uploads to the server - changed from 5000000 into 1000000 by ejkv
 									 
 // The following text will appear at the beggining of the email update messages
-define ("LISTING_UPDATES_MESSAGE", "<h1>".SITE_LONG_TITLE."</h1>".$lng_list_update_message_01." <a href=http://".HTTP_BASE."/member_edit.php?mode=self>".$lng_member_profile."</a> ".$lng_list_update_message_02);
+define ("LISTING_UPDATES_MESSAGE", "<h1>".SITE_LONG_TITLE."</h1>".$lng_list_update_message_01." <a href=" . "member_edit.php?mode=self>".$lng_member_profile."</a> ".$lng_list_update_message_02);
 
 
 // Should inactive accounts have their listings automatically expired?
@@ -238,7 +230,7 @@ define ("MONTH_FIRST", false);
 define ("PASSWORD_RESET_SUBJECT", $lng_your." ". SITE_LONG_TITLE ." ".$lng_account);
 define ("PASSWORD_RESET_MESSAGE", $lng_your_password_for." ". SITE_LONG_TITLE ." ".$lng_has_has_been_reset." ".PHONE_ADMIN.".\n\n".$lng_your_user_id_and_pwrd_are_listed_in_this_email);
 define ("NEW_MEMBER_SUBJECT", $lng_welcome_to." ". SITE_LONG_TITLE);
-define ("NEW_MEMBER_MESSAGE", $lng_hello_and_welcome_to." ". SITE_LONG_TITLE ." ".$lng_community."\n\n".$lng_a_member_account_has_been_created.":\nhttp://".SERVER_DOMAIN.SERVER_PATH_URL."/member_login.php\n\n".$lng_please_login_and_create_listings."\n\n".$lng_thank_you_for_joining_us);
+define ("NEW_MEMBER_MESSAGE", $lng_hello_and_welcome_to." ". SITE_LONG_TITLE ." ".$lng_community."\n\n".$lng_a_member_account_has_been_created.":\n"."member_login.php\n\n".$lng_please_login_and_create_listings."\n\n".$lng_thank_you_for_joining_us);
 
 /********************************************************************/
 /************************* ADVANCED SETTINGS ************************/
@@ -305,6 +297,6 @@ if (DEBUG) error_reporting(E_ALL);
 define("LOAD_FROM_SESSION",-1);  // Not currently in use
 
 // URL to PHP page which handles redirects and such.
-define ("REDIRECT_URL",SERVER_PATH_URL."/redirect.php");
+define ("REDIRECT_URL","redirect.php");
 
 ?>

@@ -43,7 +43,7 @@ function process_data ($values) {
 	global $p, $cErr, $lng_state_deleted;
 
 // DeleteState not used, state only to be changed, else there should be checked if the state is still used - ejkv
-	header("location:http://".HTTP_BASE."/state_edit.php?state_id=". $values["state"]);
+	header("location:" . "state_edit.php?state_id=". $values["state"]);
 	exit;	
 // DeleteState not used, state only to be changed, else there should be checked if the state is still used - ejkv
 
@@ -53,7 +53,7 @@ function process_data ($values) {
 		if($state->DeleteState())
 			$output = $lng_state_deleted;
 	} else {
-		header("location:http://".HTTP_BASE."/state_edit.php?state_id=". $values["state"]);
+		header("location:" . "state_edit.php?state_id=". $values["state"]);
 		exit;	
 	}
 	

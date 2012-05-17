@@ -37,9 +37,9 @@ function process_data ($values) {
 
 // added trade history timeframe for specific member (from / to)  - by ejkv
 	if ($_REQUEST["mode"]==NULL) // added by ejkv
-		header("location:http://".HTTP_BASE."/". $_REQUEST["action"] .".php?from=".$from . "&to=". $to);
+		header("location:" . $_REQUEST["action"] .".php?from=".$from . "&to=". $to);
 	else // added by ejkv
-		header("location:http://".HTTP_BASE."/trade_history.php?mode=".$_REQUEST["mode"]."&member_id=".$_REQUEST["member_id"]."&from=".$from . "&to=". $to); // added by ejkv
+		header("location:" . "trade_history.php?mode=".$_REQUEST["mode"]."&member_id=".$_REQUEST["member_id"]."&from=".$from . "&to=". $to); // added by ejkv
 	exit;	
 } 
 

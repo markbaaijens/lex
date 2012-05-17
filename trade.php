@@ -131,7 +131,7 @@ function process_data ($values) {
 				}
 				else if ($cDB->Query("INSERT INTO trades_pending (trade_date, member_id_from, member_id_to, amount, category, description, typ) VALUES (now(), ". 	$cDB->EscTxt($member->member_id) .", ". $cDB->EscTxt($member_to_id) .", ". $cDB->EscTxt($values["units"]) .", ". $cDB->EscTxt($values["category"]) .", ". 	$cDB->EscTxt($values["description"]) .", \"T\");")) {
 					
-					$mailed = mail($member_to->person[0]->email, $lng_payment_received_on." ".SITE_LONG_TITLE."", $lng_hi_cap." ".$member_to_id.",\n\n".$lng_let_know_received_payment_from." ".$member->member_id."\n\n".$lng_elected_to_confirm_payment."\n\nhttp://".SERVER_DOMAIN.SERVER_PATH_URL."/trades_pending.php?action=incoming", "From:".EMAIL_FROM); // added "FROM:". - by ejkv
+					$mailed = mail($member_to->person[0]->email, $lng_payment_received_on." ".SITE_LONG_TITLE."", $lng_hi_cap." ".$member_to_id.",\n\n".$lng_let_know_received_payment_from." ".$member->member_id."\n\n".$lng_elected_to_confirm_payment."\n\n"."trades_pending.php?action=incoming", "From:".EMAIL_FROM); // added "FROM:". - by ejkv
 			
 					$list .= $lng_member_id." ".$member_to_id." ".$lng_notified_you_wish_transfer." ". $values['units'] ." ". strtolower(UNITS) ." ".$lng_to_him_her.".<p>".$lng_member_opted_to_confirm.".<p>". // added $lng_member_id by ejkv
 							$lng_would_you_like_to." <A HREF=trade.php?mode=".$_REQUEST["mode"]."&member_id=". $_REQUEST["member_id"].">".$lng_record_another."</A> ".$lng_exchange."?";
@@ -145,7 +145,7 @@ function process_data ($values) {
 					$list .= $lng_invoice_facility_disabled;	
 				else if ($cDB->Query("INSERT INTO trades_pending (trade_date, member_id_from, member_id_to, amount, category, description, typ) VALUES (now(), ". 	$cDB->EscTxt($member->member_id) .", ". $cDB->EscTxt($member_to_id) .", ". $cDB->EscTxt($values["units"]) .", ". $cDB->EscTxt($values["category"]) .", ". 	$cDB->EscTxt($values["description"]) .", \"I\");")) {
 					
-					$mailed = mail($member_to->person[0]->email, $lng_invoice_received_on." ".SITE_LONG_TITLE."", $lng_hi_cap." ".$member_to_id.",\n\n".$lng_let_know_invoice_from." ".$member->member_id."\n\n".$lng_log_in_to_pay_reject_invoice."\n\nhttp://".SERVER_DOMAIN.SERVER_PATH_URL."/trades_pending.php?action=outgoing", "From:".EMAIL_FROM); // added "From:". - by ejkv
+					$mailed = mail($member_to->person[0]->email, $lng_invoice_received_on." ".SITE_LONG_TITLE."", $lng_hi_cap." ".$member_to_id.",\n\n".$lng_let_know_invoice_from." ".$member->member_id."\n\n".$lng_log_in_to_pay_reject_invoice."\n\n"."trades_pending.php?action=outgoing", "From:".EMAIL_FROM); // added "From:". - by ejkv
 			
 					$list .= $member_to_id." ".$lng_has_been_send_invoice_for." ". $values['units'] ." ". strtolower(UNITS) .".<p> ".$lng_will_informed_when_member_pays.".<p>".
 						$lng_would_you_like_to." <A HREF=trade.php?mode=".$_REQUEST["mode"]."&member_id=". $_REQUEST["member_id"].">".$lng_record_another."</A> ".$lng_exchange."?";

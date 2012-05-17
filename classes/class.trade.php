@@ -125,7 +125,7 @@ class cTrade {
 		if(!$balances->Balanced()) {
 			
 			if (OOB_EMAIL_ADMIN==true) // Admin wishes to receive an email notifying him/her when db is found to be out-of-balance
-				$mailed = mail(EMAIL_ADMIN, $lng_dbase_out_of_balance." ".SITE_LONG_TITLE."!", $lng_hi_admin.",\n\n".$lng_Message_dbase_out_of_balance."\n\nhttp://".SERVER_DOMAIN.SERVER_PATH_URL."", "From:".EMAIL_FROM); // added "FRom:". - by ejkv
+				$mailed = mail(EMAIL_ADMIN, $lng_dbase_out_of_balance." ".SITE_LONG_TITLE."!", $lng_hi_admin.",\n\n".$lng_Message_dbase_out_of_balance."\n\n".SITE_LONG_TITLE."", "From:".EMAIL_FROM); // added "FRom:". - by ejkv
 			
 			switch(OOB_ACTION) { // How should we handle the out-of-balance event?
 				

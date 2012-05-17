@@ -21,7 +21,7 @@ if ($form->validate()) { // Form is validated so processes the data
 
 function process_data ($values) {
 	global $cUser;
-	header("location:http://".HTTP_BASE."/timeframe_choose.php?mode=other&member_id=".$values["member_id"]); // changed next module from trade_history.php into timeframe_choose.php to select timeframe (from / to) - by ejkv
+	header("location:" . "timeframe_choose.php?mode=other&member_id=".$values["member_id"]); // changed next module from trade_history.php into timeframe_choose.php to select timeframe (from / to) - by ejkv
 	exit;	
 }
 
