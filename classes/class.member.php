@@ -535,9 +535,9 @@ class cMember
 			$output .= "<STRONG>".$lng_secondary_phone.":</STRONG> ". $this->person[0]->DisplayPhone("2") ."<BR>";						
 		if($this->person[0]->fax_number != "")
 			$output .= "<STRONG>".$lng_fax.":</STRONG> ". $this->person[0]->DisplayPhone("fax") ."<BR>";	
-		if($this->person[0]->address_street2 != "") {
-            $output .= "<STRONG>" . ADDRESS_LINE_2 . ": </STRONG>" .
-                           $this->person[0]->address_street2 . "<BR>";
+		if($this->person[0]->address_street1 != "") {
+            $output .= "<STRONG>" . ADDRESS_LINE_1 . ": </STRONG>" .
+                           $this->person[0]->address_street1 . "<BR>";
         }
 		if($this->person[0]->address_city != "") {
             $output .= "<STRONG>" . ADDRESS_LINE_3 . ": </STRONG>" .
