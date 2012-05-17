@@ -96,7 +96,7 @@ function buildCondition(&$condition,$wh) { // Add a clause to the SQL condition 
 }
 
 if ($_REQUEST["uID"]) // We' re searching for a specific member ID in the SQL
-	buildCondition($condition,"member.member_id='".trim($_REQUEST["uID"])."'");
+	buildCondition($condition,"member.member_id like '%".trim($_REQUEST["uID"])."%'");
 
 if ($_REQUEST["uName"]) { // We're searching for a specific username in the SQL
 	
