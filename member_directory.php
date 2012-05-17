@@ -14,7 +14,7 @@ if (SEARCHABLE_MEMBERS_LIST==true) {
 	$output = "<form action=member_directory.php method=get>";
 	$output .= $lng_member_id.": <input type=text name=uID size=4 value='".$_REQUEST["uID"]."'>
 		<br>".$lng_name_all_or_part.": <input type=text name=uName value='".$_REQUEST["uName"]."'>
-		<br>".$lng_location_eg." ".DEFAULT_CITY."): <input type=text name=uLoc value='".$_REQUEST["uLoc"]."'>";
+		<br>".$lng_location_eg." ".": <input type=text name=uLoc value='".$_REQUEST["uLoc"]."'>";
 	
 	$orderBySel = array();
 	$orderBySel["".$_REQUEST["orderBy"].""]='selected';
