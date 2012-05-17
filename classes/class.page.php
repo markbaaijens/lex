@@ -46,7 +46,7 @@ class cPage {
 		else
 			$title = "";
 		
-		$output = '<HTML><HEAD><link rel="stylesheet" href="'. SITE_STYLESHEET .'" type="text/css"></link><META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1"><meta name="description" content="'.$this->page_title.'"><meta NAME="keywords" content="'. $this->keywords .'"><TITLE>'. PAGE_TITLE_HEADER . $title .'</TITLE></HEAD><BODY>';
+		$output = '<HTML><HEAD><link rel="shortcut icon" href="images/favicon.ico"><link rel="stylesheet" href="'. SITE_STYLESHEET .'" type="text/css"></link><META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1"><meta name="description" content="'.$this->page_title.'"><meta NAME="keywords" content="'. $this->keywords .'"><TITLE>'. PAGE_TITLE_HEADER . $title .'</TITLE></HEAD><BODY>';
 		
 		//$output .= "<HTML><BODY>";
 		//$output .= $this->page_header.$cUser->UserLoginLogout()."</h1></td></tr>";
