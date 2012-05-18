@@ -174,7 +174,7 @@ $SECTIONS = array (
 /**********************************************************/
 /******************* GENERAL SETTINGS *********************/
 
-define ("UNITS", $lng_local_currency);  // This setting affects functionality, not just text displayed, so if you want to use hours/minutes this needs to read "Hours" exactly.  All other unit descriptions are ok, but receive no special treatment (i.e. there is no handling of "minutes"). - changed by ejkv
+define ("UNITS", "Niksen");  // This setting affects functionality, not just text displayed, so if you want to use hours/minutes this needs to read "Hours" exactly.  All other unit descriptions are ok, but receive no special treatment (i.e. there is no handling of "minutes"). - changed by ejkv
 
 /**************** Monthly fee related settings ********************/
 

@@ -8,7 +8,6 @@ body {
 	margin-bottom: 0px;
 	margin-left: 3%;
 	background-image: url(/lex/images/bg_01.jpg);
-
 }
 
 table {  color: #909090}
@@ -40,22 +39,22 @@ body {scrollbar-shadow-color: #6C81C6; scrollbar-highlight-color: #6C81C6; scrol
 	padding: 25px;
  }
  
- #sidebar {
+#sidebar {
  	width: 105px;
  	font-size: 80%;
  	font-family: sans;
 	vertical-align: top;
- 	background-color: #E2E4EF;
+ 	background-color: #fbf4d1;
  }
  
- #header {
- 	background-color: #6C81C6;
+#header {
+ 	background-color: #f88b3b;
  	color: #FFFFFF;
  	/*background-image: url(url()); commented by ejkv*/
 	}
  
- #footer {
- 	background-color: #6C81C6;
+#footer {
+ 	background-color: #f88b3b;
  	color: #CCCCCC;
 	font-size: 10px;
  	/*background-image: url(url()); commented by ejkv*/
@@ -78,26 +77,26 @@ body {scrollbar-shadow-color: #6C81C6; scrollbar-highlight-color: #6C81C6; scrol
  h2 { font-size: 140%; }
  h3 { font-size: 75%; }
  
- #contenttable {
+#contenttable {
  	font-size: 13px;
  	text-align: left;
  	width: 100%;
  	border: 0;
  }
  
- #tableheader {
+#tableheader {
  	background-color: #d8dbea;
  }
  
- #tablerow {
+#tablerow {
  	background-color: white;
  }
  
- #tablealtrow {
+#tablealtrow {
  	background-color: #e4e9ea;
  }
  
- #sidebar a {
+#sidebar a {
  	/*/*/padding: 3px;
  	display: block;
  	border: 2px solid #CCC;
@@ -106,27 +105,27 @@ body {scrollbar-shadow-color: #6C81C6; scrollbar-highlight-color: #6C81C6; scrol
  	width: 100px;
  }
  
- #sidebar a:link, #sidebar a:visited {
+#sidebar a:link, #sidebar a:visited {
  	color: #666;
  }
  
- #sidebar a:hover, #sidebar a:active {
+#sidebar a:hover, #sidebar a:active {
  	color: #FFFFFF;
  	background-color: #6C81C6;
  	border: 2px solid #000;
  }
  
- #sidebar ul {
+#sidebar ul {
  	/*/*/padding-left: 3px;
  	margin-left: 3px;
  	list-style-type: none; /* */
  }
  
- #sidebar li {
+#sidebar li {
  	/*/*/margin: 0px 0px 6px 0px; /* */
  }
  
- #current a {
+#current a {
  	color: #FFFFFF !important;
  	/*/*/background-color: #999999!important;
  	border: 2px solid #999 !important; /* */
