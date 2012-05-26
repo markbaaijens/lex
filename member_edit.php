@@ -3,9 +3,11 @@
 include_once("includes/inc.global.php");
 
 $p->site_section = SITE_SECTION_OFFER_LIST;
+$p->page_title = $lng_edit_member;
 
 include("includes/inc.forms.php");
 include_once("classes/class.state_address.php"); // added by ejkv
+
 //
 // First, we define the form
 //
@@ -13,8 +15,6 @@ if($_REQUEST["mode"] == "admin") {  // Administrator is editing a member's accou
 	$cUser->MustBeLevel(1);
 	$member = new cMember;
 	$member->LoadMember($_REQUEST["member_id"]);
-	$form->addElement("header", null, $lng_edit_member." " . $member->person[0]->first_name . " " . $member->person[0]->mid_name . " " . $member->person[0]->last_name); // added mid_name by ejkv
-
 	$form->addElement("html", "<TR></TR>");
 	$form->addElement("hidden","mode","admin");
 	$form->addElement("hidden","member_id",$_REQUEST["member_id"]);

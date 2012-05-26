@@ -4,15 +4,15 @@ include_once("includes/inc.global.php");
 
 $cUser->MustBeLoggedOn();
 $p->site_section = SITE_SECTION_OFFER_LIST;
+$p->page_title = $lng_changes_pwd_for." ". $cUser->person[0]->first_name ." " . $cUser->person[0]->mid_name ." " . $cUser->person[0]->last_name;
 
 include("includes/inc.forms.php");
 
 //
 // Define form elements
 //
-$form->addElement('header', null, $lng_changes_pwd_for." ". $cUser->person[0]->first_name ." " . $cUser->person[0]->mid_name ." " . $cUser->person[0]->last_name); // added mid_name by ejkv
 $form->addElement('html', '<TR></TR>');  // TODO: Move this to the header
-$form->addElement('static',null,$lng_pwd_must_be_seven_char_and_one_number);
+$form->addElement('header',null,$lng_pwd_must_be_seven_char_and_one_number);
 $form->addElement('html', '<TR></TR>');
 $options = array('size' => 10, 'maxlength' => 15);
 $form->addElement('password', 'old_passwd', $lng_old_pwd,$options);

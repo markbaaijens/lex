@@ -25,7 +25,7 @@ if($_REQUEST["mode"] == "admin") {
 	$member = $cUser;
 }
 
-$form->addElement('static', null, $lng_all_feedback_is_public, null);
+$form->addElement('header', null, $lng_all_feedback_is_public, null);
 $form->addElement('static', null, null, null);
 $ratings = array(0=>"", POSITIVE=>$lng_positive, NEUTRAL=>$lng_neutral, NEGATIVE=>$lng_negative); 
 $form->addElement("select", "rating", $lng_feedback_rating, $ratings);

@@ -33,8 +33,8 @@ if($_REQUEST["mode"] == "admin") {
 	$member = $cUser;
 }
 
-$form->addElement('static', null, "<B><I>".$lng_prior_comments."</I></B>", null);
-$form->addElement('static', null, $feedback_history, null);
+$form->addElement('header', null, "<B><I>".$lng_prior_comments."</I></B>", null);
+$form->addElement('header', null, $feedback_history, null);
 $form->addElement("hidden", "about", $member_about->member_id);
 $form->addElement("hidden", "author", $_REQUEST["author"]);
 $form->addElement("hidden", "mode", $_REQUEST["mode"]);
