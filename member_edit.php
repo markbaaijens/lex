@@ -25,8 +25,8 @@ if($_REQUEST["mode"] == "admin") {  // Administrator is editing a member's accou
 	}
 	$acct_types = array("S"=>$lng_single, "J"=>$lng_joint, "H"=>$lng_household, "O"=>$lng_organisation, "B"=>$lng_business, "F"=>$lng_fund);
 	$form->addElement("select", "account_type", $lng_account_type, $acct_types);
-	$form->addElement("static", null, $lng_admin_note, null);
-	$form->addElement("textarea", "admin_note", null, array("cols"=>45, "rows"=>2, "wrap"=>"soft", "maxlength" => 100));
+#	$form->addElement("static", null, $lng_admin_note, null);
+	$form->addElement("textarea", "admin_note", $lng_admin_note, array("cols"=>45, "rows"=>2, "wrap"=>"soft", "maxlength" => 100));
 	$today = getdate();
 	$options = array("language"=> $lng_language, "format" => "dFY", "minYear"=>JOIN_YEAR_MINIMUM, "maxYear"=> $today["year"]); // changed "en" by $lng_language by ejkv
 	$form->addElement("date", "join_date",	$lng_join_date, $options);	
