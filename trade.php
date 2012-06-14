@@ -39,10 +39,7 @@ else // Invoicing turned off, this form now only functions to transfer money
 $name_list = new cMemberGroup;
 $name_list->LoadMemberGroup();
 
-if (JS_MEMBER_SELECT==true)
-	$form->addElement("html","<tr><td>".$lng_to_member." ".$name_list->DoNamePicker()."</td></tr>");
-else
-	$form->addElement("select", "member_to", $lng_transfer_to_member, $name_list->MakeNameArray());
+$form->addElement("select", "member_to", $lng_transfer_to_member, $name_list->MakeNameArray());
 
 $category_list = new cCategoryList();
 $form->addElement('select', 'category', $lng_category, $category_list->MakeCategoryArray());
@@ -50,8 +47,7 @@ $form->addElement("text", "units", $lng_nmbr_of. UNITS ."", array('size' => 5, '
 if(UNITS == "Hours") {
 	$form->addElement("text","minutes",$lng_nmbr_of_minutes,array('size'=>2,'maxlength'=>2));
 }
-$form->addElement('static', null, $lng_enter_description_of_exchange, null);
-$form->addElement('textarea', 'description', null, array('cols'=>50, 'rows'=>4, 'wrap'=>'soft'));
+$form->addElement('textarea', 'description', $lng_enter_description_of_exchange, array('cols'=>50, 'rows'=>4, 'wrap'=>'soft'));
 $form->addElement('submit', 'btnSubmit', $lng_submit);
 
 //
