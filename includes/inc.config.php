@@ -29,7 +29,7 @@ define ("UPLOADS_PATH","uploads/");
 
 define ("DATABASE_USERNAME","root");
 define ("DATABASE_PASSWORD","root");
-define ("DATABASE_NAME","lex");
+define ("DATABASE_NAME","lex2");
 define ("DATABASE_SERVER","localhost"); // often "localhost"
 
 /**********************************************************/
@@ -39,7 +39,7 @@ define ("DATABASE_SERVER","localhost"); // often "localhost"
 define ("SITE_LONG_TITLE", "Ruilsysteem van de Bossche Ruilkring");
 
 // What is the short, friendly, name of the site?
-define ("SITE_SHORT_TITLE", "Lekker ruilen, voor niks!");
+define ("SITE_SHORT_TITLE", "Ruilsysteem van de Bossche Ruilkring");
 
 /**********************************************************/
 /***************** FOR MAINTENANCE ************************/
@@ -101,7 +101,7 @@ define("SEARCHABLE_MEMBERS_LIST",true);
 
 // email addresses & phone number to be listed in the site
 define ("EMAIL_FEATURE_REQUEST",""); // (is this actually used anywhere???)
-define ("EMAIL_ADMIN","info@niksvoorniks.nl"); // email address Sanne / Marjan
+define ("EMAIL_ADMIN","mark.baaijens@gmail.com"); // email address Sanne / Marjan
 
 define ("PHONE_ADMIN",""); // an email address may be substituted...
 
@@ -219,8 +219,6 @@ define ("EXPIRED_LISTINGS_MESSAGE", $lng_hello.",\n\n".$lng_expire_listings_mess
 define ("JOIN_YEAR_MINIMUM", "2005");  
 
 define ("DEFAULT_COUNTRY", "Nederland");
-define ("DEFAULT_ZIP_CODE", "0000aa"); // This is the postcode - changed by ejkv
-define ("DEFAULT_CITY", "City"); // changed by ejkv
 define ("DEFAULT_STATE", "Wijk"); // changed by ejkv
 define ("DEFAULT_PHONE_AREA", "0xx"); // changed by ejkv
 
