@@ -219,7 +219,7 @@ define ("EXPIRED_LISTINGS_MESSAGE", $lng_hello.",\n\n".$lng_expire_listings_mess
 define ("JOIN_YEAR_MINIMUM", "2005");  
 
 define ("DEFAULT_COUNTRY", "Nederland");
-define ("DEFAULT_STATE", "Wijk"); // changed by ejkv
+define ("DEFAULT_STATE", 0);
 define ("DEFAULT_PHONE_AREA", "0xx"); // changed by ejkv
 
 // Should short date formats display month before day (US convention)?
