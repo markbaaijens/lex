@@ -81,43 +81,6 @@ if (defined("SYSTEM_ACCOUNT_ID")) {
     or die("Error - Could not insert row into person table.");
 }
 
-
-$cDB->Query("INSERT INTO " . DATABASE_CATEGORIES . "(parent_id, description) VALUES (null,'$lng_arts_and_crafts');") or die("Error - Could not insert row into categories table.");
-
-$cDB->Query("INSERT INTO " . DATABASE_CATEGORIES . " (parent_id, description) VALUES (null,'$lng_building_services');") or die("Error - Could not insert row into categories table.");
-
-$cDB->Query("INSERT INTO " . DATABASE_CATEGORIES . " (parent_id, description) VALUES (null,'$lng_bussines_and_administration');") or die("Error - Could not insert row into categories table.");
-
-$cDB->Query("INSERT INTO " . DATABASE_CATEGORIES . " (parent_id, description) VALUES (null,'$lng_children_and_childcare');") or die("Error - Could not insert row into categories table.");
-
-$cDB->Query("INSERT INTO " . DATABASE_CATEGORIES . " (parent_id, description) VALUES (null,'$lng_computers');") or die("Error - Could not insert row into categories table.");
-
-$cDB->Query("INSERT INTO " . DATABASE_CATEGORIES . " (parent_id, description) VALUES (null,'$lng_counseling_and_therapy');") or die("Error - Could not insert row into categories table.");
-
-$cDB->Query("INSERT INTO " . DATABASE_CATEGORIES . " (parent_id, description) VALUES (null,'$lng_food');") or die("Error - Could not insert row into categories table.");
-
-$cDB->Query("INSERT INTO " . DATABASE_CATEGORIES . " (parent_id, description) VALUES (null,'$lng_gardening_and_yardwork');") or die("Error - Could not insert row into categories table.");
-
-$cDB->Query("INSERT INTO " . DATABASE_CATEGORIES . " (parent_id, description) VALUES (null,'$lng_goods');") or die("Error - Could not insert row into categories table.");
-
-$cDB->Query("INSERT INTO " . DATABASE_CATEGORIES . " (parent_id, description) VALUES (null,'$lng_health_and_personal');") or die("Error - Could not insert row into categories table.");
-
-$cDB->Query("INSERT INTO " . DATABASE_CATEGORIES . " (parent_id, description) VALUES (null,'$lng_household');") or die("Error - Could not insert row into categories table.");
-
-$cDB->Query("INSERT INTO " . DATABASE_CATEGORIES . " (parent_id, description) VALUES (null,'$lng_miscellaneous');") or die("Error - Could not insert row into categories table.");
-
-$cDB->Query("INSERT INTO " . DATABASE_CATEGORIES . " (parent_id, description) VALUES (null,'$lng_music_and_entertainment');") or die("Error - Could not insert row into categories table.");
-
-$cDB->Query("INSERT INTO " . DATABASE_CATEGORIES . " (parent_id, description) VALUES (null,'$lng_pets');") or die("Error - Could not insert row into categories table.");
-
-$cDB->Query("INSERT INTO " . DATABASE_CATEGORIES . " (parent_id, description) VALUES (null,'$lng_sports_and_recreation');") or die("Error - Could not insert row into categories table.");
-
-$cDB->Query("INSERT INTO " . DATABASE_CATEGORIES . " (parent_id, description) VALUES (null,'$lng_teaching');") or die("Error - Could not insert row into categories table.");
-
-$cDB->Query("INSERT INTO " . DATABASE_CATEGORIES . " (parent_id, description) VALUES (null, '$lng_transportation');") or die("Error - Could not insert row into categories table.");
-
-$cDB->Query("INSERT INTO " . DATABASE_CATEGORIES . " (parent_id, description) VALUES (null,'$lng_freebies');") or die("Error - Could not insert row into categories table.");
-
 $cDB->Query("CREATE TABLE " . DATABASE_SESSION . "(id CHAR(32) NOT NULL, data TEXT, ts TIMESTAMP, PRIMARY KEY(id), KEY(ts))") or
     die("Error - Cannot create session table.");
  
