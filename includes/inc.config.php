@@ -36,10 +36,10 @@ define ("DATABASE_SERVER","localhost"); // often "localhost"
 /********************* SITE NAMES *************************/
 
 // What is the name of the site?
-define ("SITE_LONG_TITLE", "Ruilsysteem van de Bossche Ruilkring");
+define ("SITE_LONG_TITLE", "Ruilsysteem van Lokale Ruilkring 's-Hertogenbosch e.o.");
 
 // What is the short, friendly, name of the site?
-define ("SITE_SHORT_TITLE", "Ruilsysteem van de Bossche Ruilkring");
+define ("SITE_SHORT_TITLE", "Ruilsysteem van Lokale Ruilkring 's-Hertogenbosch e.o.");
 
 /**********************************************************/
 /***************** FOR MAINTENANCE ************************/
