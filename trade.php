@@ -168,6 +168,8 @@ function process_data ($values) {
 		}
 		else
 			$list .= $lng_you_have." ". $values['units'] ." ". strtolower(UNITS) .$lng_transferred_to. $member_to_id .".  ".$lng_would_you_like_to." <A HREF=trade.php?mode=".$_REQUEST["mode"]."&member_id=". $_REQUEST["member_id"].">".$lng_record_another."</A> ".$lng_exchange."?<P>".$lng_or_would_you_like_to_leave." <A HREF=feedback.php?mode=". $_REQUEST["mode"] ."&author=". $member->member_id ."&about=". $member_to_id ."&trade_id=". $trade->trade_id .">".$lng_feedback."</A> ".$lng_for_this_member."?"; // changed $lng_you_have_transferred into $lng_you_have and "to " into $lng_transferred_to - by ejkv
+
+      mail($member_to->person[0]->email, $lng_payment_received_on." ".SITE_LONG_TITLE."", $lng_let_know_received_payment_from." ".$member->member_id."\n\n".$lng_elected_to_confirm_payment, "From:".EMAIL_FROM);
 		
 		// Has the recipient got an income tie set-up? If so, we need to transfer a percentage of this elsewhere...
 		
