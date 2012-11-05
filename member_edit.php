@@ -38,7 +38,7 @@ if($_REQUEST["mode"] == "admin") {  // Administrator is editing a member's accou
 	$update2_text = $lng_should_member_confirm_payments;
 } else {  // Member is editing own profile
 	$cUser->MustBeLoggedOn();
-	$form->addElement("header", null, $lng_edit_personal_profile);
+	$form->addElement("header", null, $lng_edit_personal_profile . " (" . $cUser->member_id . ")");
 	$form->addElement("html", "<TR></TR>");
 	$form->addElement("hidden","member_id", $cUser->member_id);
 	$form->addElement("hidden","mode","self");
