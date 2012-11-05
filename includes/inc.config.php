@@ -28,8 +28,8 @@ define ("UPLOADS_PATH","uploads/");
 /***************** DATABASE LOGIN  ************************/
 
 define ("DATABASE_USERNAME","root");
-define ("DATABASE_PASSWORD","root");
-define ("DATABASE_NAME","lex2");
+define ("DATABASE_PASSWORD","root357");
+define ("DATABASE_NAME","lex");
 define ("DATABASE_SERVER","localhost"); // often "localhost"
 
 /**********************************************************/
