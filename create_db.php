@@ -222,13 +222,6 @@ $cDB->Query("CREATE TABLE " . DATABASE_STATES . "(
 	PRIMARY KEY (state_id)
 ) TYPE=MyISAM;") or die("Error - database already exists! If you want to create a new database delete the old one first.");
 
-// Now populate DATABASE_STATES table with a few initial records
-// State name could be 'Florida', County could be 'Sussex', or Neighbourhood could be 'Centre'
-$cDB->Query("INSERT INTO " . DATABASE_STATES . "(description) VALUES ('$lng_state1');") or die("Error - Could not insert row into states table.");
-$cDB->Query("INSERT INTO " . DATABASE_STATES . "(description) VALUES ('$lng_state2');") or die("Error - Could not insert row into states table.");
-$cDB->Query("INSERT INTO " . DATABASE_STATES . "(description) VALUES ('$lng_state3');") or die("Error - Could not insert row into states table.");
-$cDB->Query("INSERT INTO " . DATABASE_STATES . "(description) VALUES ('$lng_state4');") or die("Error - Could not insert row into states table.");
-$cDB->Query("INSERT INTO " . DATABASE_STATES . "(description) VALUES ('$lng_state5');") or die("Error - Could not insert row into states table.");
 
 /* END upgrade 1.01 for Multilingual version */
 
