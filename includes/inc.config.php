@@ -179,7 +179,7 @@ define ("UNITS", "Niksen");  // This setting affects functionality, not just tex
 /**************** Monthly fee related settings ********************/
 
 define("SYSTEM_ACCOUNT_ID", "system");
-$monthly_fee_exempt_list = array("ADMIN", SYSTEM_ACCOUNT_ID, "extra_admin"); // added extra_admin - by ejkv
+$monthly_fee_exempt_list = array("admin", SYSTEM_ACCOUNT_ID, "extra_admin"); // added extra_admin - by ejkv
 
 // End of monthly fee related settings.
 
