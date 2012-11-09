@@ -31,9 +31,8 @@ if($_REQUEST["mode"] == "admin") {  // Administrator is editing a member's accou
 	$options = array("language"=> $lng_language, "format" => "dFY", "minYear"=>JOIN_YEAR_MINIMUM, "maxYear"=> $today["year"]); // changed "en" by $lng_language by ejkv
 	$form->addElement("date", "join_date",	$lng_join_date, $options);	
 	$options = array("language"=> $lng_language, "format" => "dFY", "maxYear"=>$today["year"], "minYear"=>"1880"); // changed "en" by $lng_language by ejkv	
-	$form->addElement("date", "dob", $lng_date_of_birth, $options);
 	$form->addElement("text", "mother_mn", $lng_mothers_maiden_name, array("size" => 20, "maxlength" => 30)); 	
-	$form->addElement("static", null, null, null);		
+//	$form->addElement("static", null, null, null);		
 	$update_text = $lng_how_frequently_updates;
 	$update2_text = $lng_should_member_confirm_payments;
 } else {  // Member is editing own profile
@@ -49,19 +48,19 @@ if($_REQUEST["mode"] == "admin") {  // Administrator is editing a member's accou
 $form->addElement("text", "first_name", $lng_first_name, array("size" => 15, "maxlength" => 20));
 $form->addElement("text", "mid_name", $lng_middle_name, array("size" => 10, "maxlength" => 20));
 $form->addElement("text", "last_name", $lng_last_name, array("size" => 20, "maxlength" => 30));
-$form->addElement("static", null, null, null); 
+//$form->addElement("static", null, null, null); 
 
 $form->addElement("text", "email", $lng_email_address, array("size" => 25, "maxlength" => 40));
 $form->addElement("text", "phone1", $lng_primary_phone, array("size" => 20));
 $form->addElement("text", "phone2", $lng_secondary_phone, array("size" => 20));
 $form->addElement("text", "fax", $lng_fax_number, array("size" => 20));
-$form->addElement("static", null, null, null);
+//$form->addElement("static", null, null, null);
 $frequency = array("0"=>$lng_never, "1"=>$lng_daily, "7"=>$lng_weekly, "30"=>$lng_monthly);
 $form->addElement("select", "email_updates", $update_text, $frequency);
 
 $confirmP = array("0"=>$lng_auto_accept_payments, "1"=>$lng_confirm_payments);
 $form->addElement("select", "confirm_payments", $update2_text, $confirmP);
-$form->addElement("static", null, null, null);
+//$form->addElement("static", null, null, null);
 
 $form->addElement("text", "address_street1", ADDRESS_LINE_1, array("size" => 25, "maxlength" => 30));
 $form->addElement("text", "address_street2", ADDRESS_LINE_2, array("size" => 25, "maxlength" => 30));
@@ -79,11 +78,13 @@ $form->addElement("select", "address_state_code", STATE_TEXT, $state_list); // c
 $form->addElement("text", "address_post_code", ZIP_TEXT, array("size" => 10, "maxlength" => 20));
 $form->addElement("text", "address_country", $lng_country, array("size" => 25, "maxlength" => 50));
 
+$form->addElement("date", "dob", $lng_date_of_birth, $options);
+
 /*[chris] Personal Profile bits */
 
 if (SOC_NETWORK_FIELDS==true) {
 	
-	$form->addElement("static", null, null, null);
+//	$form->addElement("static", null, null, null);
 	$form->addElement("select", "age", $lng_age, $agesArr);
 	$form->addElement("select", "sex", $lng_sex, $sexArr);
 	$form->addElement("textarea", "about_me", $lng_about_me, array("cols"=>45, "rows"=>5, "wrap"=>"soft", "maxlength" => 300));
