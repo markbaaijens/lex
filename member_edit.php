@@ -11,6 +11,7 @@ include_once("classes/class.state_address.php"); // added by ejkv
 //
 // First, we define the form
 //
+$today = getdate();
 if($_REQUEST["mode"] == "admin") {  // Administrator is editing a member's account
 	$cUser->MustBeLevel(1);
 	$member = new cMember;
@@ -27,10 +28,8 @@ if($_REQUEST["mode"] == "admin") {  // Administrator is editing a member's accou
 	$form->addElement("select", "account_type", $lng_account_type, $acct_types);
 #	$form->addElement("static", null, $lng_admin_note, null);
 	$form->addElement("textarea", "admin_note", $lng_admin_note, array("cols"=>45, "rows"=>2, "wrap"=>"soft", "maxlength" => 100));
-	$today = getdate();
-	$options = array("language"=> $lng_language, "format" => "dFY", "minYear"=>JOIN_YEAR_MINIMUM, "maxYear"=> $today["year"]); // changed "en" by $lng_language by ejkv
-	$form->addElement("date", "join_date",	$lng_join_date, $options);	
-	$options = array("language"=> $lng_language, "format" => "dFY", "maxYear"=>$today["year"], "minYear"=>"1880"); // changed "en" by $lng_language by ejkv	
+	$options_join = array("language"=> $lng_language, "format" => "dFY", "minYear"=>JOIN_YEAR_MINIMUM, "maxYear"=> $today["year"]); // changed "en" by $lng_language by ejkv
+	$form->addElement("date", "join_date",	$lng_join_date, $options_join);	
 	$form->addElement("text", "mother_mn", $lng_mothers_maiden_name, array("size" => 20, "maxlength" => 30)); 	
 //	$form->addElement("static", null, null, null);		
 	$update_text = $lng_how_frequently_updates;
@@ -78,7 +77,8 @@ $form->addElement("select", "address_state_code", STATE_TEXT, $state_list); // c
 $form->addElement("text", "address_post_code", ZIP_TEXT, array("size" => 10, "maxlength" => 20));
 $form->addElement("text", "address_country", $lng_country, array("size" => 25, "maxlength" => 50));
 
-$form->addElement("date", "dob", $lng_date_of_birth, $options);
+$options_dob = array("language"=> $lng_language, "format" => "dFY", "maxYear"=>$today["year"], "minYear"=>"1880"); // changed "en" by $lng_language by ejkv	
+$form->addElement("date", "dob", $lng_date_of_birth, $options_dob);
 
 /*[chris] Personal Profile bits */
 
