@@ -2,7 +2,7 @@
 require_once("includes/inc.global.php");
 require_once("includes/inc.forms.php");
 include_once("classes/class.uploads.php");
-//require_once('Image/Transform.php');
+require_once('Image/Transform.php');
 
 if (ALLOW_IMAGES!=true) 
 	header("location:" . "");
