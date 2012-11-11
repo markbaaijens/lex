@@ -70,6 +70,9 @@ if(UNITS == "Hours") {
 	$form->registerRule('verify_valid_units','function','verify_valid_units');
 	$form->addRule('units', $lng_enter_positive_number_two_dec, 'verify_valid_units');
 }
+
+$form->addRule("member_to", $lng_enter_a, "required");
+$form->addRule("category", $lng_enter_a, "required");
 $form->addRule("units", $lng_enter_a, "required");
 $form->addRule('description', $lng_enter_a, "required");
 
