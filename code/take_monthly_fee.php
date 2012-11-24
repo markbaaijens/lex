@@ -58,13 +58,14 @@ function confirmation($cid)
         $_SESSION["LAST_CID"] = $cid;
     }
 
+    $month = strftime("%B", time());
+    $intro = $lng_sure_transfer_fee_for_month_of." $month (" . MONTHLY_FEE . " " . strtolower(UNITS) .")?<br>";
+
     // If fee has been already taken for this month, then setup the $warning
-    // variable.
+    // variable.  
     if(already_fee_takenp())
     {
-        $month = strftime("%B", time());
-        $warning = "<p>".$lng_sure_transfer_fee_for_month_of." $month?  ".$lng_monthly_fee_for." $month ".$lng_has_already_been_taken.".</p>";
-
+        $warning = "<br><strong>".$lng_monthly_fee_for." $month ".$lng_has_already_been_taken."!</strong><br>";
     }
     else
     {
@@ -73,6 +74,7 @@ function confirmation($cid)
 
     $ts = time();
     $html = <<<ENDHTML
+        $intro
         $warning        
 
         <form method="GET" action="">
