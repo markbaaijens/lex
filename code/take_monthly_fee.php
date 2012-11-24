@@ -164,11 +164,11 @@ function transfer_fee($tid)
     {
         if ( !in_array($row->member_id, $monthly_fee_exempt_list))
         {
-            // Category 12 is "Miscellaneous".
+            // Category is from inc.config.php/MONTHLY_FEE_CATEGORY_ID
             // Logs Trade
             $query1 = "insert into $trade_table set trade_date=from_unixtime(".$ts."),   
             	 status='V', member_id_from='".$row->member_id."',
-                              member_id_to='$system_account_id', amount=$monthly_fee, category=12,
+                              member_id_to='$system_account_id', amount=$monthly_fee, category=". MONTHLY_FEE_CATEGORY_ID . ",
                                   description='".$lng_monthly_fee."', type='$trade_type'"; // changed 'Monthly fee' into $lng_monthly_fee by ejkv
    
             $result1 = $cDB->Query($query1);
