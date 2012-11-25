@@ -408,7 +408,7 @@ switch($_REQUEST["action"]) {
 							else {
 								
 								$cDB->Query("UPDATE trades_pending set status=".$cDB->EscTxt('F')." where id=".$cDB->EscTxt($_GET["tid"])."");
-								$list .= "<em>".$lng_you_sent_payment_of." ".$row["amount"]." ".UNITS." to ".$row["member_id_from"]."</em>";
+								$list .= "<em>".$lng_you_sent_payment_of." ".$row["amount"]." ".UNITS." ".strtolower($lng_to)." ".$row["member_id_from"]."</em>";
 						}
 					}
 				}
