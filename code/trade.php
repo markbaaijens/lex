@@ -47,7 +47,7 @@ $form->addElement("text", "units", $lng_nmbr_of. UNITS ."", array('size' => 5, '
 if(UNITS == "Hours") {
 	$form->addElement("text","minutes",$lng_nmbr_of_minutes,array('size'=>2,'maxlength'=>2));
 }
-$form->addElement('textarea', 'description', $lng_enter_description_of_exchange, array('cols'=>50, 'rows'=>4, 'wrap'=>'soft'));
+$form->addElement('textarea', 'description', $lng_enter_description_of_exchange, array('cols'=>50, 'rows'=>4, 'wrap'=>'soft', 'maxlength'=>255));
 $form->addElement('submit', 'btnSubmit', $lng_submit);
 
 //
