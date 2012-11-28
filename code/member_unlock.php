@@ -7,7 +7,7 @@ $p->page_title = $lng_unlock_account_reset_pwd;
 
 include("includes/inc.forms.php");
 
-$form->addElement("static", 'contact', $lng_this_form_unlocks_and_resets_pwd, null);
+$form->addElement("header", null, $lng_this_form_unlocks_and_resets_pwd, null);
 $form->addElement("static", null, null);
 $ids = new cMemberGroup;
 $ids->LoadMemberGroup(false);

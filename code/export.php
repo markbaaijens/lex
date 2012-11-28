@@ -8,7 +8,7 @@ $p->page_title = $lng_export_to_spreadsheet;
 include("classes/class.backup.php");
 include("includes/inc.forms.php");
 
-$form->addElement("static", 'contact', $lng_this_will_export_db_to_spreadsheet, null);
+$form->addElement("header", null, $lng_this_will_export_db_to_spreadsheet, null);
 $form->addElement("static", null, null, null);
 $form->addElement("submit", "btnSubmit", $lng_download);
 

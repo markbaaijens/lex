@@ -20,11 +20,11 @@ include_once("classes/class.news.php");
 $form->addElement("hidden", "member_id", $_REQUEST["member_id"]);
 
 if($member->status == 'A') {
-	$form->addElement("static", null, $lng_sure_to_inactivate_member, null);
+	$form->addElement("header", null, $lng_sure_to_inactivate_member, null);
 	$form->addElement("static", null, null, null);
 	$form->addElement('submit', 'btnSubmit', $lng_inactivate);
 } else {
-	$form->addElement("static", null, $lng_sure_to_reactivate_member, null);
+	$form->addElement("header", null, $lng_sure_to_reactivate_member, null);
 	$form->addElement("static", null, null, null);
 	$form->addElement('submit', 'btnSubmit', $lng_reactivate);
 }
