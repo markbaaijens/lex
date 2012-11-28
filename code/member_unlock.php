@@ -10,7 +10,7 @@ include("includes/inc.forms.php");
 $form->addElement("static", 'contact', $lng_this_form_unlocks_and_resets_pwd, null);
 $form->addElement("static", null, null);
 $ids = new cMemberGroup;
-$ids->LoadMemberGroup();
+$ids->LoadMemberGroup(false);
 $form->addElement("select", "member_id", $lng_choose_member_account, $ids->MakeIDArray());
 
 $form->addElement("static", null, null, null);
