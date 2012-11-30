@@ -295,8 +295,17 @@ class cListingGroup
 					$output .= "<A HREF=" . "member_login.php>" . $listing->title ."</A><br>". $details; // link to login page, removed <FONT SIZE=2> .. </FONT>, and line-break added by ejkv
 						
 				// Rate
-				if (SHOW_RATE_ON_LISTINGS==true && $listing->rate)
-					$output .= " (".$listing->rate." ".UNITS.")<br>"; // line-break added by ejkv
+				if (SHOW_RATE_ON_LISTINGS==true && $listing->rate) {
+  					$output .= " (".$listing->rate;
+
+            // To avoid doubled mentioning of the units description: check if '<units>' is already mentioned in the price (rate);
+            // if NOT, add the units description.
+            $pos = strpos( strtolower($listing->rate), strtolower(UNITS));
+            if ($pos === false) {
+    					$output .= " ".UNITS;
+            } 
+  					$output .= ")<br>";  					
+					}
 				else // added by ejkv
 					$output .= "<br>"; // line-break added by ejkv
 			
