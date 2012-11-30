@@ -176,6 +176,9 @@ $SECTIONS = array (
 
 define ("UNITS", "Niksen");  // This setting affects functionality, not just text displayed, so if you want to use hours/minutes this needs to read "Hours" exactly.  All other unit descriptions are ok, but receive no special treatment (i.e. there is no handling of "minutes"). - changed by ejkv
 
+// Determine how balance is shown; default is to show only integers, change to 1 to show decimals 
+define ("SHOW_UNITS_DECIMALS", 0); 
+ 
 /**************** Monthly fee related settings ********************/
 
 define("SYSTEM_ACCOUNT_ID", "system");

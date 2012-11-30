@@ -289,7 +289,12 @@ class cTradeGroup {
 			
 			$trade_date = new cDateTime($trade->trade_date);			
 			
-			$output .= "<TR VALIGN=TOP BGCOLOR=". $bgcolor ."><TD><FONT SIZE=2 COLOR=".$fcolor.">". $trade_date->ShortDate()."</FONT></TD><TD><FONT SIZE=2 COLOR=".$fcolor.">". $trade->member_from->member_id ."</FONT></TD><TD><FONT SIZE=2 COLOR=".$fcolor.">". $trade->member_to->member_id ."</FONT></TD><TD ALIGN=RIGHT><FONT SIZE=2 COLOR=".$fcolor.">". $trade->amount ."&nbsp;</FONT></TD><TD><FONT SIZE=2 COLOR=".$fcolor.">". $trade->category->description ."&nbsp;</FONT></TD><TD><FONT SIZE=2 COLOR=".$fcolor.">". $cDB->UnEscTxt($trade->description) ."</FONT></TD></TR>"; // added $trade->category->description by ejkv
+			$output .= "<TR VALIGN=TOP BGCOLOR=". $bgcolor ."><TD><FONT SIZE=2 COLOR=".$fcolor.">". $trade_date->ShortDate()."</FONT></TD><TD><FONT SIZE=2 COLOR=".$fcolor.">". $trade->member_from->member_id ."</FONT></TD><TD><FONT SIZE=2 COLOR=".$fcolor.">". $trade->member_to->member_id ."</FONT></TD><TD ALIGN=RIGHT><FONT SIZE=2 COLOR=".$fcolor.">";
+			if (SHOW_UNITS_DECIMALS == 0)
+				$output .= round($trade->amount);
+			else
+				$output .= $trade->amount;
+			$output .= "&nbsp;</FONT></TD><TD><FONT SIZE=2 COLOR=".$fcolor.">". $trade->category->description ."&nbsp;</FONT></TD><TD><FONT SIZE=2 COLOR=".$fcolor.">". $cDB->UnEscTxt($trade->description) ."</FONT></TD></TR>"; // added $trade->category->description by ejkv
 			$i+=1;
 		}
 		

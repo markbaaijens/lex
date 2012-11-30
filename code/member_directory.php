@@ -164,9 +164,14 @@ if($member_list->members) {
 					   <TD><FONT SIZE=2>". $state_list[$member->person[0]->address_state_code] . "</FONT></TD>
 					   <TD><FONT SIZE=2>". $member->person[0]->address_post_code ."</FONT></TD>";				   
 				
-				if (MEM_LIST_DISPLAY_BALANCE==true || $cUser->member_role >= 1)
-					$output .= "<TD ALIGN=RIGHT><FONT SIZE=2>". $member->balance ."</FONT></TD>"; // added ALIGN=RIGHT by ejkv
-					
+				if (MEM_LIST_DISPLAY_BALANCE==true || $cUser->member_role >= 1) {
+					$output .= "<TD ALIGN=RIGHT><FONT SIZE=2>";
+					if (SHOW_UNITS_DECIMALS == 0)
+  					$output .= round($member->balance);
+  				else
+   					$output .= $member->balance;					
+					$output .= "</FONT></TD>";
+        }					
 				$output .= "</TR>";
 				$i+=1;
 		 }
