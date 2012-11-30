@@ -33,7 +33,7 @@ $query = $cDB->Query("SELECT filename FROM ".DATABASE_UPLOADS." WHERE title=".$c
 $num_results = mysql_num_rows($query);
 $mIMG = cMember::DisplayMemberImg($member->member_id);
 
-if ($mIMG!=false) {
+if ($num_results>0) {
 			
 		$form->addElement("html", $mIMG."<p>");
 		$submitTxt = $lng_replace_image;		
