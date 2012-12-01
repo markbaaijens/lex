@@ -262,20 +262,13 @@ class cTradeGroup {
 		
 		$i=0;
 		foreach($this->trade as $trade) {
-/*
-            // Ignore monthly fees.
-            if ($trade->type == TRADE_MONTHLY_FEE or
-                                    $trade->type == TRADE_MONTHLY_FEE_REVERSAL)
-            {
-                continue;
-            }
-*/
-            if ($cUser->member_role==0 and $trade->member_to->member_id != $cUser->member_id and
-											$trade->member_from->member_id != $cUser->member_id)
-				continue; // ignore trades that are not related to this member - added by ejkv
 
-			if($trade->type == TRADE_REVERSAL or
-                                             $trade->status == TRADE_REVERSAL)
+      // ignore trades that are not related to this member - added by ejkv
+      if ($cUser->member_role==0 and $trade->member_to->member_id != $cUser->member_id and
+											$trade->member_from->member_id != $cUser->member_id)
+    		continue; 
+
+			if($trade->type == TRADE_REVERSAL or $trade->status == TRADE_REVERSAL)
 				$fcolor = "pink";
 			else if ($trade->member_to->member_id == $this->member_id)
 				$fcolor = "#4a5fa4";
@@ -289,11 +282,31 @@ class cTradeGroup {
 			
 			$trade_date = new cDateTime($trade->trade_date);			
 			
-			$output .= "<TR VALIGN=TOP BGCOLOR=". $bgcolor ."><TD><FONT SIZE=2 COLOR=".$fcolor.">". $trade_date->ShortDate()."</FONT></TD><TD><FONT SIZE=2 COLOR=".$fcolor.">". $trade->member_from->member_id ."</FONT></TD><TD><FONT SIZE=2 COLOR=".$fcolor.">". $trade->member_to->member_id ."</FONT></TD><TD ALIGN=RIGHT><FONT SIZE=2 COLOR=".$fcolor.">";
+			$output .= "<TR VALIGN=TOP BGCOLOR=". $bgcolor ."><TD><FONT SIZE=2 COLOR=".$fcolor.">". $trade_date->ShortDate()."</FONT></TD><TD><FONT SIZE=2 COLOR=".$fcolor.">". $trade->member_from->member_id ."</FONT></TD><TD><FONT SIZE=2 COLOR=".$fcolor.">". $trade->member_to->member_id ."</FONT></TD><TD ALIGN=RIGHT><FONT SIZE=2 COLOR=";
+
+      // If this tradelist is for a specific member, we can show how the balance is influenced (positive or negative). If
+      // this is a generic tradelist, obviously we cannot show this indication.
+      if ($trade->member_to->member_id == $this->member_id) {
+ 			    $output .= $fcolor.">"; 			    
+			    $output .= "+";
+		    }
+			else {			
+        if ($trade->member_from->member_id == $this->member_id) {
+            $output .= "ff0000".">"; // red
+				    $output .= "-";
+				  }
+				else {
+				  // For a generic list, not for a specific member
+          $output .= $fcolor.">"; 				    
+				 }
+				}				
+
+			// Show rounded numbers, depending on system setting	
 			if (SHOW_UNITS_DECIMALS == 0)
 				$output .= round($trade->amount);
 			else
 				$output .= $trade->amount;
+								
 			$output .= "&nbsp;</FONT></TD><TD><FONT SIZE=2 COLOR=".$fcolor.">". $trade->category->description ."&nbsp;</FONT></TD><TD><FONT SIZE=2 COLOR=".$fcolor.">". $cDB->UnEscTxt($trade->description) ."</FONT></TD></TR>"; // added $trade->category->description by ejkv
 			$i+=1;
 		}
