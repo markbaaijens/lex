@@ -282,7 +282,11 @@ class cTradeGroup {
 			
 			$trade_date = new cDateTime($trade->trade_date);			
 			
-			$output .= "<TR VALIGN=TOP BGCOLOR=". $bgcolor ."><TD><FONT SIZE=2 COLOR=".$fcolor.">". $trade_date->ShortDate()."</FONT></TD><TD><FONT SIZE=2 COLOR=".$fcolor.">". $trade->member_from->member_id ."</FONT></TD><TD><FONT SIZE=2 COLOR=".$fcolor.">". $trade->member_to->member_id ."</FONT></TD><TD ALIGN=RIGHT><FONT SIZE=2 COLOR=";
+			$output .= "<TR VALIGN=TOP BGCOLOR=". $bgcolor ."><TD><FONT SIZE=2 COLOR=".$fcolor.">". $trade_date->ShortDate()."</FONT></TD><TD><FONT SIZE=2 COLOR=".$fcolor.">";
+			$output .= "<A HREF=member_summary.php?member_id=". $trade->member_from->member_id .">". $trade->member_from->member_id ."</A>";						
+			$output .= "</FONT></TD><TD><FONT SIZE=2 COLOR=".$fcolor.">";
+			$output .= "<A HREF=member_summary.php?member_id=". $trade->member_to->member_id .">". $trade->member_to->member_id ."</A>";			
+			$output .= "</FONT></TD><TD ALIGN=RIGHT><FONT SIZE=2 COLOR=";
 
       // If this tradelist is for a specific member, we can show how the balance is influenced (positive or negative). If
       // this is a generic tradelist, obviously we cannot show this indication.
