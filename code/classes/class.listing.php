@@ -321,7 +321,7 @@ class cListingGroup
 					$short_pcode = '';
 					
 					// Only display X number of characters from the postcode
-					for ($i=0;$i<(NUM_CHARS_POSTCODE_SHOW_ON_LISTINGS+1);$i++) {
+					for ($i=0;$i<(NUM_CHARS_POSTCODE_SHOW_ON_LISTINGS);$i++) {
 						
 						$short_pcode .= $pcode{$i};	
 						
