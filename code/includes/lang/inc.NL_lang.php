@@ -566,7 +566,7 @@ $lng_about_to_refund_fee = "Je staat op het punt om een maandeijkse bijdrage ter
 $lng_refund_now = "Boek&nbsp;nu&nbsp;terug"; //"Refund now";
 $lng_cancel = "Annuleer"; //"Cancel";
 $lng_already_transfered = "Is reeds overgemaakt. Ga naar de administratiepagina om een nieuwe overschrijving op te starten."; //"Already transfered.  Start from the administration page for a new transfer.";
-$lng_refund_monthly_fee_taken_on = "Boek de maandelijkse bijdrage terug voor"; //"Refund for monthly fee taken on"; // changed by ejkv
+$lng_refund_monthly_fee_taken_on = "Terugboeking maandelijkse bijdrage van"; //"Refund for monthly fee taken on"; // changed by ejkv
 $lng_couldnt_transfer = "Kan niet overschrijven."; //"Couldn't transfer.";
 $lng_done = "Gedaan"; //"Done";
 $lng_refund_service_charge = "Boek de servicebijdrage terug"; //"Refund Service Charge"; // removed &nbsp; by ejkv
@@ -888,7 +888,7 @@ $lng_show_fees_and_charges_comment = "Wil je de maandelijkse ledenbijdragen en d
 $lng_database_created_message = "De database is gemaakt. Klik <a href=member_login.php>hier</a> om in te loggen." ;//"Database has been created. Click <A HREF=member_login.php>here</A> to login.";
 $lng_create_mysql_backup = "Gebruik deze tool om een MySQL Database back-up te maken.<p>" ; //"Use this tool to backup your MySQL Database.<p>"; - added by ejkv
 $lng_create_mysql_backup_now = "Nu een back-up maken." ; //"<a href=mysql_backup.php?backup=true>Backup Now</a>"; - added by ejkv
-$lng_monthly_fee = "Maandelijkse LETS-kring bijdrage"; //"Monthly Fee"; - added by ejkv
+$lng_monthly_fee = "Maandelijkse bijdrage"; //"Monthly Fee"; - added by ejkv
 $lng_category_already_exists = "De categorie bestaat al"; //"The category already exists" // added by ejkv
 
 /* the following was added for state_address_code for mutilingual purposes - by ejkv
