@@ -4,6 +4,10 @@
 	$cUser->MustBeLoggedOn();
 	$p->site_section = EXCHANGES;
 	$p->page_title = $lng_exchange_history;
+	
+  // Only admin's have access to this option. Regular users are limited of 
+  // seeing only their own transactions.
+	$cUser->MustBeLevel(2);
 
 	include("classes/class.trade.php");
 	
