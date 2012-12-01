@@ -1,8 +1,0 @@
-#!/bin/bash
-unzip manual_lex.odt -d odt-unzipped
-
-[ruileenheid]     Moeren
-[mailadres-admin] info@letskring.nl
-[naam-ruilkring]  Letskring Mallemoer Breda
-[website]         http://www.letskringbreda.nl/
-[letsblad]        Moergazetje
