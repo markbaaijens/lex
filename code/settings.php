@@ -3,7 +3,7 @@ include_once("includes/inc.global.php");
 $p->site_section = ADMINISTRATION;
 $p->page_title = $lng_site_settings;
 
-$cUser->MustBeLevel(3); // changed level 2 to level 3 - by ejkv
+$cUser->MustBeLevel(2);
 
 global $cDB, $site_settings;
 
