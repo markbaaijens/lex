@@ -15,7 +15,7 @@ class cBackup {
 		global $cUser, $cDB;
 		
 		$this->workbook = new Spreadsheet_Excel_Writer();
-		$this->workbook->setTempDir('/tmp');
+//		$this->workbook->setTempDir('/tmp');
 		
 		// TODO: The following should be dynamically generated
 		$this->all_tables = array(DATABASE_LISTINGS, DATABASE_PERSONS, DATABASE_MEMBERS, DATABASE_TRADES, DATABASE_PENDING, DATABASE_LOGINS, DATABASE_LOGGING, DATABASE_CATEGORIES, DATABASE_STATES, DATABASE_FEEDBACK, DATABASE_REBUTTAL, DATABASE_NEWS); // - added DATABASE_PENDING, DATABASE_STATES by ejkv
