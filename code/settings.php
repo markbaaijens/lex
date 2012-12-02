@@ -159,7 +159,7 @@ foreach($sections as $a => $b) {
 		if ($key->descrip) {
 			
 			$output .= "</table>
-				<table width=100%><tr valign=top><td><font color=green>".$key->descrip."</font></td></tr></table>
+				<table width=100%><tr valign=top><td><font color=green><ul>".$key->descrip."</ul></font></td></tr></table>
 				<p><table width=100%>";
 		}
 	}
