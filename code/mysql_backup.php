@@ -41,9 +41,13 @@ if ($_REQUEST["backup"]==true) {
 		
 		$os = $regs[1];
 		
-		// this looks better under WinX
-		if (eregi("Win",$os)) 
-		    $crlf="\r\n";
+		// Originally, the code was like this:
+    //		if (eregi("Win",$os)) 
+		//      $crlf="\r\n";
+		// But then, on a NON-windows OS, the variable $crlf would be empty.
+		
+		// This setting is OK for all OS'es:
+		$crlf="\r\n";		
 	}
 	
 	function my_handler($sql_insert) {
