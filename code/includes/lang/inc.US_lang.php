@@ -207,6 +207,7 @@ $lng_problem_updating_balance = "There was a problem updated this member's balan
 $lng_choose_info_page_edit = "Choose Info Page to Edit";
 $lng_email_member = "Email a Member";
 $lng_to = "To";
+$lng_to_until = "to"; 
 $lng_for = "for";
 $lng_subject = "Subject";
 $lng_would_you_receive_copy = "Would you like to receive a copy?";

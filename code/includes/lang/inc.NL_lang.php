@@ -1,5 +1,5 @@
 <?php
-setlocale(LC_TIME, 'dutch'); // set local date/time to Dutch setting - by ejkv
+setlocale(LC_ALL, 'dutch'); // set local date/time to Dutch setting - by ejkv
 /**
  * @author Willem van der Til
  * NL language file. Create your own language file using this file as an example. */ // changed UK language by ejkv
@@ -208,6 +208,7 @@ $lng_problem_updating_balance = "Het saldo van dit lid kan niet worden gewijzigd
 $lng_choose_info_page_edit = "Kies de informatiepagina die je wilt wijzigen"; //"Choose Info Page to Edit";
 $lng_email_member = "Stuur een e-mailbericht naar een lid"; //"Email a Member";
 $lng_to = "Naar"; //"To";
+$lng_to_until = "tot"; //"to" in the meaning of 'until'
 $lng_for = "voor" ; //"for";
 $lng_subject = "Onderwerp"; //"Subject";
 $lng_would_you_receive_copy = "Wil je een kopie ontvangen?"; //"Would you like to receive a copy?";

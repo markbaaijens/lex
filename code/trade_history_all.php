@@ -14,7 +14,7 @@
 	$from = new cDateTime($_REQUEST["from"]);
 	$to = new cDateTime($_REQUEST["to"]);
 	
-	$output = "<B>".$lng_for_period_from." ". $from->ShortDate() ." to ". $to->ShortDate() ."</B><P>";	
+	$output = "<B>".$lng_for_period_from." ". $from->ShortDate() ." ".$lng_to_until." ". $to->ShortDate() ."</B><P>";	
 
 	$member_id = $_REQUEST["member_id"]; // added by ejkv
 	if ($member_id == NULL) $member_id = "%"; // added by ejkv

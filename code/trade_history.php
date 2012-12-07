@@ -33,7 +33,7 @@
 	$to = new cDateTime($to_date);
 // added trade history timeframe (from / to) - by ejkv
 	
-	$list = "<B>".$lng_currente_balance.": </B><FONT COLOR=". $color .">". $member->balance . " ". UNITS ." - ".$lng_for_period_from." ". $from->ShortDate() ." to ". $to->ShortDate() ."</FONT><P>"; // added (from / to) - by ejkv	
+	$list = "<B>".$lng_currente_balance.": </B><FONT COLOR=". $color .">". $member->balance . " ". UNITS ." - ".$lng_for_period_from." ". $from->ShortDate() ." ".$lng_to_until." ". $to->ShortDate() ."</FONT><P>"; // added (from / to) - by ejkv	
 
 	$trade_group = new cTradeGroup($member->member_id, $from_date, $to_date); // added (from / to) - by ejkv
 	$trade_group->LoadTradeGroup("individual");
