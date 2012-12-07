@@ -227,7 +227,9 @@ define ("DEFAULT_STATE", 0);
 define ("DEFAULT_PHONE_AREA", "0xx"); // changed by ejkv
 
 // Should short date formats display month before day (US convention)?
-define ("MONTH_FIRST", false);		
+define ("MONTH_FIRST", false);
+define ("DATE_SEPARATOR", "-");
+define ("DATE_SHOW_CENTURY", true);								
 
 define ("PASSWORD_RESET_SUBJECT", $lng_your." ". SITE_LONG_TITLE ." ".$lng_account);
 define ("PASSWORD_RESET_MESSAGE", $lng_your_password_for." ". SITE_LONG_TITLE ." ".$lng_has_has_been_reset." ".PHONE_ADMIN.".\n\n".$lng_your_user_id_and_pwrd_are_listed_in_this_email);

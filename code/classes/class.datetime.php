@@ -53,14 +53,19 @@ class cDateTime {
 	}
 	
 	function StandardDate () {
-		return $this->year ."/". $this->month ."/". $this->day;
+		return $this->year .DATE_SEPARATOR. $this->month .DATE_SEPARATOR. $this->day;
 	}
 	
 	function ShortDate () {
+    if (DATE_SHOW_CENTURY) {
+   	  $year = substr($this->year, 0, 4);
+	  } else {
+   	  $year = substr($this->year, 2, 2);	  
+	  }
 		if (MONTH_FIRST)
-			return sprintf("%d/%d/%s", $this->month, $this->day, substr($this->year, 2, 2));
+			return sprintf("%02d".DATE_SEPARATOR."%02d".DATE_SEPARATOR."%s", $this->month, $this->day, $year);
 		else
-			return sprintf("%d/%d/%s", $this->day, $this->month, substr($this->year, 2, 2));
+			return sprintf("%02d".DATE_SEPARATOR."%02d".DATE_SEPARATOR."%s", $this->day, $this->month, $year);
 	}
 	
 	function Timestamp () {
