@@ -30,10 +30,10 @@ $form->addElement('submit', 'btnSubmit', $lng_reverse);
 // Then check if we are processing a submission or just displaying the form
 //
 if ($form->validate()) { // Form is validated so processes the data
-   $form->freeze();
+  $form->freeze();
  	$form->process('process_data', false);
 } else {
-   $p->DisplayPage($form->toHtml());  // just display the form
+  $p->DisplayPage($form->toHtml());  // just display the form
 }
 
 function process_data ($values) {
@@ -43,15 +43,12 @@ function process_data ($values) {
 	$old_trade->LoadTrade($values["trade_id"]);
 	$success = $old_trade->ReverseTrade($values["description"]);	
 	
-	if($success)
+	if($success == MAKE_TRADE_STATUS_OK)
 		$list = $lng_trade_reversed;
 	else
 		$list = "<i>".$lng_error_reversing_trade."!<i>";
 	
-   $p->DisplayPage($list);
+  $p->DisplayPage($list);
 }
-
-
-
 
 ?>

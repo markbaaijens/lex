@@ -8,6 +8,14 @@ if (!isset($global))
 include_once("class.category.php");
 include_once("class.feedback.php");
 
+// Define return status codes of function MakeTrade()
+define("MAKE_TRADE_STATUS_OK", 0);							
+define("MAKE_TRADE_STATUS_AMOUNT_NOT_ALLOWED_NEGATIVE", 1);
+define("MAKE_TRADE_STATUS_AMOUNT_NOT_ALLOWED_POSITIVE", 2);
+define("MAKE_TRADE_STATUS_NOT_ALLOWED_TRADING_TO_SELF", 3);
+define("MAKE_TRADE_STATUS_USER_RESTRICTION", 4);
+define("MAKE_TRADE_STATUS_UNKNOWN_ERROR", 5);							
+
 class cTrade {
 	var $trade_id;
 	var $trade_date;
@@ -95,24 +103,26 @@ class cTrade {
 			include("redirect.php");
 		}				
 	}
-
+	
 	// It is very important that this function prevent the database from going out balance.
 	function MakeTrade($reversed_trade_id=null) { 
 		global $cDB, $cErr, $lng_dbase_out_of_balance, $lng_hi_admin, $lng_Message_dbase_out_of_balance, $lng_dbase_out_of_bal_pls_contct_admin;
 		
-		if ($this->amount <= 0 and $this->type != TRADE_REVERSAL) // Amount should be positive unless
-			return false;									 // this is a reversal of a previous trade.
+    // Amount should be positive unless this is a reversal of a previous trade.    
+		if ($this->amount <= 0 and $this->type != TRADE_REVERSAL) 
+			return MAKE_TRADE_STATUS_AMOUNT_NOT_ALLOWED_NEGATIVE;
 			
-		if ($this->amount >= 0 and $this->type == TRADE_REVERSAL)	 // And likewise.
-			return false;
-			
-		
+    // ... and likewise.
+		if ($this->amount >= 0 and $this->type == TRADE_REVERSAL)	 
+			return MAKE_TRADE_STATUS_AMOUNT_NOT_ALLOWED_POSITIVE;
+
+    // Don't allow trade to self	
 		if ($this->member_from->member_id == $this->member_to->member_id)
-			return false;		// don't allow trade to self
-		
-		if ($this->member_from->restriction==1) { // This member's account has been restricted - he is not allowed to make outgoing trades
-			
-			return false;
+			return MAKE_TRADE_STATUS_NOT_ALLOWED_TRADING_TO_SELF;
+
+    // This member's account has been restricted - he is not allowed to make outgoing trades					
+		if ($this->member_from->restriction==1) { 
+			return MAKE_TRADE_STATUS_USER_RESTRICTION;
 		}
 	
 		$balances = new cBalancesTotal;
@@ -172,15 +182,15 @@ class cTrade {
 			if($success1 and $success2 and $success3 and $success4) {
 				$cDB->Query('COMMIT');
 				$cDB->Query("SET AUTOCOMMIT=1"); // Probably isn't necessary...
-				return true;
+				return MAKE_TRADE_STATUS_OK;
 			} else {
 				$cDB->Query('ROLLBACK');
 				$cDB->Query("SET AUTOCOMMIT=1"); // Probably isn't necessary...
-				return false;
+				return MAKE_TRADE_STATUS_UNKNOWN_ERROR;
 			}
 		} else {
 			$cDB->Query("SET AUTOCOMMIT=1"); // Probably isn't necessary...
-			return false;
+			return MAKE_TRADE_STATUS_UNKNOWN_ERROR;
 		}			
 	}
 	
