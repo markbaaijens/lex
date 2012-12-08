@@ -141,6 +141,13 @@ if ($form->validate()) { // Form is validated so processes the data
 			
 	$current_values = array ("member_id"=>$member->member_id, "first_name"=>$member->person[0]->first_name, "mid_name"=>$member->person[0]->mid_name, "last_name"=>$member->person[0]->last_name, "email"=>$member->person[0]->email, "phone1"=>$member->person[0]->DisplayPhone(1), "phone2"=>$member->person[0]->DisplayPhone(2), "fax"=>$member->person[0]->DisplayPhone("fax"), "email_updates"=>$member->email_updates, "address_street1"=>$member->person[0]->address_street1, "address_street2"=>$member->person[0]->address_street2, "address_city"=>$member->person[0]->address_city, "address_state_code"=>$member->person[0]->address_state_code, "address_post_code"=>$member->person[0]->address_post_code, "address_country"=>$member->person[0]->address_country, "age"=>$member->person[0]->age, "sex"=>$member->person[0]->sex, "about_me"=>$member->person[0]->about_me,"confirm_payments"=>$member->confirm_payments);
 
+	if ($member->person[0]->dob) {		
+		$current_values["dob"] = array ('d'=>substr($member->person[0]->dob,8,2),'F'=>date('n',strtotime($member->person[0]->dob)),'Y'=>substr($member->person[0]->dob,0,4));  // Using 'n' due to a bug in Quickform
+	} else { // If date of birth was left empty originally, display default date
+		$today = getdate();
+		$current_values["dob"] = array ('d'=>$today['mday'],'F'=>$today['mon'],'Y'=>$today['year']);
+	}		
+
 	// Load defaults for extra fields visible by administrators
 	if($_REQUEST["mode"] == "admin") {
         $cUser->MustBeLevel(1);
@@ -151,12 +158,6 @@ if ($form->validate()) { // Form is validated so processes the data
 		$current_values["join_date"] = array ('d'=>substr($member->join_date,8,2),'F'=>date('n',strtotime($member->join_date)),'Y'=>substr($member->join_date,0,4));
 		$current_values["mother_mn"] = $member->person[0]->mother_mn;
 		
-		if ($member->person[0]->dob) {		
-			$current_values["dob"] = array ('d'=>substr($member->person[0]->dob,8,2),'F'=>date('n',strtotime($member->person[0]->dob)),'Y'=>substr($member->person[0]->dob,0,4));  // Using 'n' due to a bug in Quickform
-		} else { // If date of birth was left empty originally, display default date
-			$today = getdate();
-			$current_values["dob"] = array ('d'=>$today['mday'],'F'=>$today['mon'],'Y'=>$today['year']);
-		}		
 	}
 		
 	$form->setDefaults($current_values);
@@ -197,18 +198,19 @@ function process_data ($values) {
 		// ... pass to htmlspecialchars() here instead [chris]
 		$member->join_date = htmlspecialchars($date['Y'] . '/' . $date['F'] . '/' . $date['d']);
 		
-		// [chris] ditto re htmlspecialchars() [see comment above]
-		$date = $values['dob'];
-
-		$dob = $date['Y'] . '/' . $date['F'] . '/' . $date['d'];
-		
-		// ... pass to htmlspecialchars() here instead [chris]
-		$dob = htmlspecialchars($dob);
-		
-		if($dob != $today['year']."/".$today['mon']."/".$today['mday']) { 
-			$member->person[0]->dob = $dob; 
-		} // if date left as default (today's date), we don't want to set it
 	} 
+
+	// [chris] ditto re htmlspecialchars() [see comment above]
+	$date = $values['dob'];
+
+	$dob = $date['Y'] . '/' . $date['F'] . '/' . $date['d'];
+	
+	// ... pass to htmlspecialchars() here instead [chris]
+	$dob = htmlspecialchars($dob);
+	
+	if($dob != $today['year']."/".$today['mon']."/".$today['mday']) { 
+		$member->person[0]->dob = $dob; 
+	} // if date left as default (today's date), we don't want to set it
 
 	$member->confirm_payments = htmlspecialchars($values["confirm_payments"]);
 	
