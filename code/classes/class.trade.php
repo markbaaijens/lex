@@ -282,7 +282,7 @@ class cTradeGroup {
 			
 			$trade_date = new cDateTime($trade->trade_date);			
 			
-			$output .= "<TR VALIGN=TOP BGCOLOR=". $bgcolor ."><TD><FONT SIZE=2 COLOR=".$fcolor.">". $trade_date->ShortDate()."</FONT></TD><TD><FONT SIZE=2 COLOR=".$fcolor.">";
+			$output .= "<TR VALIGN=TOP BGCOLOR=". $bgcolor ."><TD width=\"85\"><FONT SIZE=2 COLOR=".$fcolor.">". $trade_date->ShortDate()."</FONT></TD><TD><FONT SIZE=2 COLOR=".$fcolor.">";
 			$output .= "<A HREF=member_summary.php?member_id=". $trade->member_from->member_id .">". $trade->member_from->member_id ."</A>";						
 			$output .= "</FONT></TD><TD><FONT SIZE=2 COLOR=".$fcolor.">";
 			$output .= "<A HREF=member_summary.php?member_id=". $trade->member_to->member_id .">". $trade->member_to->member_id ."</A>";			
