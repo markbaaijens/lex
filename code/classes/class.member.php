@@ -71,6 +71,13 @@ class cMember
 		}		
 	}
 	
+	function FormattedBalance() {
+	  if (SHOW_UNITS_DECIMALS == 0)
+      return round($this->balance);  	  
+	  else
+		  return $this->balance;
+	}
+	
 	function LoginFromCookie()
 	{
 /*
@@ -522,10 +529,7 @@ class cMember
 
     if (MEM_LIST_DISPLAY_BALANCE==true || $loggedin_user->member_role >= 1 || $this->member_id == $loggedin_user->member_id ) {
 		  $output .= "<STRONG>"."Saldo".":</STRONG> ";
-		  if (SHOW_UNITS_DECIMALS == 0)
-			  $output .= round($this->balance);
-		  else
-			  $output .= $this->balance;					
+		  $output .= $this->FormattedBalance();					
       $output .= " ".UNITS."<BR>";					
     }
 
