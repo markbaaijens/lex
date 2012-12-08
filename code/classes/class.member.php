@@ -24,7 +24,7 @@ class cMember
 	var $away_date;
 	var $account_type;
 	var $email_updates;
-	var $balance;
+	var $displa;
 	var $restriction;
 
 	function cMember($values=null) {
@@ -503,7 +503,7 @@ class cMember
 			return 	"<img src='".DEFAULT_PHOTO."'><BR>"; // in case no member-photo uploaded, use default - added by ejkv
 	}
 	
-	function DisplayMember () {
+	function DisplayMember ($loggedin_user) {
 		
 		/*[CDM] Added in image, placed all this in 2 column table, looks tidier */
 		
@@ -513,11 +513,22 @@ class cMember
 		
 		$output .= "<STRONG>".$lng_member.":</STRONG> ". $this->PrimaryName() . " (". $this->MemberLink().")"."<BR>";
 		$stats = new cTradeStats($this->member_id);
+
 		$output .= "<STRONG>".$lng_activity.":</STRONG> ";
 		if ($stats->most_recent == "")
 			$output .= $lng_no_exchanges_yet."<BR>";
 		else		
 			$output .= '<A HREF="trade_history.php?mode=other&member_id='. $this->member_id .'">'. $stats->total_trades ." ".$lng_exchanges_total."</A> ".$lng_sum_of." ". $stats->total_units . " ". strtolower(UNITS) . ", ".$lng_last_on." ". $stats->most_recent->ShortDate() ."<BR>";
+
+    if (MEM_LIST_DISPLAY_BALANCE==true || $loggedin_user->member_role >= 1 || $this->member_id == $loggedin_user->member_id ) {
+		  $output .= "<STRONG>"."Saldo".":</STRONG> ";
+		  if (SHOW_UNITS_DECIMALS == 0)
+			  $output .= round($this->balance);
+		  else
+			  $output .= $this->balance;					
+      $output .= " ".UNITS."<BR>";					
+    }
+
 		$feedbackgrp = new cFeedbackGroup;
 		$feedbackgrp->LoadFeedbackGroup($this->member_id);
 		if(isset($feedbackgrp->feedback)) {
