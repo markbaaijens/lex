@@ -88,7 +88,8 @@ if ($form->validate()) { // Form is validated so processes the data
 }
 
 function process_data ($values) {
-	global $p, $member, $cErr, $cUser, $lng_nu_units_to_exchange, $lng_trade_failed, $lng_payment_received_on, $lng_hi_cap, $lng_let_know_received_payment_from, $lng_member_id, $lng_notified_you_wish_transfer, $lng_to_him_her, $lng_member_opted_to_confirm, $lng_would_you_like_to, $lng_record_another, $lng_exchange, $lng_invoice_facility_disabled, $lng_invoice_received_on, $lng_let_know_invoice_from, $lng_log_in_to_pay_reject_invoice, $lng_has_been_send_invoice_for, $lng_will_informed_when_member_pays, $lng_you_have, $lng_transferred_to, $lng_or_would_you_like_to_leave, $lng_feedback, $lng_for_this_member, $lng_donation_from,$lng_try_again_later; // added $lng_member_id, and changed $lng_you_have_transferred into $lng_you_have, and "to " into $lng_transferred_to - by ejkv
+	global $p, $member, $cErr, $cUser, $lng_nu_units_to_exchange, $lng_trade_failed, $lng_payment_received_on, $lng_hi_cap, $lng_let_know_received_payment_from, $lng_member_id, $lng_notified_you_wish_transfer, $lng_to_him_her, $lng_member_opted_to_confirm, $lng_would_you_like_to, $lng_record_another, $lng_exchange, $lng_invoice_facility_disabled, $lng_invoice_received_on, $lng_let_know_invoice_from, $lng_log_in_to_pay_reject_invoice, $lng_has_been_send_invoice_for, $lng_will_informed_when_member_pays, $lng_you_have, $lng_transferred_to, $lng_or_would_you_like_to_leave, $lng_feedback, $lng_for_this_member, $lng_donation_from,$lng_try_again_later, $lng_balance_too_low, $lng_balance_too_high; 
+	
 	$list = "";
 	
 	if(UNITS == "Hours") {
@@ -164,11 +165,17 @@ function process_data ($values) {
 		$status = $trade->MakeTrade();
 		
 		if ($status != MAKE_TRADE_STATUS_OK) {
-			$list .= $lng_trade_failed." (error=".$status.").";
+			$list .= $lng_trade_failed." (code=".$status.")";
 
-      if ($status == MAKE_TRADE_STATUS_USER_RESTRICTION)
+      if ($status == MAKE_TRADE_STATUS_MEMBER_RESTRICTION)
 				$list .= "<br><br><strong>".LEECH_NOTICE."</strong>";
+
+      if ($status == MAKE_TRADE_STATUS_MEMBER_BELOW_MINIMUM)
+				$list .= "<br><br><strong>".$lng_balance_too_low."</strong>";
 				
+      if ($status == MAKE_TRADE_STATUS_MEMBER_ABOVE_MAXIMUM)
+				$list .= "<br><br><strong>".$lng_balance_too_high."</strong>";
+								
 		} else { // Trade has succeeded
 		
 			$list .= $lng_you_have." ". $values['units'] ." ". strtolower(UNITS) .$lng_transferred_to. $member_to_id .".  ".$lng_would_you_like_to." <A HREF=trade.php?mode=".$_REQUEST["mode"]."&member_id=". $_REQUEST["member_id"].">".$lng_record_another."</A> ".$lng_exchange."?<P>".$lng_or_would_you_like_to_leave." <A HREF=feedback.php?mode=". $_REQUEST["mode"] ."&author=". $member->member_id ."&about=". $member_to_id ."&trade_id=". $trade->trade_id .">".$lng_feedback."</A> ".$lng_for_this_member."?"; // changed $lng_you_have_transferred into $lng_you_have and "to " into $lng_transferred_to - by ejkv

@@ -514,7 +514,7 @@ class cMember
 		
 		/*[CDM] Added in image, placed all this in 2 column table, looks tidier */
 		
-		global $cDB,$agesArr,$sexArr, $lng_member, $lng_activity,$lng_no_exchanges_yet, $lng_exchanges_total, $lng_sum_of, $lng_last_on, $lng_feedback_cap, $lng_positive, $lng_total, $lng_negative_lc, $lng_neutral_lc, $lng_joined, $lng_email, $lng_primary_phone, $lng_secondary_phone, $lng_fax, $lng_joint_member, $lng_email, $lng_phone, $lng_secondary_phone, $lng_personal_information, $lng_unspecified, $lng_no_description_supplied, $lng_age, $lng_sex, $lng_about_me;
+		global $cDB,$agesArr,$sexArr, $lng_member, $lng_activity,$lng_no_exchanges_yet, $lng_exchanges_total, $lng_sum_of, $lng_last_on, $lng_feedback_cap, $lng_positive, $lng_total, $lng_negative_lc, $lng_neutral_lc, $lng_joined, $lng_email, $lng_primary_phone, $lng_secondary_phone, $lng_fax, $lng_joint_member, $lng_email, $lng_phone, $lng_secondary_phone, $lng_personal_information, $lng_unspecified, $lng_no_description_supplied, $lng_age, $lng_sex, $lng_about_me, $lng_balance_limits;
 		
 		$output .= "<table width=100%><tr valign=top><td width=50%>";
 		
@@ -528,9 +528,11 @@ class cMember
 			$output .= '<A HREF="trade_history.php?mode=other&member_id='. $this->member_id .'">'. $stats->total_trades ." ".$lng_exchanges_total."</A> ".$lng_sum_of." ". $stats->total_units . " ". strtolower(UNITS) . ", ".$lng_last_on." ". $stats->most_recent->ShortDate() ."<BR>";
 
     if (MEM_LIST_DISPLAY_BALANCE==true || $loggedin_user->member_role >= 1 || $this->member_id == $loggedin_user->member_id ) {
-		  $output .= "<STRONG>"."Saldo".":</STRONG> ";
+		  $output .= "<STRONG>".$lng_balance_limits.":</STRONG> ";
 		  $output .= $this->FormattedBalance();					
-      $output .= " ".UNITS."<BR>";					
+      $output .= " ".UNITS." (";				
+		  $output .= "+".$this->MemberLimitMaxBalance()."/".$this->MemberLimitMinBalance();					
+      $output .= ")<BR>";				      	
     }
 
 		$feedbackgrp = new cFeedbackGroup;
@@ -658,6 +660,24 @@ class cMember
 
 		return $last_update->DaysAgo();
 	}	
+	
+	function MemberLimitMaxBalance() {
+	  global $member_limit_max_balance;	  
+	  return $member_limit_max_balance;	
+	}
+	
+	function MemberLimitMinBalance() {
+	  global $member_limit_min_balance, $member_limit_min_balance_init, $member_limit_init_period;
+	  
+	  // New users are somewhat limited concerning the lower balance; a new member is determined
+	  // by comparing the period the member has joined and the setting $member_limit_init_period (in days).
+	  $join_date = new cDateTime($this->join_date);
+	  
+	  if ($join_date->DaysAgo() > $member_limit_init_period) 	   
+  	  return $member_limit_min_balance;	// A 'full' member
+	  else 
+	    return $member_limit_min_balance_init; // A 'limited' member		  
+	}
 }
 
 class cMemberGroup {

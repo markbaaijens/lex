@@ -922,4 +922,8 @@ $lng_state3 = "Oost";
 $lng_state4 = "Zuid";
 $lng_state5 = "West";
 
+$lng_balance_limits = "Saldo (grenzen)";
+$lng_balance_too_low = "Saldo is niet toereikend.";
+$lng_balance_too_high = "Maximum saldo van ontvanger is bereikt.";
+
 ?>

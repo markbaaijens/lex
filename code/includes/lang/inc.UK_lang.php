@@ -885,11 +885,8 @@ $lng_show_fees_and_charges_comment = "Do you want to show monthly fees and servi
 $lng_database_created_message = "Database has been created. Click <A HREF=member_login.php>here</A> to login.";
 
 
-
-
-
-
-
-
+$lng_balance_limits = "Balance (limits)";
+$lng_balance_too_low = "Balance is not sufficient.";
+$lng_balance_too_high = "Maximum balance of recipient has been reached.";
 
 ?>

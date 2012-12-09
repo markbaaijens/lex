@@ -187,6 +187,12 @@ define("MONTHLY_FEE_CATEGORY_ID", "1");
 
 // End of monthly fee related settings.
 
+// Member limitations
+$member_limit_max_balance = 400;       // Maximum balance for every member
+$member_limit_min_balance = -200;      // Mimimum balance for any member *after* the initiation period
+$member_limit_min_balance_init = -50;  // Mimimum balance for any member *within* the initiation period
+$member_limit_init_period = 127;       // Length of the initiation period in days
+
 define ("MAX_FILE_UPLOAD","1000000"); // Maximum file size, in bytes, allowed for uploads to the server - changed from 5000000 into 1000000 by ejkv
 									 
 // The following text will appear at the beggining of the email update messages

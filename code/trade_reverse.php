@@ -41,12 +41,12 @@ function process_data ($values) {
 
 	$old_trade = new cTrade;
 	$old_trade->LoadTrade($values["trade_id"]);
-	$success = $old_trade->ReverseTrade($values["description"]);	
+	$status = $old_trade->ReverseTrade($values["description"]);	
 	
-	if($success == MAKE_TRADE_STATUS_OK)
+	if($status == MAKE_TRADE_STATUS_OK)
 		$list = $lng_trade_reversed;
 	else
-		$list = "<i>".$lng_error_reversing_trade."!<i>";
+		$list = "<i>".$lng_error_reversing_trade."!<i>"." (code=".$status.")";
 	
   $p->DisplayPage($list);
 }

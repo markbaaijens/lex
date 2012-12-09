@@ -13,8 +13,11 @@ define("MAKE_TRADE_STATUS_OK", 0);
 define("MAKE_TRADE_STATUS_AMOUNT_NOT_ALLOWED_NEGATIVE", 1);
 define("MAKE_TRADE_STATUS_AMOUNT_NOT_ALLOWED_POSITIVE", 2);
 define("MAKE_TRADE_STATUS_NOT_ALLOWED_TRADING_TO_SELF", 3);
-define("MAKE_TRADE_STATUS_USER_RESTRICTION", 4);
+define("MAKE_TRADE_STATUS_MEMBER_RESTRICTION", 4);
 define("MAKE_TRADE_STATUS_UNKNOWN_ERROR", 5);							
+define("MAKE_TRADE_STATUS_MEMBER_BELOW_MINIMUM", 6);
+define("MAKE_TRADE_STATUS_MEMBER_ABOVE_MAXIMUM", 7);				
+
 
 class cTrade {
 	var $trade_id;
@@ -122,9 +125,23 @@ class cTrade {
 
     // This member's account has been restricted - he is not allowed to make outgoing trades					
 		if ($this->member_from->restriction==1) { 
-			return MAKE_TRADE_STATUS_USER_RESTRICTION;
+			return MAKE_TRADE_STATUS_MEMBER_RESTRICTION;
 		}
-	
+		
+		// Check if member_from stays above minimum balance
+    if ($this->member_from->MemberLimitMinBalance() != 0) {	// Skip check when setting is not set
+		    if (($this->member_from->balance - $this->amount) < $this->member_from->MemberLimitMinBalance()) {
+			    return MAKE_TRADE_STATUS_MEMBER_BELOW_MINIMUM;		
+		  }
+		}
+		
+		// Check if member_to stays below maximum balance
+		if ($this->member_to->MemberLimitMaxBalance() != 0) {
+		  if (($this->member_to->balance + $this->amount) > $this->member_to->MemberLimitMaxBalance()) {
+			  return MAKE_TRADE_STATUS_MEMBER_ABOVE_MAXIMUM;		
+		  }
+		}
+
 		$balances = new cBalancesTotal;
 	
 		// TODO: At some point, we should handle out-of-balance problems without shutting 
