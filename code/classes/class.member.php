@@ -24,7 +24,7 @@ class cMember
 	var $away_date;
 	var $account_type;
 	var $email_updates;
-	var $displa;
+  var $balance;
 	var $restriction;
 
 	function cMember($values=null) {
