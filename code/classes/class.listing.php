@@ -150,6 +150,7 @@ class cListing
 			$output .= "<STRONG>".$lng_description.":</STRONG> ". nl2br($this->description) ."<BR>";
 		if($this->rate != "")
 			$output .= "<STRONG>".$lng_rate.":</STRONG> ". $this->rate ."<BR>";		
+		$output .= "<br><hr><br>";
 		$output .= $this->member->DisplayMember();
 		return $output;
 	}	
