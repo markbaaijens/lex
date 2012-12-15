@@ -603,7 +603,7 @@ class cMember
 		
 		$pAge = (strlen($this->person[0]->age)<1) ? $lng_unspecified : $agesArr[$this->person[0]->age];
 		$pSex = (!$this->person[0]->sex) ? $lng_unspecified : $sexArr[$this->person[0]->sex];
-		$pAbout = (!stripslashes($this->person[0]->about_me)) ? '<em>'.$lng_no_description_supplied.'.</em>' : stripslashes($this->person[0]->about_me);
+		$pAbout = (!stripslashes($this->person[0]->about_me)) ? '<em>'.$lng_no_description_supplied.'.</em>' : stripslashes(nl2br($this->person[0]->about_me));
 		
 		$output .= "<STRONG>".$lng_age.":</STRONG> ".$pAge."<br>";
 		

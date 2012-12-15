@@ -147,7 +147,7 @@ class cListing
 	{   global $lng_description, $lng_rate;
 		$output = "";
 		if($this->description != "")
-			$output .= "<STRONG>".$lng_description.":</STRONG> ". $this->description ."<BR>";
+			$output .= "<STRONG>".$lng_description.":</STRONG> ". nl2br($this->description) ."<BR>";
 		if($this->rate != "")
 			$output .= "<STRONG>".$lng_rate.":</STRONG> ". $this->rate ."<BR>";		
 		$output .= $this->member->DisplayMember();
@@ -277,7 +277,7 @@ class cListingGroup
 					$output .= "<br>";
 				
 				if ($listing->description != "")
-					$details = " ".  $listing->description; // RF - simple space is fine
+					$details = " ".  nl2br($listing->description); // RF - simple space is fine
 				else
 					//$details = "<em>Not supplied</em>"; // Better than leaving a blank space?
 					$details = " --- "; // if no details, fill with --- changed by ejkv
