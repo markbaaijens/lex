@@ -504,10 +504,10 @@ class cMember
 			$row = mysql_fetch_array($query);
 			$imgLoc = 'uploads/'. stripslashes($row["filename"]);
 	
-			return 	"<img src='".$imgLoc."'><BR>";	
+			return 	"<img border=1 src='".$imgLoc."'><BR>";	
 		}
 		else
-			return 	"<img src='".DEFAULT_PHOTO."'><BR>"; // in case no member-photo uploaded, use default - added by ejkv
+			return 	"<img border=1 src='".DEFAULT_PHOTO."'><BR>"; // in case no member-photo uploaded, use default - added by ejkv
 	}
 	
 	function DisplayMember ($loggedin_user) {

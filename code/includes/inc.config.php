@@ -71,8 +71,8 @@ $allowedHTML = array('em','i','b','a','br','ul','ol','li','center','img','p');
 define("STRIP_JSCRIPT",true);
 
 // Member images are resized 'on-the-fly', keeping the original dimensions. Specify the maximum width the image is to be DOWN-sized to here.
-define("MEMBER_PHOTO_WIDTH",200); // in pixels
-define("DEFAULT_PHOTO","images/localx_logo.png"); // default photo, or picture - added by ejkv
+define("MEMBER_PHOTO_WIDTH",150); // in pixels
+define("DEFAULT_PHOTO","images/no-image-available.jpg"); // default photo, or picture - added by ejkv
 // Do we want to UP-scale images that are smaller than MEMBER_PHOTO_WIDTH (may look a bit ugly and pixelated)?
 define("UPSCALE_SMALL_MEMBER_PHOTO",false);
 
