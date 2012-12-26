@@ -67,6 +67,9 @@ function process_data ($values) {
 	
 	$name = "mphoto_".$member->member_id;
 	
+	# Filename becomes $name + extension of the original file; the makes it easy to view files 
+  $filename = $name . strtolower(substr($_FILES['userfile']['name'],strrpos($_FILES['userfile']['name'],".")));
+	
 	$query = $cDB->Query("SELECT upload_date, type, title, filename, note FROM ".DATABASE_UPLOADS." WHERE title=".$cDB->EscTxt($name)." limit 0,1;");
 	
 	if ($query)
@@ -86,7 +89,7 @@ function process_data ($values) {
 
 	}
   
-	$upload = new cUpload("P", $name, null, $name);
+	$upload = new cUpload("P", $name, null, $filename);
 	
 	if($upload->SaveUpload(true)) {
 		$image = Image_Transform::factory("GD"); // Need to shrink photo

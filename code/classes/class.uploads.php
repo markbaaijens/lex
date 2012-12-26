@@ -27,13 +27,6 @@ class cUpload {
 		
 		if($this->filename == null)
 			$this->filename = $_FILES['userfile']['name'];
-		
-		$query = $cDB->Query("SELECT null from ". DATABASE_UPLOADS ." WHERE filename ='".$_FILES['userfile']['name']."';");
-		
-		if($row = mysql_fetch_array($query)) {
-			$cErr->Error($lng_upload_filename_exists);
-			return false;
-		}		
 			
 		if(move_uploaded_file($_FILES['userfile']['tmp_name'], UPLOADS_PATH . $this->filename)) {
 			$insert = $cDB->Query("INSERT INTO ". DATABASE_UPLOADS ." (type, title, filename, note) VALUES (". $cDB->EscTxt($this->type) .", ". $cDB->EscTxt($this->title) .", ". $cDB->EscTxt($this->filename) .", ". $cDB->EscTxt($this->note) .");");
