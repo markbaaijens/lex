@@ -10,6 +10,8 @@ $list .= "<A HREF=member_edit.php?mode=self><FONT SIZE=2>".$lng_edit_my_pers_inf
 
 if (ALLOW_IMAGES==true)
 	$list .= "<A HREF=member_photo_upload.php?mode=self><FONT SIZE=2>".$lng_upload_change_photo."</FONT></A><BR>";
+$list .= "<br>";
+$list .= "<b>".$lng_summary."</b><br>";	
 $list .= "<a href=member_summary.php?member_id=".$cUser->member_id."><font size=2>".$lng_view_my_profile_as_others."</font></a><br>";
 $list .= "<br>";
 $list .= "<b>".$lng_joint."</b><br>";
