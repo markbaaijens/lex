@@ -80,7 +80,7 @@ define("UPSCALE_SMALL_MEMBER_PHOTO",false);
 $agesArr = array('---',$lng_under18,$lng_age18_30,$lng_age30s,$lng_age40s,$lng_age50s,$lng_age60s,$lng_age70s,$lng_over80,$lng_na,);
 
 // The options available in the 'What Sex are you?' dropdown. At the time of writing (01-12-2008) the defaults should be fine
-$sexArr = array('---', $lng_male, $lng_female, $lng_na,);
+$sexArr = array('---', $lng_male, $lng_female, $lng_business);
 
 // Enable JavaScript bits on the Dropdown Member Select Box?
 // This applies to the Transfer form; the idea is that it makes it simpler to find the member we're after if the dropdown list is lengthy
