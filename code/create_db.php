@@ -52,7 +52,7 @@ $cDB->Query("INSERT INTO " .
               address_street1, address_street2, address_city, 
               address_state_code, address_post_code, address_country) 
           VALUES (1,'admin','Y','Y','Administrator','',NULL,NULL,NULL, NULL,NULL,NULL,
-              NULL,NULL,NULL,NULL,NULL,NULL,NULL, NULL, NULL, '', 0, '', '');") or die("Error - Could not insert row into person table.");
+              NULL,NULL,NULL,NULL,NULL,NULL,NULL, NULL, NULL, '-', 0, '-', '-');") or die("Error - Could not insert row into person table.");
 
 // System account.
 if (defined("SYSTEM_ACCOUNT_ID")) {
@@ -77,7 +77,7 @@ if (defined("SYSTEM_ACCOUNT_ID")) {
                 address_state_code, address_post_code, address_country)
             VALUES (2, '$system_account_id', 'Y', 'Y', 'System', '', NULL,
                 NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
-                NULL, NULL, NULL, NULL, '', 0, '', '')")
+                NULL, NULL, NULL, NULL, '-', 0, '-', '-')")
     or die("Error - Could not insert row into person table.");
 }
 
