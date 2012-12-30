@@ -302,9 +302,14 @@ $SYSTEM_EVENTS = array (
 if (PEAR_PATH != "")
 	ini_set("include_path", PEAR_PATH .'/' . PATH_SEPARATOR . ini_get("include_path"));
 
-
-if (DEBUG) error_reporting(E_ALL);
-	else error_reporting(E_ALL ^ E_NOTICE);
+if (DEBUG) {
+  ini_set("display_errors", "on");
+  error_reporting(E_ALL);
+}
+else {
+  ini_set("display_errors", "off");
+  error_reporting(E_ALL ^ E_NOTICE);
+}
 
 define("LOAD_FROM_SESSION",-1);  // Not currently in use
 
