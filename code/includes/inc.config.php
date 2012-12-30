@@ -277,11 +277,6 @@ define ("LOG_LEVEL", 1);
 // This is important to protect against dictionary attacks.  Don't set higher than 10 or 20.
 define ("FAILED_LOGIN_LIMIT", 10);
 
-// Are magic quotes on?  Site has not been tested with magic_quotes_runtime on, 
-// so if you feel inclined to change this setting, let us know how it goes :-)
-define ("MAGIC_QUOTES_ON",false);
-set_magic_quotes_runtime (0);
-
 // CSS-related settings.  If you'r looking to change colors, 
 // best to edit the CSS rather than add to this...
 $CONTENT_TABLE = array("id"=>"contenttable", "cellspacing"=>"0", "cellpadding"=>"3");

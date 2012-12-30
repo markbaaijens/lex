@@ -65,29 +65,6 @@ class cDatabase
 		return $table;
 	}
 
-/*
-	function EscTxt($text) {
-		if($text) {
-			if(MAGIC_QUOTES_ON) 
-				return "'". $text ."'";
-			else 
-				return "'". addslashes($text) ."'";
-		} else {
-			return "null";
-		}
-	}
-
-	function EscTxt2($text) {  // TODO: Rename to EscQueryTxt() and update through site
-		if($text) {
-			if(MAGIC_QUOTES_ON) 
-				return "='". $text ."'";
-			else 
-				return "='". addslashes($text) ."'";
-		} else {
-			return " IS NULL";
-		}
-	}
-*/
 
 	/* A HTML screening function, an optional additional security step for data being submitted for storage in MySQL */
 	function ScreenHTML($var) {
@@ -214,10 +191,7 @@ class cDatabase
 
 
 	function UnEscTxt($text) {
-		if(MAGIC_QUOTES_ON)
-			return $text;
-		else
-			return stripslashes($text);
+  	return stripslashes($text);
 	}	
 
 }
