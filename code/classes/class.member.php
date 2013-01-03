@@ -535,10 +535,13 @@ class cMember
       $output .= ")<BR>";				      	
     }
 
-		$feedbackgrp = new cFeedbackGroup;
-		$feedbackgrp->LoadFeedbackGroup($this->member_id);
-		if(isset($feedbackgrp->feedback)) {
-			$output .= "<b>".$lng_feedback_cap.":</b> <A HREF=feedback_all.php?mode=other&member_id=". $this->member_id . ">" . $feedbackgrp->PercentPositive() . "% ".$lng_positive."</A> (" . $feedbackgrp->TotalFeedback() . " ".$lng_total.", " . $feedbackgrp->num_negative ." ".$lng_negative_lc." & " . $feedbackgrp->num_neutral . " ".$lng_neutral_lc.")<BR>";		
+    if (SHOW_FEEDBACK == 1) {
+
+		  $feedbackgrp = new cFeedbackGroup;
+		  $feedbackgrp->LoadFeedbackGroup($this->member_id);
+		  if(isset($feedbackgrp->feedback)) {
+			  $output .= "<b>".$lng_feedback_cap.":</b> <A HREF=feedback_all.php?mode=other&member_id=". $this->member_id . ">" . $feedbackgrp->PercentPositive() . "% ".$lng_positive."</A> (" . $feedbackgrp->TotalFeedback() . " ".$lng_total.", " . $feedbackgrp->num_negative ." ".$lng_negative_lc." & " . $feedbackgrp->num_neutral . " ".$lng_neutral_lc.")<BR>";		
+  		}
 		}
 
 		$joined = new cDateTime($this->join_date);

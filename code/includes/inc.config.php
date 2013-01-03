@@ -180,6 +180,9 @@ define ("UNITS", "Niksen");  // This setting affects functionality, not just tex
 
 // Determine how balance is shown; default is to show only integers, change to 1 to show decimals 
 define ("SHOW_UNITS_DECIMALS", 0); 
+
+// Determine if feedback option is available for members
+define ("SHOW_FEEDBACK", 1);
  
 /**************** Monthly fee related settings ********************/
 
