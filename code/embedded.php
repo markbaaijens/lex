@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>Embedded</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 
 <frameset rows="*" cols="162,*" framespacing="0" frameborder="NO" border="0">

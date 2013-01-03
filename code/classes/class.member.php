@@ -826,7 +826,7 @@ class cMemberGroup {
 		
 		foreach($this->members as $member) {						
 			if($member->email_updates == $interval and $member->person[0]->email) {
-				mail($member->person[0]->email, SITE_SHORT_TITLE .": ".$lng_new_updated_listings_during_last." ". $period, wordwrap($email_text, 64), "From:". EMAIL_ADMIN ."\nMIME-Version: 1.0\n" . "Content-type: text/html; charset=iso-8859-1"); // replaced $lng_from.":" by "From:" - by ejkv
+				mail($member->person[0]->email, SITE_SHORT_TITLE .": ".$lng_new_updated_listings_during_last." ". $period, wordwrap($email_text, 64), "From:". EMAIL_ADMIN ."\nMIME-Version: 1.0\n" . "Content-type: text/html; charset=utf-8"); // replaced $lng_from.":" by "From:" - by ejkv
 			}
 		
 		}
