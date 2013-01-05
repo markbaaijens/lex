@@ -109,7 +109,8 @@ class cTrade {
 	
 	// It is very important that this function prevent the database from going out balance.
 	function MakeTrade($reversed_trade_id=null) { 
-		global $cDB, $cErr, $lng_dbase_out_of_balance, $lng_hi_admin, $lng_Message_dbase_out_of_balance, $lng_dbase_out_of_bal_pls_contct_admin;
+		global $cDB, $cErr, $lng_dbase_out_of_balance, $lng_hi_admin, $lng_Message_dbase_out_of_balance, 
+		       $lng_dbase_out_of_bal_pls_contct_admin, $member_limit_use_min_balance_for_restricted_users;
 		
     // Amount should be positive unless this is a reversal of a previous trade.    
 		if ($this->amount <= 0 and $this->type != TRADE_REVERSAL) 
@@ -123,13 +124,17 @@ class cTrade {
 		if ($this->member_from->member_id == $this->member_to->member_id)
 			return MAKE_TRADE_STATUS_NOT_ALLOWED_TRADING_TO_SELF;
 
-    // This member's account has been restricted - he is not allowed to make outgoing trades					
-		if ($this->member_from->restriction==1) { 
-			return MAKE_TRADE_STATUS_MEMBER_RESTRICTION;
+    // This member's account has been restricted 					
+		if ($this->member_from->AccountIsRestricted()) { 
+
+      // If a member is restricted, he may do a transaction (see below) if this allowed in inc.config.php		
+      if (MEMBER_LIMIT_USE_MIN_BALANCE_FOR_RESTRICTED_USERS == 0) {
+			  return MAKE_TRADE_STATUS_MEMBER_RESTRICTION;
+			}
 		}
 		
 		// Check if member_from stays above minimum balance
-    if ($this->member_from->MemberLimitMinBalance() != 0) {	// Skip check when setting is not set
+    if (MEMBER_LIMIT_MIN_BALANCE != 0) {	// Skip check when setting is not set
 		    if (($this->member_from->balance - $this->amount) < $this->member_from->MemberLimitMinBalance()) {
 			    return MAKE_TRADE_STATUS_MEMBER_BELOW_MINIMUM;		
 		  }

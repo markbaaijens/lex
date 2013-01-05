@@ -665,21 +665,30 @@ class cMember
 	}	
 	
 	function MemberLimitMaxBalance() {
-	  global $member_limit_max_balance;	  
-	  return $member_limit_max_balance;	
+	  return MEMBER_LIMIT_MAX_BALANCE;	
 	}
 	
-	function MemberLimitMinBalance() {
-	  global $member_limit_min_balance, $member_limit_min_balance_init, $member_limit_init_period;
+	function MemberLimitMinBalance() {  
+    // Is the member NOT restricted?
+	  if (! $this->AccountIsRestricted()) {
 	  
-	  // New users are somewhat limited concerning the lower balance; a new member is determined
-	  // by comparing the period the member has joined and the setting $member_limit_init_period (in days).
-	  $join_date = new cDateTime($this->join_date);
-	  
-	  if ($join_date->DaysAgo() > $member_limit_init_period) 	   
-  	  return $member_limit_min_balance;	// A 'full' member
-	  else 
-	    return $member_limit_min_balance_init; // A 'limited' member		  
+	    // New users are somewhat limited concerning the lower balance; a new member is determined
+	    // by comparing the period the member has joined and the setting MEMBER_LIMIT_INIT_PERIOD (in days).
+	    $join_date = new cDateTime($this->join_date);
+	    
+	    if ($join_date->DaysAgo() > MEMBER_LIMIT_INIT_PERIOD) 	   
+    	  return MEMBER_LIMIT_MIN_BALANCE;	// A 'full' member
+	    else 
+	      return MEMBER_LIMIT_MIN_BALANCE_INIT; // A 'limited' member		  
+	  } 
+	  else {	// Restricted account
+      if (MEMBER_LIMIT_USE_MIN_BALANCE_FOR_RESTRICTED_USERS == 1) {
+	      return MEMBER_LIMIT_MIN_BALANCE_INIT;        
+	    }
+	    else {
+  	    return 0;
+	    }
+	  }
 	}
 }
 
