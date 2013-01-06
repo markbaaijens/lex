@@ -136,7 +136,7 @@ function doTrade($t) {
 	
 	$status = $trade->MakeTrade();
 	
-	if(!$status)
+	if($status != MAKE_TRADE_STATUS_OK)
 		return false;
 	else {
 		
