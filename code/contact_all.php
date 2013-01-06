@@ -10,10 +10,12 @@ include("includes/inc.forms.php");
 //
 // First, we define the form
 //
-$form->addElement("static", null, $lng_this_email_goes_to_all_members." ".SITE_LONG_TITLE.".", null);
+$form->addElement("header", null, $lng_this_email_goes_to_all_members." ".SITE_LONG_TITLE.".", null);
 $form->addElement("static", null, null, null);
-$form->addElement("text", "email_from", "E-mail (from:)", array("size" => 30, "maxlength" => 50)); // added to send mail to all active users, with email_from from specific user (if not filled, default EMAIL_ADMIN) is used - by ejkv
-$form->addElement("text", "subject", "Subject", array("size" => 30, "maxlength" => 50));
+// This element (email_from) cannot simply converted to a static one: if the data (form variable EMAIL_FROM) contains
+// double quotes ", the text/data is malformed and the mail will NOT be send.
+$form->addElement("text", "email_from", $lng_email_from_address, array("size" => 50, "maxlength" => 50)); 
+$form->addElement("text", "subject", $lng_subject, array("size" => 50, "maxlength" => 50));
 $form->addElement("static", null, null, null);
 $form->addElement("textarea", "message", $lng_your_message, array("cols"=>65, "rows"=>10, "wrap"=>"soft"));
 $form->addElement("static", null, null, null);
@@ -27,10 +29,16 @@ $form->addElement("submit", "btnSubmit", $lng_send);
 $form->addRule("subject", $lng_enter_subject, "required");
 $form->addRule("message", $lng_enter_message, "required");
 
-if ($form->validate()) { // Form is validated so processes the data
-   $form->freeze();
+if ($form->validate()) { 
+  // Form is validated so processes the data
+  $form->freeze();
  	$form->process("process_data", false);
-} else {  // Display the form
+} else {  
+  // Set default Values
+  $current_values["email_from"] = EMAIL_FROM;
+	$form->setDefaults($current_values);  
+	
+	// Display the form
 	$p->DisplayPage($form->toHtml());
 }
 
@@ -38,7 +46,7 @@ if ($form->validate()) { // Form is validated so processes the data
 // The form has been submitted with valid data, so process it   
 //
 function process_data ($values) {
-	global $p, $heard_from, $lng_message_send_to_all_members, $lng_errors_sending_mail_to_colon; // removed $lng_from_colon - by ejkv
+	global $p, $heard_from, $lng_message_send_to_all_members, $lng_errors_sending_mail_to_colon; 
 	
 	$output = "";
 	$errors = "";
@@ -50,10 +58,12 @@ function process_data ($values) {
 			$errors .= ", ";
 		
 		if($member->person[0]->email != "") {
-			if ($values["email_from"] != "") // added to send mail to all active users, with email_from from specific user (if not filled, default EMAIL_ADMIN) is used - by ejkv
-				$mailed = mail($member->person[0]->email, $values["subject"], wordwrap($values["message"], 64) , "From:". $values["email_from"]); // added - by ejkv
-			else
-				$mailed = mail($member->person[0]->email, $values["subject"], wordwrap($values["message"], 64) , "From:". EMAIL_ADMIN); // replaced $lng_from_colon by "From:" - by ejkv
+		  $email_from = $values["email_from"];
+			if ($email_from == "") 
+			  // Fill email_from from a sensible default, otherwise there is a chance this will not be send or 
+			  // otherwise will be marked as spam by the provider
+			  $email_from = EMAIL_FROM;
+  		$mailed = mail($member->person[0]->email, $values["subject"], wordwrap($values["message"], 64) , "From:". $email_from); 
 		} 
 		else
 			$mailed = true;
