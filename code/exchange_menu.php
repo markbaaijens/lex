@@ -6,7 +6,7 @@ $p->page_title = $lng_exchanges;
 
 $cUser->MustBeLoggedOn();
 
-$pending = new cTradesPending($_SESSION["user_login"]);
+$pending = new cTradesPending($cUser->member_id);
 
 $list  = "<A HREF=trade.php?mode=self><FONT SIZE=2>".$lng_record_exchange."</FONT></A><BR>";
 $list .= "<A HREF=trades_pending.php><FONT SIZE=2>".$lng_invoices_transactions_pending."</a> (".$pending->numIn." ".$lng_require_action.")</FONT><br>";
