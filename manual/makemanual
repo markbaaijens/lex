@@ -8,10 +8,11 @@ unzip manual_lex.odt -d odt-unzipped
 # Replace placeholders with actual data
 sed -i "s/\[ruileenheid\]/Niksen/g" odt-unzipped/content.xml
 sed -i "s/\[mailadres-admin\]/letsdb@home.nl/g" odt-unzipped/content.xml
-sed -i "s/\[naam-ruilkring\]/Ruilkring \'s-Hertogenbosch e.o./g" odt-unzipped/content.xml
+sed -i "s/\[naam-ruilkring\]/Lokale Ruilkring \'s-Hertogenbosch e.o./g" odt-unzipped/content.xml
 sed -i "s/\[website\]/www.niksvoorniks.nl/g" odt-unzipped/content.xml
 sed -i "s/\[letsblad\]/NiksVoorNiks/g" odt-unzipped/content.xml
 sed -i "s/\[letsbenaming\]/ruilkring/g" odt-unzipped/content.xml
+sed -i "s/\[link-algemeen-reglement\]/http:\/\/www.niksvoornikslex.nl\/lex\/uploads\/nikswijzer.pdf/g" odt-unzipped/content.xml
 
 # Copy specific pictures; overwrite the existing ones!
 cp pictures/bossche-ruilkring/* odt-unzipped/Pictures
