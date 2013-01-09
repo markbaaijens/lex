@@ -8,7 +8,7 @@ include("includes/inc.forms.php");
 //
 // First, we define the form
 //
-$form->addElement("header", null, $lng_for_more_information." ". SITE_LONG_TITLE ." ".$lng_fill_out_info_request." <A HREF=news.php>".$lng_events."</A> ".$lng_next_member_meeting, null);
+$form->addElement("header", null, $lng_for_more_information, null);
 $form->addElement("static", null, null, null);
 $form->addElement("text", "name", $lng_name);
 $form->addElement("text", "email", $lng_email);
