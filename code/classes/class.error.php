@@ -66,7 +66,7 @@ class cError
 	}
 
 	function ErrorBox()
-	{
+	{  
 		$output="";
 
 		foreach($this->arrErrors as $oneErr)
@@ -75,7 +75,7 @@ class cError
 		}
 
 //		$msg = "<DIV class=ErrorBoxMsg>Errors occured on this page:</DIV>";
-		$msg = "<FONT color=RED size=2>".$lng_errors_occurred_on_this_page.":<BR>";
+		$msg = "<FONT color=RED size=2>";
 
 		if (strlen($output)>0)
 			$output = $msg.$output."</FONT><BR>";
