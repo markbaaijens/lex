@@ -11,12 +11,11 @@ $form->addElement("header", null, $lng_this_form_unlocks_and_resets_pwd, null);
 $form->addElement("static", null, null);
 $ids = new cMemberGroup;
 $ids->LoadMemberGroup(false);
-$form->addElement("select", "member_id", $lng_choose_member_account, $ids->MakeIDArray());
 
+$form->addElement("select", "member_id", $lng_choose_member_account, $ids->MakeIDArray(), array('style' => 'width: 22em;'));
+$form->addElement("select", "emailTyp", $lng_emls, array("pword"=>$lng_send_pwd_reset_eml, "welcome"=>$lng_send_welcome_eml),array('style' => 'width: 22em;'));
 $form->addElement("static", null, null, null);
 $form->addElement("submit", "btnSubmit", $lng_unlock_and_reset);
-$form->addElement("radio", "emailTyp", "", $lng_send_pwd_reset_eml,"pword");
-$form->addElement("radio", "emailTyp", "", $lng_send_welcome_eml,"welcome");
 
 if ($form->validate()) { // Form is validated so processes the data
    $form->freeze();
@@ -36,7 +35,6 @@ function process_data ($values) {
 		$list .= $lng_member_locked_due_to." ". $consecutive_failures ." ".$lng_consecutive_login_failures." ". $lng_has_been_unlocked_if_attempts_more_than." ". PHONE_ADMIN ."</I>, ".$lng_cause_could_indicate_hacker."<P>";
 	}
 
-
 	$password = $member->GeneratePassword();
 	$member->ChangePassword($password); // This will bomb out if the password change fails
 	
@@ -50,6 +48,8 @@ function process_data ($values) {
 	}
 	else {
 		$mailed = mail($member->person[0]->email, PASSWORD_RESET_SUBJECT, PASSWORD_RESET_MESSAGE . "\n\n".$lng_member_id.": ". $member->member_id ."\n".$lng_new_pwd.": ". $password, "From:".EMAIL_FROM); // added "From:". - by ejkv
+
+		mail(EMAIL_ADMIN, "Copy of password reset: ".$member->person[0]->email, PASSWORD_RESET_MESSAGE . "\n\n".$lng_member_id.": ". $member->member_id ."\n".$lng_new_pwd.": ". $password, "From:".EMAIL_FROM); // added "From:". - by ejkv
 		
 		$whEmail = $lng_password_reset;
 	}
