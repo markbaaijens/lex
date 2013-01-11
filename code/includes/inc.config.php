@@ -192,7 +192,7 @@ define("MONTHLY_FEE_CATEGORY_ID", "1");
 
 // End of monthly fee related settings.
 
-// Member limitations
+/**************** Member limitations ********************/
 define("MEMBER_LIMIT_MAX_BALANCE", 400);       // Maximum balance for every member
 define("MEMBER_LIMIT_MIN_BALANCE", -200);      // Mimimum balance for any member *after* the initiation period
 define("MEMBER_LIMIT_MIN_BALANCE_INIT", -50);  // Mimimum balance for any member *within* the initiation period
@@ -200,6 +200,12 @@ define("MEMBER_LIMIT_INIT_PERIOD", 182);       // Length of the initiation perio
 
 // Use minimal member limit for restricted users (1), otherwise (0), a restricted user is not allowed do any transaction
 define("MEMBER_LIMIT_USE_MIN_BALANCE_FOR_RESTRICTED_USERS", 1);
+
+// Define members who are allowed to work without the imposed limits; mostly, these are system-accounts, providing huge
+// amounts of units, be it positive or negative
+$members_without_linits = array("system"); 
+
+// End of member limitations
 
 define ("MAX_FILE_UPLOAD","1000000"); // Maximum file size, in bytes, allowed for uploads to the server - changed from 5000000 into 1000000 by ejkv
 									 

@@ -665,28 +665,48 @@ class cMember
 	}	
 	
 	function MemberLimitMaxBalance() {
-	  return MEMBER_LIMIT_MAX_BALANCE;	
+	  // Returning 0 is the 'secret' value: this means that a trade (in MakeTrade(), class.trade.php) will NOT be 
+	  // checked against the limits, thus retaining the default functionality of limitless trades
+	  global $members_without_limits;
+	  
+    if (in_array($this->member_id, $members_without_limits))
+	    return 0;
+	  else
+  	  return MEMBER_LIMIT_MAX_BALANCE;	
 	}
 	
 	function MemberLimitMinBalance() {  
-    // Is the member NOT restricted?
-	  if (! $this->AccountIsRestricted()) {
-	  
-	    // New users are somewhat limited concerning the lower balance; a new member is determined
-	    // by comparing the period the member has joined and the setting MEMBER_LIMIT_INIT_PERIOD (in days).
-	    $join_date = new cDateTime($this->join_date);
+	  // Returning 0 is the 'secret' value: this means that a trade (in MakeTrade(), class.trade.php) will NOT be 
+	  // checked against the limits, thus retaining the default functionality of limitless trades
+	  global $members_without_limits;
+
+    if (in_array($this->member_id, $members_without_limits))
+	    return 0;
+	  else {
+	
+      // Is this member unrestricted?
+	    if (! $this->AccountIsRestricted()) {
 	    
-	    if ($join_date->DaysAgo() > MEMBER_LIMIT_INIT_PERIOD) 	   
-    	  return MEMBER_LIMIT_MIN_BALANCE;	// A 'full' member
-	    else 
-	      return MEMBER_LIMIT_MIN_BALANCE_INIT; // A 'limited' member		  
-	  } 
-	  else {	// Restricted account
-      if (MEMBER_LIMIT_USE_MIN_BALANCE_FOR_RESTRICTED_USERS == 1) {
-	      return MEMBER_LIMIT_MIN_BALANCE_INIT;        
-	    }
-	    else {
-  	    return 0;
+	      // New users are somewhat limited concerning the lower balance; a new member is determined
+	      // by comparing the period the member has joined and the setting MEMBER_LIMIT_INIT_PERIOD (in days).
+	      $join_date = new cDateTime($this->join_date);
+	      
+	      if ($join_date->DaysAgo() > MEMBER_LIMIT_INIT_PERIOD) 	   
+      	  return MEMBER_LIMIT_MIN_BALANCE;	// A 'full' member
+	      else 
+	        return MEMBER_LIMIT_MIN_BALANCE_INIT; // A 'limited' member		  
+	    } 
+	    else {	// Restricted account
+        if (MEMBER_LIMIT_USE_MIN_BALANCE_FOR_RESTRICTED_USERS == 1) {
+	        return MEMBER_LIMIT_MIN_BALANCE_INIT;        
+	      }
+	      else {
+
+          // We return 0, implying we don't set limits, so one can think this goes wrong because 
+          // the account is retricted and no trades are allowed(!); but in the MakeTrade()-function (class.trade.php) 
+          // a restriction is checked BEFORE the limitations, so everything is working as expected
+    	    return 0;
+	      }
 	    }
 	  }
 	}

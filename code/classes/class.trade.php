@@ -134,7 +134,7 @@ class cTrade {
 		}
 		
 		// Check if member_from stays above minimum balance
-    if (MEMBER_LIMIT_MIN_BALANCE != 0) {	// Skip check when setting is not set
+    if ($this->member_from->MemberLimitMinBalance() != 0) {	// Skip check when setting is not set
 		    if (($this->member_from->balance - $this->amount) < $this->member_from->MemberLimitMinBalance()) {
 			    return MAKE_TRADE_STATUS_MEMBER_BELOW_MINIMUM;		
 		  }
