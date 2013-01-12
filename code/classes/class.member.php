@@ -258,6 +258,13 @@ class cMember
 
 	}
 	
+	function IsLevel($level) {
+		if ($this->member_role<$level)
+      return false;
+    else
+      return true;
+	}
+
 	function AccountIsRestricted() {
 		
 		if ($this->restriction==1)
