@@ -249,25 +249,31 @@ class cTradeGroup {
 	function LoadTradeGroup($type = "all") {
 		global $cDB, $cErr;
 		
+		// We sort the query also on member_id_from to have a logical, readable output when
+		// looking at a system payment: because all trade dates within such a payment are 
+		// the same (by design). If the query is not sorted extra on member_id_from, the 
+		// records appear in a random order.
+		$order_by = "ORDER BY trade_date DESC,member_id_from";
+		
 		$to_date = strtotime("+1 days", strtotime($this->to_date));
 		
-        if ("individual" == $type)
-        {
-		//select all trade_ids for this member
-		$query = $cDB->Query("SELECT trade_id FROM ".DATABASE_TRADES." WHERE (member_id_from LIKE ". $cDB->EscTxt($this->member_id) ." OR member_id_to LIKE ". $cDB->EscTxt($this->member_id) .") AND trade_date > ". $cDB->EscTxt($this->from_date) ." AND trade_date < ". $cDB->EscTxt(date("Ymd", $to_date)) ." ORDER BY trade_date DESC;");
-        }
-        else
-        {
-            $trade_type = TRADE_MONTHLY_FEE;
-            $trade_type_refund = TRADE_MONTHLY_FEE_REVERSAL;
+    if ("individual" == $type)
+    {
+      //select all trade_ids for this member
+      $query = $cDB->Query("SELECT trade_id FROM ".DATABASE_TRADES." WHERE (member_id_from LIKE ". $cDB->EscTxt($this->member_id) ." OR member_id_to LIKE ". $cDB->EscTxt($this->member_id) .") AND trade_date > ". $cDB->EscTxt($this->from_date) ." AND trade_date < ". $cDB->EscTxt(date("Ymd", $to_date)) ." ".$order_by.";");
+    }
+    else
+    {
+      $trade_type = TRADE_MONTHLY_FEE;
+      $trade_type_refund = TRADE_MONTHLY_FEE_REVERSAL;
 
-        // Ignore monthly fees.
-				if (SHOW_GLOBAL_FEES!=true)
-					$query = $cDB->Query("SELECT trade_id FROM ".DATABASE_TRADES." WHERE (member_id_from LIKE ". $cDB->EscTxt($this->member_id) ." OR member_id_to LIKE ". $cDB->EscTxt($this->member_id) .") AND trade_date > ". $cDB->EscTxt($this->from_date) ." AND trade_date < ". $cDB->EscTxt(date("Ymd", $to_date)) ." AND type!='S' AND type != '$trade_type' AND type != '$trade_type_refund' ORDER BY trade_date DESC");
-       	else
-       			$query = $cDB->Query("SELECT trade_id FROM ".DATABASE_TRADES." WHERE (member_id_from LIKE ". $cDB->EscTxt($this->member_id) ." OR member_id_to LIKE ". $cDB->EscTxt($this->member_id) .") AND trade_date > ". $cDB->EscTxt($this->from_date) ." AND trade_date < ". $cDB->EscTxt(date("Ymd", $to_date)) ." ORDER BY trade_date DESC");
-       	
-        }
+      // Ignore monthly fees.
+		  if (SHOW_GLOBAL_FEES!=true)
+			  $query = $cDB->Query("SELECT trade_id FROM ".DATABASE_TRADES." WHERE (member_id_from LIKE ". $cDB->EscTxt($this->member_id) ." OR member_id_to LIKE ". $cDB->EscTxt($this->member_id) .") AND trade_date > ". $cDB->EscTxt($this->from_date) ." AND trade_date < ". $cDB->EscTxt(date("Ymd", $to_date)) ." AND type!='S' AND type != '$trade_type' AND type != '$trade_type_refund'"." ".$order_by);
+     	else
+   			$query = $cDB->Query("SELECT trade_id FROM ".DATABASE_TRADES." WHERE (member_id_from LIKE ". $cDB->EscTxt($this->member_id) ." OR member_id_to LIKE ". $cDB->EscTxt($this->member_id) .") AND trade_date > ". $cDB->EscTxt($this->from_date) ." AND trade_date < ". $cDB->EscTxt(date("Ymd", $to_date)) ." ".$order_by);
+     	
+    }
 
 		// instantiate new cTrade objects and load them
 		$i=0;
