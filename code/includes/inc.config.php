@@ -185,8 +185,9 @@ define ("SHOW_UNITS_DECIMALS", 0);
 define ("SHOW_FEEDBACK", 1);
  
 /**************** Monthly fee related settings ********************/
-
 define("SYSTEM_ACCOUNT_ID", "system");
+
+// Warning: account names are case sensitive!
 $monthly_fee_exempt_list = array("admin", "system", "adminmark", "budget1"); // added extra_admin - by ejkv
 define("MONTHLY_FEE_CATEGORY_ID", "1");
 
@@ -203,6 +204,7 @@ define("MEMBER_LIMIT_USE_MIN_BALANCE_FOR_RESTRICTED_USERS", 1);
 
 // Define members who are allowed to work without the imposed limits; mostly, these are system-accounts, providing huge
 // amounts of units, be it positive or negative
+// Warning: account names are case sensitive!
 $members_without_linits = array("system"); 
 
 // End of member limitations
