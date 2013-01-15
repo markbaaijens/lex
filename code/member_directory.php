@@ -6,32 +6,37 @@ $p->page_title = $lng_member_directory;
 
 $cUser->MustBeLoggedOn();
 
-//include_once("classes/class.listing.php");
+include_once("classes/class.listing.php");
 
-//[chris] Search function
+// Search function
 if (SEARCHABLE_MEMBERS_LIST==true) {
-	
-	$output = "<form action=member_directory.php method=get>";
-	$output .= $lng_member_id.": <input type=text name=uID size=4 value='".$_REQUEST["uID"]."'>
-		<br>".$lng_name_all_or_part.": <input type=text name=uName value='".$_REQUEST["uName"]."'>
-		<br>".$lng_location_eg." ".": <input type=text name=uLoc value='".$_REQUEST["uLoc"]."'>";
+
+	$output  = "<DIV STYLE='width=60%; padding: 5px;'><form action=member_directory.php method=get>";
+	$output .= "<TABLE class=NoBorder>";
+	$output .= "<TR><TD ALIGN=LEFT>".$lng_member_id.": </TD>
+	            <TD ALIGN=LEFT><input type=text name=uID size=4 value='".$_REQUEST["uID"]."'></TD></TR>";
+	$output .= "<TR><TD ALIGN=LEFT>".$lng_name_all_or_part.": </TD>
+	            <TD ALIGN=LEFT><input type=text name=uName value='".$_REQUEST["uName"]."'></TD></TR>";
+	$output .= "<TR><TD ALIGN=LEFT>".$lng_location_eg.": </TD>
+	            <TD ALIGN=LEFT><input type=text name=uLoc value='".$_REQUEST["uLoc"]."'></TD></TR>";
 	
 	$orderBySel = array();
 	$orderBySel["".$_REQUEST["orderBy"].""]='selected';
 	
-// swapped option value 'idA', 'fl', and 'lf' by ejkv
-	$output .= "<br>".$lng_order_by.": <select name='orderBy'>
-		<option value='idA' ".$orderBySel["idA"].">".$lng_membership_no."</option>
-		<option value='fl' ".$orderBySel["fl"].">".$lng_first_name."</option>
-		<option value='lf' ".$orderBySel["lf"].">".$lng_last_name."</option>
-		<option value='nh' ".$orderBySel["nh"].">".$lng_neighbourhood."</option>
-		<option value='loc' ".$orderBySel["loc"].">".$lng_town."</option>
-		<option value='pc' ".$orderBySel["pc"].">".$lng_postcode."</option>
-		</select>";
-	$output .= "<p><input type=submit value=".$lng_search."></form>"; 
+	$output .= "<TR><TD ALIGN=LEFT>".$lng_order_by.": </TD><TD ALIGN=LEFT>
+	            <select name='orderBy'>
+		            <option value='idA' ".$orderBySel["idA"].">".$lng_membership_no."</option>
+		            <option value='fl' ".$orderBySel["fl"].">".$lng_first_name."</option>
+		            <option value='lf' ".$orderBySel["lf"].">".$lng_last_name."</option>
+		            <option value='nh' ".$orderBySel["nh"].">".$lng_neighbourhood."</option>
+		            <option value='loc' ".$orderBySel["loc"].">".$lng_town."</option>
+		            <option value='pc' ".$orderBySel["pc"].">".$lng_postcode."</option>
+		          </select></TD></TR>";
+	$output .= "</TABLE>"; 
+	$output .= "<p><input type=submit value=".$lng_search.">"; 
+	$output .= "</form></DIV>"; 	
 }
 
-// added STATE_TEXT column by ejkv
 $output .= "<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=3 WIDTH=\"100%\">
   <TR BGCOLOR=\"#d8dbea\">
     <TD><FONT SIZE=2><B>".$lng_member."</B></FONT></TD>
@@ -41,8 +46,7 @@ $output .= "<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=3 WIDTH=\"100%\">
     <TD><FONT SIZE=2><B>" . ZIP_TEXT . "</B></FONT></TD>";
 
 if (MEM_LIST_DISPLAY_BALANCE==true || $cUser->member_role >= 1)  {   
-	$output .= "<TD ALIGN=RIGHT><FONT SIZE=2><B>".$lng_balance."</B></FONT></TD>"; // added ALIGN=RIGHT by ejkv
-
+	$output .= "<TD ALIGN=RIGHT><FONT SIZE=2><B>".$lng_balance."</B></FONT></TD>";
 }
 $output .= "</TR>";
 
@@ -50,7 +54,6 @@ $output .= "</TR>";
 //Emails (comma separated with first name in parentheses for non-primary emails)
 
 $member_list = new cMemberGroup();
-//$member_list->LoadMemberGroup();
 
 // How should results be ordered?
 switch($_REQUEST["orderBy"]) {
@@ -60,7 +63,7 @@ switch($_REQUEST["orderBy"]) {
 	break;
 	
 	case("nh"):
-		$orderBy = 'ORDER BY address_state_code asc'; // changed address_street2 into address_state_code - by ejkv
+		$orderBy = 'ORDER BY address_state_code asc';
 	break;
 	
 	case("loc"):
@@ -72,7 +75,7 @@ switch($_REQUEST["orderBy"]) {
 	break;
 	
 	case("idA"):
-		$orderBy = 'ORDER BY member_id asc'; // changed idD into idA and Order ascending by ejkv
+		$orderBy = 'ORDER BY member_id asc'; 
 	break;
 	
 	case("lf"):
@@ -88,10 +91,7 @@ switch($_REQUEST["orderBy"]) {
 $condition = '';
 
 function buildCondition(&$condition,$wh) { // Add a clause to the SQL condition string
-	
-//	if (strlen($condition)>0)
-		$condition .= " AND ";
-	
+	$condition .= " AND ";
 	$condition .= " ".$wh. " ";	
 }
 
@@ -114,17 +114,13 @@ if ($_REQUEST["uName"]) { // We're searching for a specific username in the SQL
 	}
 	else // No surname, but term entered may be surname so apply to that too
 		$nameSrch .= " OR person.last_name like '%".trim($uName[0])."%'";
-	
-	
+		
 	buildCondition($condition,"(".$nameSrch.")");
 }
 
 if ($_REQUEST["uLoc"]) // We're searching for a specific Location in the SQL
-	buildCondition($condition,"(person.address_post_code like '%".trim($_REQUEST["uLoc"])."%' OR person.address_state_code like '%".trim($_REQUEST["uLoc"])."%' OR person.address_city like '%".trim($_REQUEST["uLoc"])."%' OR person.address_country like '%".trim($_REQUEST["uLoc"])."%')"); // changed address_street2 into address_state_code - by ejkv
+	buildCondition($condition,"(person.address_post_code like '%".trim($_REQUEST["uLoc"])."%' OR person.address_state_code like '%".trim($_REQUEST["uLoc"])."%' OR person.address_city like '%".trim($_REQUEST["uLoc"])."%' OR person.address_country like '%".trim($_REQUEST["uLoc"])."%')"); 
 	
-// DEBUG: 
-//ECHO "SELECT ".DATABASE_MEMBERS.".member_id FROM ". DATABASE_MEMBERS .",". DATABASE_PERSONS." WHERE ". DATABASE_MEMBERS .".member_id=". DATABASE_PERSONS.".member_id AND primary_member='Y' ".$condition." $orderBy";
-
 // Do search in SQL
 $query = $cDB->Query("SELECT ".DATABASE_MEMBERS.".member_id FROM ". DATABASE_MEMBERS .",". DATABASE_PERSONS." WHERE ". DATABASE_MEMBERS .".member_id=". DATABASE_PERSONS.".member_id AND primary_member='Y' ".$condition." $orderBy;");
 		
@@ -138,26 +134,47 @@ while($row = mysql_fetch_array($query)) // Each of our SQL results
 }
 		
 $i=0;
-$state = new cStateList; // added by ejkv
-$state_list = $state->MakeStateArray(); // added by ejkv
-$state_list[0]="---"; // added by ejkv
+$state = new cStateList; 
+$state_list = $state->MakeStateArray();
+$state_list[0]="---"; 
 
 if($member_list->members) {
 
 	foreach($member_list->members as $member) {
 		// RF next condition is a hack to disable display of inactive members
-		if($member->status != "I" || SHOW_INACTIVE_MEMBERS==true)  { // force display of inactive members off, unless specified otherwise in config file
-		
+		if($member->status != "I" || SHOW_INACTIVE_MEMBERS==true)  { 
+		  // force display of inactive members off, unless specified otherwise in config file		
 			if($member->account_type != "F") {  // Don't display fund accounts
 				
 				if($i % 2)
 					$bgcolor = "#e4e9ea";
 				else
 					$bgcolor = "#FFFFFF";
-		
-				$output .= // added $state_list[$member->person[0]->address_state_code] by ejkv
+
+        // Show photo-icon if member has profile photo
+        // Function file_exists() can not handle wildcards, so we have to use glob()
+        $photo_exists = glob("uploads/"."mphoto_".$member->member_id.".*");
+        if (!empty($photo_exists)) {
+          $photo_icon = "<img src=\"images/camera.png\" width=\"21\" align=\"top\" title=\"Profielfoto aanwezig\"/>";
+        } else {
+          $photo_icon = "";
+        }
+        unset($photo_exists);
+        
+        // Show listing-icon if member has any     
+        $listings = new cListingGroup(OFFER_LISTING);
+        $listings->LoadListingGroup(null, null, $member->member_id);
+        if ($listings->num_listings > 0)
+          $listing_icon = "<img src=\"images/cart.png\" width=\"21\" align=\"top\" title=\"". $listings->num_listings .
+          " aanbod-advertentie(s) aanwezig\"/>";        
+        else
+          $listing_icon = "";   
+        unset($listings);  
+                		
+				$output .= 
 					"<TR VALIGN=TOP BGCOLOR=". $bgcolor .">
-					   <TD><FONT SIZE=2>". $member->AllNames()." (". $member->MemberLink() .")
+					   <TD><FONT SIZE=2>". $member->MemberLink() . " " . $member->AllNames(). 
+					   "$photo_icon $listing_icon $partner_icon
 					       </FONT></TD>
 					   <TD><FONT SIZE=2>". $member->AllPhones() ."</FONT></TD>
 					   <TD><FONT SIZE=2>". $member->person[0]->address_city . "</FONT></TD>
@@ -174,12 +191,11 @@ if($member_list->members) {
         }					
 				$output .= "</TR>";
 				$i+=1;
-		 }
-	 } // end loop to force display of inactive members off
-}
+		  }
+	  } // end loop to force display of inactive members off
+  }
 } 
 
-// $output .= "</TABLE>";
 // RF display active accounts 
 $output .= "<TR><TD colspan=5><br><br>".$lng_total_of." ".$i." ".$lng_active_accounts.".</TD></TR></TABLE>";
 
