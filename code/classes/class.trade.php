@@ -253,7 +253,7 @@ class cTradeGroup {
 		// looking at a system payment: because all trade dates within such a payment are 
 		// the same (by design). If the query is not sorted extra on member_id_from, the 
 		// records appear in a random order.
-		$order_by = "ORDER BY trade_date DESC,member_id_from";
+		$order_by = "ORDER BY trade_date DESC,member_id_from desc";
 		
 		$to_date = strtotime("+1 days", strtotime($this->to_date));
 		
