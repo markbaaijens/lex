@@ -187,8 +187,8 @@ $lng_really_delete_page_id = "Wil je deze pagina echt verwijderen? (ID#"; //"Rea
 $lng_yes = "Ja"; //"Yes";
 $lng_no = "Nee"; //"No";
 $lng_go_back = "(ga terug)"; //"(go back)";
-$lng_download_directory = "Download de lijst"; //"Download Directory"; 
-$lng_click_to_open_pdf = "Klik op de onderstaande knop om een printervriendelijke (PDF)versie te openen van de lijst. Deze kun je lezen met Adobe Reader. Als je die niet hebt kun je hem op www.adobe.com downloaden";  //"Click on the button below and you will be prompted to open or save a printer-friendly (PDF) version of the directory. If you don't already have it, you can download Adobe Acrobat from <A HREF=\"http://www.tucows.com/preview/194959.html\">here</A>.";
+$lng_download_directory = "Download de advertentielijst"; //"Download Directory"; 
+$lng_click_to_open_pdf = "Klik op de onderstaande knop om een printervriendelijke (PDF-)versie te openen van de lijst.";  //"Click on the button below and you will be prompted to open or save a printer-friendly (PDF) version of the directory. If you don't already have it, you can download Adobe Acrobat from <A HREF=\"http://www.tucows.com/preview/194959.html\">here</A>.";
 $lng_download_acrobat = "Oudere versies van Adobe Reader kunnen deze lijst mogelijk niet lezen. Download in dat geval de nieuwste Adobe Reader op www.adobe.com."; //"Note that <u>older versions of Acrobat may not be able to read this file</u>.  If you get an error message when trying to download, try upgrading <A HREF=\"http://www.tucows.com/preview/194959.html\">Acrobat</A>. If you have Windows 2000 or XP, you can upgrade to the newest version, but if you have Windows 98, you will want version 6.0.";
 $lng_download = "Download"; //"Download";
 $lng_download_complete = "Download is gereed"; //"Download complete.";

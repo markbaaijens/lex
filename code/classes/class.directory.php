@@ -7,7 +7,6 @@ if (!isset($global))
 
 require_once ("class.listing.php");
 require_once ("File/PDF.php");
-//require_once ("File_PDF/PDF.php");
 
 class cDirectory {
 	var $member_list;
@@ -44,6 +43,8 @@ class cDirectory {
 	}
 	
 	function DownloadDirectory () {	
+    global $lng_listings, $lng_member_information, $lng_offered_listings, $lng_wanted_listings;
+	
 		$this->PrintFirstPage();
 	
 		$this->PrintSectionHeader($lng_member_information,FIRST);
@@ -55,7 +56,7 @@ class cDirectory {
 		$this->PrintSectionHeader($lng_wanted_listings);
 		$this->PrintListings(WANT_LISTING);
 		
-		$this->pdf->Output($lng_pdf_file_name,true);
+		$this->pdf->Output($lng_listings.".pdf",true);
 	}
 	
 	function PrintMembers() {	
@@ -96,6 +97,7 @@ class cDirectory {
 			$this->PrintTitle($listing->title);
 			$this->PrintDescription($listing->description);
 			$this->PrintMember($listing->member->PrimaryName());
+			$this->PrintLine("");													
 		}	
 	}
 	
@@ -115,6 +117,7 @@ class cDirectory {
 		$this->pdf->setFont($this->font,"B", $this->font_size + 2);
 		$this->pdf->Write($this->font_spacing + 1, "\n" . $category . "\n");
 		$this->pdf->setFont($this->font,"", $this->font_size);
+		$this->PrintLine("");				
 	} 
 	
 	function PrintFirstPage() {
