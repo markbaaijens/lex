@@ -329,12 +329,12 @@ class cTradeGroup {
       // If this tradelist is for a specific member, we can show how the balance is influenced (positive or negative). If
       // this is a generic tradelist, obviously we cannot show this indication.
       if ($trade->member_to->member_id == $this->member_id) {
- 			    $output .= $fcolor.">"; 			    
+ 			    $output .= "black>"; 			    
 			    $output .= "+";
 		    }
 			else {			
         if ($trade->member_from->member_id == $this->member_id) {
-            $output .= "ff0000".">"; // red
+            $output .= "red>"; // red
 				    $output .= "-";
 				  }
 				else {

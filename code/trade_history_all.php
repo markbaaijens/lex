@@ -14,12 +14,12 @@
 	$from = new cDateTime($_REQUEST["from"]);
 	$to = new cDateTime($_REQUEST["to"]);
 	
-	$output = "<B>".$lng_for_period_from." ". $from->ShortDate() ." ".$lng_to_until." ". $to->ShortDate() ."</B><P>";	
-
-	$member_id = $_REQUEST["member_id"]; // added by ejkv
-	if ($member_id == NULL) $member_id = "%"; // added by ejkv
+	$output = "<B>".$lng_for_period_from."</B>:  ". $from->ShortDate() ." ".$lng_to_until." ".$to->ShortDate() ."<P>"; 
 	
-	$trade_group = new cTradeGroup($member_id, $_REQUEST["from"], $_REQUEST["to"]); // replaced "%" by $member_id by ejkv
+	$member_id = $_REQUEST["member_id"]; 
+	if ($member_id == NULL) $member_id = "%"; 
+	
+	$trade_group = new cTradeGroup($member_id, $_REQUEST["from"], $_REQUEST["to"]);
 	$trade_group->LoadTradeGroup();
 	$output .= $trade_group->DisplayTradeGroup();
 	
