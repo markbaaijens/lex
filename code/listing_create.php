@@ -9,7 +9,7 @@ if ($_REQUEST["type"]==Offer)
 else
     $listing_name=$lng_wanted;
     
-$p->page_title = $lng_create." ". $listing_name ." ".$lng_listing;
+$p->page_title = $lng_create." ". $listing_name ."-".$lng_listing;
 
 include("classes/class.listing.php");
 include("includes/inc.forms.php");
