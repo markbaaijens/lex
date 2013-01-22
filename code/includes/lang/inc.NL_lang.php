@@ -187,7 +187,8 @@ $lng_really_delete_page_id = "Wil je deze pagina echt verwijderen? (ID#"; //"Rea
 $lng_yes = "Ja"; //"Yes";
 $lng_no = "Nee"; //"No";
 $lng_go_back = "(ga terug)"; //"(go back)";
-$lng_download_directory = "Download de advertentielijst"; //"Download Directory"; 
+$lng_download_listing_report = "Download de advertentielijst"; //"Download Directory";
+$lng_download_member_report = "Download de deelnemerslijst"; 
 $lng_click_to_open_pdf = "Klik op de onderstaande knop om een printervriendelijke (PDF-)versie te openen van de lijst.";  //"Click on the button below and you will be prompted to open or save a printer-friendly (PDF) version of the directory. If you don't already have it, you can download Adobe Acrobat from <A HREF=\"http://www.tucows.com/preview/194959.html\">here</A>.";
 $lng_download_acrobat = "Oudere versies van Adobe Reader kunnen deze lijst mogelijk niet lezen. Download in dat geval de nieuwste Adobe Reader op www.adobe.com."; //"Note that <u>older versions of Acrobat may not be able to read this file</u>.  If you get an error message when trying to download, try upgrading <A HREF=\"http://www.tucows.com/preview/194959.html\">Acrobat</A>. If you have Windows 2000 or XP, you can upgrade to the newest version, but if you have Windows 98, you will want version 6.0.";
 $lng_download = "Download"; //"Download";
@@ -326,7 +327,7 @@ $lng_another_listing = "bewerken?"; //"another listing?";
 $lng_choose_the = "Kies de"; //"Choose the";
 $lng_listing_to_edit = "advertentie die je wilt bewerken"; //"Listing to Edit";
 $lng_you_dont_have_any = "Je hebt momenteel geen"; //"You don't currently have any";
-$lng_select_category_and_timeframe = "Selecteer de categorie en het tijdsbestek en klik op Doorgaan. Wil je alle advertenties tegelijk bekijken, klik dan op Doorgaan. Als je de advertenties wilt afdrukken of downloaden, klik"; //"Select the category and time frame to view and press Continue. Or to view all listings at once, just press Continue. If you would like to print or download the complete directory, click";
+$lng_select_category_and_timeframe = "Selecteer de categorie en het tijdsbestek en klik op Doorgaan. Wil je alle advertenties tegelijk bekijken, klik dan op Doorgaan."; //"Select the category and time frame to view and press Continue. Or to view all listings at once, just press Continue. If you would like to print or download the complete directory, click";
 $lng_here = "hier"; //"here";
 $lng_view_all_categories = "Bekijk alle categorieën"; //"View All Categories";
 $lng_new_updated_in_last = "Nieuw/ vernieuwd in de laatste"; //"New/updated in last";

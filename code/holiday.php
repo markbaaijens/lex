@@ -5,7 +5,6 @@ $cUser->MustBeLoggedOn();
 $p->site_section = PROFILE;
 $p->page_title = $lng_inactivate_listing_holiday;
 
-include("classes/class.directory.php");
 include("includes/inc.forms.php");
 
 if($_REQUEST["mode"] == "admin") {
@@ -24,7 +23,7 @@ if($_REQUEST["mode"] == "admin") {
 }
 
 $text .= $lng_they_will_not_appear_during_set_time;
-$form->addElement("static", null, $text, null);
+$form->addElement("header", null, $text, null);
 $form->addElement("hidden","member_id", $member->member_id);
 $form->addElement("static", null, null, null);
 $today = getdate();

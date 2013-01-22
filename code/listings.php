@@ -13,7 +13,8 @@ include("classes/class.listing.php");
 include("includes/inc.forms.php");
 
 $form->addElement("hidden","type", $_REQUEST["type"]);
-$form->addElement("header", null, $lng_select_category_and_timeframe." <A HREF=directory.php>".$lng_here."</A>.", null);
+$form->addElement("header", null, "<div align=\"right\"><A HREF=listing_report.php>".$lng_download_listing_report."</A></div>", null);
+$form->addElement("header", null, $lng_select_category_and_timeframe, null);
 $form->addElement("static", null, null, null);
 $category_list = new cCategoryList();
 $categories = $category_list->MakeCategoryArray(ACTIVE, substr($_REQUEST["type"],0,1));

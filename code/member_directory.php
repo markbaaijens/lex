@@ -8,13 +8,15 @@ $cUser->MustBeLoggedOn();
 
 include_once("classes/class.listing.php");
 
+$output = "<div align=\"right\"><A HREF=member_report.php>".$lng_download_member_report."</A><br></div>";
+
 // Search function
 if (SEARCHABLE_MEMBERS_LIST==true) {
 
-	$output  = "<DIV STYLE='width=60%; padding: 5px;'><form action=member_directory.php method=get>";
+	$output .= "<DIV STYLE='width=60%; padding: 5px;'><form action=member_directory.php method=get>";
 	$output .= "<TABLE class=NoBorder>";
 	$output .= "<TR><TD ALIGN=LEFT>".$lng_member_id.": </TD>
-	            <TD ALIGN=LEFT><input type=text name=uID size=4 value='".$_REQUEST["uID"]."'></TD></TR>";
+	            <TD ALIGN=LEFT><input type=text name=uID size=8 value='".$_REQUEST["uID"]."'></TD></TR>";
 	$output .= "<TR><TD ALIGN=LEFT>".$lng_name_all_or_part.": </TD>
 	            <TD ALIGN=LEFT><input type=text name=uName value='".$_REQUEST["uName"]."'></TD></TR>";
 	$output .= "<TR><TD ALIGN=LEFT>".$lng_location_eg.": </TD>
