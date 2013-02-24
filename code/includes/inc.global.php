@@ -64,7 +64,7 @@ define ("DATABASE_LISTINGS","listings");
 define ("DATABASE_PERSONS","person");
 define ("DATABASE_MEMBERS","member");
 define ("DATABASE_TRADES","trades");
-define ("DATABASE_PENDING", "trades_pending");  // added by ejkv
+define ("DATABASE_PENDING", "trades_pending");
 define ("DATABASE_LOGINS","logins");
 define ("DATABASE_LOGGING","admin_activity");
 define ("DATABASE_USERS","member");
@@ -74,7 +74,10 @@ define ("DATABASE_REBUTTAL", "feedback_rebuttal");
 define ("DATABASE_NEWS", "news");
 define ("DATABASE_UPLOADS", "uploads");
 define ("DATABASE_SESSION", "session");
-define ("DATABASE_STATES", "states");  // added by ejkv
+define ("DATABASE_STATES", "states");
+define ("DATABASE_INCOME_TIES", "income_ties");
+define ("DATABASE_CDM_PAGES", "cdm_pages");
+define ("DATABASE_SETTINGS", "settings");
 
 /*********************************************************/
 // This section is deprecated.  It has been relocated to 
