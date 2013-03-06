@@ -91,8 +91,6 @@ class cPage {
 		if ($cUser->IsLoggedOn()) {
   		$tmp .= "</td></tr><tr><td id=\"footer\" colspan=2><p align=center>
 			<a href=".$_SERVER["PHP_SELF"]."?printer_view=1&".$_SERVER["QUERY_STRING"]." target=_blank><img src=".IMAGES_PATH ."print.gif border=0><br><font size=1>".$lng_printer_friendly_view."</font></a><br>";
-			
-  		$tmp .= "(<a href=\"member_profile.php\">". $cUser->PrimaryName() . " - " . $cUser->member_id . "</a>)"; 					
 		}
 		
 		$tmp .= "</TD></TR>". $this->page_footer ."";

@@ -212,10 +212,12 @@ class cMember
 	}
 
 	function UserLoginLogout() {
-		global $lng_logout, $lng_login;
+		global $lng_logout, $lng_login, $cUser;
 		if ($this->IsLoggedOn())
 		{
-			$output = "<A HREF='"."member_logout.php'>".$lng_logout."</A>&nbsp;&nbsp;&nbsp;";
+			$output = "<A HREF='"."member_logout.php' title='". $lng_logout . ": " .
+			          trim($cUser->PrimaryName()) . "&nbsp;&nbsp;-&nbsp;&nbsp;" . $cUser->member_id . 
+			          " (" . DATABASE_NAME .	")'>".$lng_logout." </A>&nbsp;&nbsp;&nbsp;";
 		} else {
 			$output = "<A HREF='"."member_login.php'>".$lng_login."</A>&nbsp;&nbsp;&nbsp;";
 		}
