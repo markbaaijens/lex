@@ -121,7 +121,7 @@ $list .= "</td><td>";
 $list .= "<STRONG>".$lng_system_and_reporting."</STRONG><P>";
 if ($cUser->member_role > 1) {
 	$list .= "<A HREF=settings.php><FONT SIZE=2>".$lng_site_settings."</FONT></A> <font color=red>".$lng_new."</font><BR>";
-	$list .= "<A HREF=export.php><FONT SIZE=2>Exporteer spreadsheet</FONT></A> <font color=red>".$lng_new."</font><BR>"; // - added by ejkv
+	$list .= "<A HREF=export.php><FONT SIZE=2>".$lng_export_to_spreadsheet."</FONT></A> <font color=red>".$lng_new."</font><BR>"; // - added by ejkv
 	$list .= "<A HREF=mysql_backup.php><FONT SIZE=2>".$lng_mysql_backup."</FONT></A> <font color=red>".$lng_new."</font><BR>";
 
 	$list .= "<A HREF=contact_all.php><FONT SIZE=2>".$lng_send_mail_to_all_members."</FONT></A><BR>";
