@@ -27,19 +27,19 @@ define ("UPLOADS_PATH","uploads/");
 /**********************************************************/
 /***************** DATABASE LOGIN  ************************/
 
-define ("DATABASE_USERNAME","root");
-define ("DATABASE_PASSWORD","root357");
-define ("DATABASE_NAME","lex");
-define ("DATABASE_SERVER","localhost"); // often "localhost"
+define ("DATABASE_USERNAME","[inc.config.php: database_username]");
+define ("DATABASE_PASSWORD","[inc.config.php: database_password]");
+define ("DATABASE_NAME","[inc.config.php: database_name]");
+define ("DATABASE_SERVER","[inc.config.php: database_server]"); // often "localhost"
 
 /**********************************************************/
 /********************* SITE NAMES *************************/
 
 // What is the name of the site?
-define ("SITE_LONG_TITLE", "Ruilsysteem van Lokale Ruilkring 's-Hertogenbosch e.o.");
+define ("SITE_LONG_TITLE", "[inc.config.php: site_long_title]");
 
 // What is the short, friendly, name of the site?
-define ("SITE_SHORT_TITLE", "Ruilsysteem van Lokale Ruilkring 's-Hertogenbosch e.o.");
+define ("SITE_SHORT_TITLE", "[inc.config.php: site_short_title]");
 
 /**********************************************************/
 /***************** FOR MAINTENANCE ************************/
@@ -72,7 +72,7 @@ define("STRIP_JSCRIPT",true);
 
 // Member images are resized 'on-the-fly', keeping the original dimensions. Specify the maximum width the image is to be DOWN-sized to here.
 define("MEMBER_PHOTO_WIDTH",150); // in pixels
-define("DEFAULT_PHOTO","images/no-image-available.jpg"); // default photo, or picture - added by ejkv
+define("DEFAULT_PHOTO","images/no-image-available.jpg"); 
 // Do we want to UP-scale images that are smaller than MEMBER_PHOTO_WIDTH (may look a bit ugly and pixelated)?
 define("UPSCALE_SMALL_MEMBER_PHOTO",false);
 
@@ -101,7 +101,7 @@ define("SEARCHABLE_MEMBERS_LIST",true);
 
 // email addresses & phone number to be listed in the site
 define ("EMAIL_FEATURE_REQUEST",""); // (is this actually used anywhere???)
-define ("EMAIL_ADMIN","mark.baaijens@gmail.com"); // email address Sanne / Marjan
+define ("EMAIL_ADMIN","[inc.config.php: email_admin]"); 
 
 define ("PHONE_ADMIN",""); // an email address may be substituted...
 
@@ -114,7 +114,7 @@ define ("PAGE_TITLE_HEADER", SITE_LONG_TITLE);
 define ("SITE_KEYWORDS", $lng_sitekeywords. SITE_LONG_TITLE .",php");
 
 // Logo Graphic for Header
-define ("HEADER_LOGO", "logo_niksvoorniks.gif"); // changed by ejkv
+define ("HEADER_LOGO", "localx_logo.png"); 
 
 // Title Graphic for Header
 define ("HEADER_TITLE", "localx_title.png");
@@ -139,8 +139,8 @@ $SIDEBAR = array (
 	array($lng_home,"index.php"),
 //	array($lng_learn_more,"info/more.php"), // old style info pages
 // [CDM] uncomment line below to activate new style info pages 	
-  array("Nikswijzer","pages.php?id=6"),
-	array($lng_news_and_events,"news.php"),
+//  array("Information","pages.php?id=1"),
+//	array($lng_news_and_events,"news.php"),
 	array($lng_offered,"listings.php?type=Offer"),
 	array($lng_wanted,"listings.php?type=Want"),
 	array($lng_update_listings,"listings_menu.php"),
@@ -176,7 +176,7 @@ $SECTIONS = array (
 /**********************************************************/
 /******************* GENERAL SETTINGS *********************/
 
-define ("UNITS", "Niksen");  // This setting affects functionality, not just text displayed, so if you want to use hours/minutes this needs to read "Hours" exactly.  All other unit descriptions are ok, but receive no special treatment (i.e. there is no handling of "minutes"). - changed by ejkv
+define ("UNITS", "[inc.config.php: units]");  // This setting affects functionality, not just text displayed, so if you want to use hours/minutes this needs to read "Hours" exactly.  All other unit descriptions are ok, but receive no special treatment (i.e. there is no handling of "minutes"). - changed by ejkv
 
 // Determine how balance is shown; default is to show only integers, change to 1 to show decimals 
 define ("SHOW_UNITS_DECIMALS", 0); 
@@ -188,7 +188,7 @@ define ("SHOW_FEEDBACK", 1);
 define("SYSTEM_ACCOUNT_ID", "system");
 
 // Warning: account names are case sensitive!
-$monthly_fee_exempt_list = array("admin", "system", "adminmark", "budget1"); // added extra_admin - by ejkv
+$monthly_fee_exempt_list = array("admin", "system"); 
 define("MONTHLY_FEE_CATEGORY_ID", "1");
 
 // End of monthly fee related settings.
@@ -228,7 +228,7 @@ define ("EXPIRE_INACTIVE_ACCOUNTS",false);
 // If above is set, after this many days, accounts that have had no
 // activity will have their listings set to expire.  They will have 
 // to reactiveate them individually if they still want them.
-define ("MAX_DAYS_INACTIVE","180");  
+define ("MAX_DAYS_INACTIVE","182");  
 
 // How many days in the future the expiration date will be set for
 define ("EXPIRATION_WINDOW","15");	

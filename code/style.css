@@ -44,17 +44,17 @@ body {scrollbar-shadow-color: #6C81C6; scrollbar-highlight-color: #6C81C6; scrol
  	font-size: 80%;
  	font-family: sans;
 	vertical-align: top;
- 	background-color: #fbf4d1;
+ 	background-color: #E2E4EF;
  }
  
 #header {
- 	background-color: #f88b3b;
+ 	background-color: #6C81C6;
  	color: #FFFFFF;
  	/*background-image: url(url()); commented by ejkv*/
 	}
  
 #footer {
- 	background-color: #f88b3b;
+ 	background-color: #6C81C6;
  	color: #CCCCCC;
 	font-size: 10px;
  	/*background-image: url(url()); commented by ejkv*/
@@ -111,7 +111,7 @@ body {scrollbar-shadow-color: #6C81C6; scrollbar-highlight-color: #6C81C6; scrol
  
 #sidebar a:hover, #sidebar a:active {
  	color: #FFFFFF;
- 	background-color: #f88b3b;
+ 	background-color: #6C81C6;
  	border: 2px solid #000;
  }
  
