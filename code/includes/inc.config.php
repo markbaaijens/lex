@@ -182,7 +182,12 @@ define ("UNITS", "[inc.config.php: units]");  // This setting affects functional
 define ("SHOW_UNITS_DECIMALS", 0); 
 
 // Determine if feedback option is available for members
-define ("SHOW_FEEDBACK", 1);
+define ("SHOW_FEEDBACK", 0);
+
+// Show alternative join-page on contact.php in the form of an url; if this is given, the normal 
+// contact-page is hidden and only the url is shown; this is usefull when there is already an 
+// up and running join-page somewhere else.
+define("ALT_JOIN_PAGE_URL", "");
  
 /**************** Monthly fee related settings ********************/
 define("SYSTEM_ACCOUNT_ID", "system");

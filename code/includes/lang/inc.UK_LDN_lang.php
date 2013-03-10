@@ -886,5 +886,5 @@ $lng_balance_limits = "Balance (limits)";
 $lng_balance_too_low = "Balance is not sufficient.";
 $lng_balance_too_high = "Maximum balance of recipient has been reached.";
 $lng_postcode = "Postcode";
-
+$lng_go_to_join_page = "Go to the join page";
 ?>

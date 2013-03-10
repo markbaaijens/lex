@@ -924,5 +924,5 @@ $lng_balance_limits = "Saldo (grenzen)";
 $lng_balance_too_low = "Saldo is niet toereikend.";
 $lng_balance_too_high = "Maximum saldo van ontvanger is bereikt.";
 $lng_postcode = "Postcode";
-
+$lng_go_to_join_page = "Ga naar de aanmeldpagina";
 ?>
