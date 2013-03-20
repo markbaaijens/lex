@@ -1056,29 +1056,34 @@ class cMemberReport {
 	
 
 	function cMemberReport () {
+    // http://pear.php.net/package/File_PDF/docs/latest/apidoc/File_PDF/File_PDF.html	
+    // header, footer
 		$this->member_list = new cMemberGroup();
 		$this->member_list->LoadMemberGroup();
 		$this->column = 1;	
 		$this->margin = 15;
-		$this->font = "Times";
-		$this->font_size = 12;
+		$this->font = "Times"; // Times
+		$this->font_size = 10;
 		$this->font_spacing = 5;
 		$this->pdf = &File_PDF::factory("P", "mm", "A4");
 		$this->pdf->open();
 		$this->pdf->addPage("P");
 		$this->pdf->setFont($this->font,"",$this->font_size);
-		$this->pdf->setMargins($this->margin, $this->margin, "105");
+		$this->pdf->setMargins($this->margin, $this->margin, $this->margin); 
 		$this->pdf->setAutoPageBreak(true,"2");
 		$this->pdf->setXY($this->margin,$this->margin);
 		$this->pdf->SetDisplayMode("real","single");
+		
+		$states = new cStateList;
+		$this->state_list = $states->MakeStateArray();		
 	}
 	
 	function DownloadReport () {	
-    global $lng_members_list, $lng_member_information;
+    global $lng_members_list, $lng_member_information, $lng_balance;
 	
 		$this->PrintFirstPage();
 	
-		$this->PrintSectionHeader($lng_member_information,FIRST);
+		$this->PrintSectionHeader($lng_member_information." (".$lng_balance.")",FIRST);
 		$this->PrintMembers();
 			
 		$this->pdf->Output($lng_members_list.".pdf",true);
@@ -1088,18 +1093,20 @@ class cMemberReport {
 		foreach($this->member_list->members as $member) {
 			if ($member->account_type == "F")
 				continue;	// Skip fund accounts
-		
-			$this->PrintLine("");
-			$this->PrintTitle($member->PrimaryName());
-			$this->PrintLine(" (". $member->member_id .")");
-			if($member->person[0]->email)
-				$this->PrintLine($member->person[0]->email);
+				
+      $text = $member->PrimaryName();			
 			if($member->person[0]->phone1_number) {
-				$this->PrintText($member->person[0]->DisplayPhone(1));
+				$text = $text. " | " . $member->person[0]->DisplayPhone(1);
+			} else {	
 				if($member->person[0]->phone2_number)
-					$this->PrintText(", ". $member->person[0]->DisplayPhone(2));
-				$this->PrintLine("");				
+					$text = $text. " | " . $member->person[0]->DisplayPhone(2);
 			}
+			$text = $text . " | " . $this->state_list[$member->person[0]->address_state_code];	
+			$text = $text . " | " . $member->PrimaryAddress();		
+			$text = str_pad($text, 115);
+			$text = $text . str_pad($member->FormattedBalance(), 5, " ", STR_PAD_LEFT);
+									
+			$this->PrintLine($text);
 		}
 	}
 		
@@ -1133,31 +1140,21 @@ class cMemberReport {
 	
 	function PrintLine($line) {
 		$this->DoPageBreaks();
+ 		$this->pdf->setFont("Courier","",7);				
 		$this->pdf->Write($this->font_spacing, $line . "\n");
 	}
 
 	function DoPageBreaks() {
 		if($this->pdf->getY() >= 270) {
-			if($this->column == 2) {
-				$this->NewPage();
-			} else { // New Column
-				$this->NewColumn();
-			} 
+			$this->NewPage();
 		}	
 	}
 	
 	function NewPage() {
 		$this->pdf->addPage("P");
 		$this->pdf->setXY($this->margin,$this->margin);
-		$this->pdf->setMargins($this->margin,$this->margin,"105");
 		$this->pdf->setFont($this->font,"", $this->font_size);
 		$this->column = 1;	
-	}
-	
-	function NewColumn() {
-		$this->pdf->setMargins("115",$this->margin,$this->margin);
-		$this->pdf->setXY("115",$this->margin);
-		$this->column = 2;	
 	}
 }
 
