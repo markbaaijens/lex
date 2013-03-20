@@ -379,7 +379,9 @@ class cMember
 	}
 	
 	function PrimaryName () {
-		return $this->person[0]->first_name . " " . $this->person[0]->mid_name . " " . $this->person[0]->last_name; // added mid_name by ejkv
+  	// Replace double spaces: this happens when mid_name is empty
+		return str_replace("  ", " ",
+        	  $this->person[0]->first_name . " " . $this->person[0]->mid_name . " " . $this->person[0]->last_name);
 	}
 	
 	function VerifyPersonInAccount($person_id) { // Make sure hacker didn't manually change URL
