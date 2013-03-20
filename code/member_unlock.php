@@ -55,7 +55,7 @@ function process_data ($values) {
 	}
 
 	if($mailed)
-		$list .= " ".$lng_and_eml_sent_to_member." (". $member->person[0]->email .").";
+		$list .= " ".$lng_and_eml_sent_to_member." (". $member->person[0]->email."/".$password.").";
 	else
 		$list .= ". <I>".$lng_eml_new_pwd_failed." ". PHONE_ADMIN ."</I>.";	
 	$p->DisplayPage($list);
