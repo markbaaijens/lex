@@ -125,8 +125,12 @@ if ($cUser->member_role > 1) {
 	$list .= "<A HREF=mysql_backup.php><FONT SIZE=2>".$lng_mysql_backup."</FONT></A> <font color=red>".$lng_new."</font><BR>";
 
 	$list .= "<A HREF=contact_all.php><FONT SIZE=2>".$lng_send_mail_to_all_members."</FONT></A><BR>";
+	
+  $list .= "<A HREF=reporting.php><FONT SIZE=2>".$lng_reports."</FONT></A><BR>";	
 }
 $list .= "<A HREF=report_no_login.php><FONT SIZE=2>".$lng_view_members_not_logged_in."</FONT></A><BR><p>";
+
+
 
 $list .= "</td></tr></table>";
 

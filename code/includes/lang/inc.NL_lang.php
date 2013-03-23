@@ -925,4 +925,7 @@ $lng_balance_too_low = "Saldo is niet toereikend.";
 $lng_balance_too_high = "Maximum saldo van ontvanger is bereikt.";
 $lng_postcode = "Postcode";
 $lng_go_to_join_page = "Ga naar de aanmeldpagina";
+$lng_reports = "Rapporten";
+$lng_select_report = "Selecteer een rapport";
+$lng_report_spreadheet = "Van het geselecteerde rapport zal een spreadsheet worden gegenereerd.";
 ?>
