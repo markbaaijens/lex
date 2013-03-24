@@ -29,6 +29,10 @@ if ($handle = opendir('./reports')) {
     $reports[] = str_replace('.sql', '', $filename);
   }
   closedir($handle);
+
+  // Sort the array: function readdir returns the filenames in the order in which they are 
+  // stored by the filesystem. naturally we want to have this alphabetically...
+  sort($reports);  
 }
 
 $form->addElement("select", "report", $lng_select_report, $reports);
