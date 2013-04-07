@@ -928,4 +928,5 @@ $lng_go_to_join_page = "Ga naar de aanmeldpagina";
 $lng_reports = "Rapporten";
 $lng_select_report = "Selecteer een rapport";
 $lng_report_spreadheet = "Van het geselecteerde rapport zal een spreadsheet worden gegenereerd.";
+$lng_transactions_last_month = "Transacties van de laatste maand";
 ?>

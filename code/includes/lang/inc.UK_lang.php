@@ -882,7 +882,6 @@ $lng_show_fees_and_charges_in_global_exchange_view = "Show monthly fees and serv
 $lng_show_fees_and_charges_comment = "Do you want to show monthly fees and service charges in the global exchange view? (Note: individual members will still be able to see this in their own personal exchange history).";
 $lng_database_created_message = "Database has been created. Click <A HREF=member_login.php>here</A> to login.";
 
-
 $lng_balance_limits = "Balance (limits)";
 $lng_balance_too_low = "Balance is not sufficient.";
 $lng_balance_too_high = "Maximum balance of recipient has been reached.";
@@ -891,4 +890,5 @@ $lng_go_to_join_page = "Go to the join page";
 $lng_reports = "Reports";
 $lng_select_report = "Select a report";
 $lng_report_spreadheet = "From the selected report, a spreadsheet will be generated.";
+$lng_transactions_last_month = "Transactions of the last month";
 ?>
