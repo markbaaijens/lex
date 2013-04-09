@@ -1,9 +1,9 @@
 <?php
 
 include_once("includes/inc.global.php");
+include_once("classes/class.listing.php");
 $p->site_section = PROFILE;
 
-// bugfix RF 090905 added logged in check
 $cUser->MustBeLoggedOn();
 
 $member = new cMember;
@@ -11,9 +11,22 @@ $member->LoadMember($_REQUEST["member_id"]);
 
 $p->page_title = $lng_summary_for." ".$member->PrimaryName();
 
-include_once("classes/class.listing.php");
+if ($cUser->IsLevel(2))	{
+	   $output  = "<a href=member_edit.php?mode=admin&member_id=".$member->member_id."><small>".
+	               $lng_edit_a_member_account."</small></a> | ";		
+	   $output .= "<a href=member_photo_upload.php?mode=admin&member_id=".$member->member_id."><small>".
+	               $lng_edit_a_member_photo."</small></a><br><br>";
+	}
+else {
+	if ($cUser->member_id == $member->member_id) {
+	   $output  = "<a href=member_edit.php?mode=self><small>".$lng_edit_my_pers_info."</small></a> | ";
+		$output .= "<a href=member_photo_upload.php?mode=self><small>".$lng_upload_change_photo."</small></a> | ";
+		$output .= "<a href=password_change.php><small>".$lng_change_my_pwd."</small></a><br><br>";
+	}
+}
+	
+$output .= "<STRONG><I>".$lng_contact_information_cap."</I></STRONG><P>";
 
-$output = "<STRONG><I>".$lng_contact_information_cap."</I></STRONG><P>";
 $output .= $member->DisplayMember($cUser);
 
 $output .= "<BR><P><STRONG><I>".$lng_offerd_listings_cap."</I></STRONG><P>";

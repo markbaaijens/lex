@@ -3,7 +3,10 @@
 include_once("includes/inc.global.php");
 
 $p->site_section = SITE_SECTION_OFFER_LIST;
-$p->page_title = $lng_edit_member  . " (" . $cUser->member_id . ")";
+if($_REQUEST["mode"] == "admin")
+	$p->page_title = $lng_edit_member  . " (" . $_REQUEST["member_id"] . ")";
+else
+	$p->page_title = $lng_edit_member  . " (" . $cUser->member_id . ")";
 
 include("includes/inc.forms.php");
 include_once("classes/class.state_address.php"); // added by ejkv

@@ -15,7 +15,7 @@ else {
 	
 	// Some handy links
 	$list .= "<a href=trade.php?mode=self>".$lng_record_exchange."</a> | ";
-	$list .= "<a href=member_profile.php>".$lng_member_profile."</a> | ";
+	$list .= "<a href=member_summary.php?member_id=".$cUser->member_id.">".$lng_member_profile."</a> | ";
 	$list .= "<a href=trade_history.php?mode=self>".
 				 $lng_exchange_history."</a><br>";
 	$list .= "<br>";	
