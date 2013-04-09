@@ -8,6 +8,11 @@ $cUser->MustBeLoggedOn();
 
 include_once("classes/class.listing.php");
 
+// Global state list 
+$states = new cStateList; 
+$state_list = $states->MakeStateArray();
+$state_list[0]="---";
+
 $output = "<div align=\"right\"><A HREF=member_report.php>".$lng_download_member_report."</A><br></div>";
 
 // Search function
@@ -21,7 +26,20 @@ if (SEARCHABLE_MEMBERS_LIST==true) {
 	            <TD ALIGN=LEFT><input type=text name=uName value='".$_REQUEST["uName"]."'></TD></TR>";
 	$output .= "<TR><TD ALIGN=LEFT>".$lng_location_eg.": </TD>
 	            <TD ALIGN=LEFT><input type=text name=uLoc value='".$_REQUEST["uLoc"]."'></TD></TR>";
+
+	// States
+	$output .= "<TR><TD ALIGN=LEFT>".STATE_TEXT.": </TD><TD ALIGN=LEFT>";
+	$output .= "<select name='uState'>";
+	for ($i = 0; $i < count($state_list); $i++) {	
+		$selected = "";
+		if ($_REQUEST["uState"] == $i)
+			$selected = "selected=\"selected\"";	
 	
+		$output .= "   <option value='$i' $selected>".$state_list[$i]."</option>";
+	}			            	
+	$output .= "</select></TD></TR>";
+
+	// Sort
 	$orderBySel = array();
 	$orderBySel["".$_REQUEST["orderBy"].""]='selected';
 	
@@ -34,6 +52,7 @@ if (SEARCHABLE_MEMBERS_LIST==true) {
 		            <option value='loc' ".$orderBySel["loc"].">".$lng_town."</option>
 		            <option value='pc' ".$orderBySel["pc"].">".$lng_postcode."</option>
 		          </select></TD></TR>";
+		          		          
 	$output .= "</TABLE>"; 
 	$output .= "<p><input type=submit value=".$lng_search.">"; 
 	$output .= "</form></DIV>"; 	
@@ -122,6 +141,10 @@ if ($_REQUEST["uName"]) { // We're searching for a specific username in the SQL
 
 if ($_REQUEST["uLoc"]) // We're searching for a specific Location in the SQL
 	buildCondition($condition,"(person.address_post_code like '%".trim($_REQUEST["uLoc"])."%' OR person.address_state_code like '%".trim($_REQUEST["uLoc"])."%' OR person.address_city like '%".trim($_REQUEST["uLoc"])."%' OR person.address_country like '%".trim($_REQUEST["uLoc"])."%')"); 
+
+if ($_REQUEST["uState"]) // We' re searching for a specific state in the SQL
+	if ($_REQUEST["uState"] <> 0)
+		buildCondition($condition,"person.address_state_code = '".trim($_REQUEST["uState"])."'");
 	
 // Do search in SQL
 $query = $cDB->Query("SELECT ".DATABASE_MEMBERS.".member_id FROM ". DATABASE_MEMBERS .",". DATABASE_PERSONS." WHERE ". DATABASE_MEMBERS .".member_id=". DATABASE_PERSONS.".member_id AND primary_member='Y' ".$condition." $orderBy;");
@@ -136,9 +159,6 @@ while($row = mysql_fetch_array($query)) // Each of our SQL results
 }
 		
 $i=0;
-$state = new cStateList; 
-$state_list = $state->MakeStateArray();
-$state_list[0]="---"; 
 
 if($member_list->members) {
 
@@ -172,7 +192,13 @@ if($member_list->members) {
         else
           $listing_icon = "";   
         unset($listings);  
-                		
+
+				$state_id = $member->person[0]->address_state_code;
+				$state_desc = "";
+            if ($state_id <> 0) {
+            	// Link in output will only shown if $state_desc has a value
+					$state_desc = $state_list[$state_id];				 
+				}          		
 				$output .= 
 					"<TR VALIGN=TOP BGCOLOR=". $bgcolor .">
 					   <TD><FONT SIZE=2>". $member->MemberLink() . " " . $member->AllNames(). 
@@ -180,8 +206,11 @@ if($member_list->members) {
 					       </FONT></TD>
 					   <TD><FONT SIZE=2>". $member->AllPhones() ."</FONT></TD>
 					   <TD><FONT SIZE=2>". $member->person[0]->address_city . "</FONT></TD>
-					   <TD><FONT SIZE=2>". $state_list[$member->person[0]->address_state_code] . "</FONT></TD>
-					   <TD><FONT SIZE=2>". $member->person[0]->address_post_code ."</FONT></TD>";				   
+					   <TD><FONT SIZE=2><a href=\"member_directory.php?uState=".$state_id."\">".
+					       $state_desc . "</a></FONT></TD> 
+					   <TD><FONT SIZE=2>". $member->person[0]->address_post_code ."</FONT></TD>";
+					   
+					   				   
 				
 				if (MEM_LIST_DISPLAY_BALANCE==true || $cUser->member_role >= 1) {
 					$output .= "<TD ALIGN=RIGHT><FONT SIZE=2>";

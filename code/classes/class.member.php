@@ -586,15 +586,21 @@ class cMember
             $output .= "<STRONG>" . ZIP_TEXT . ": </STRONG>" .
                            $this->person[0]->address_post_code . "<BR>";
         }
-		if($this->person[0]->address_state_code != "") { // added by ejkv
-			$states = new cStateList; // added by ejkv
-			$state_list = $states->MakeStateArray(); // added by ejkv
-			$state_list[0]="---"; // added by ejkv
+		if($this->person[0]->address_state_code != "") { 
+			$states = new cStateList; 
+			$state_list = $states->MakeStateArray();
+			$state_list[0]="---";
+			
+			$state_id = $this->person[0]->address_state_code;
+			$state_desc = "";
+         if ($state_id <> 0) {
+           	// Link in output will only shown if $state_desc has a value         	
+				$state_desc = $state_list[$state_id];				 
+			}			
 	
-            $output .= "<STRONG>" . STATE_TEXT . ": </STRONG>" .
-                           $state_list[$this->person[0]->address_state_code] . "<BR>";
-        } // added address state code by ejkv
-        
+         $output .= "<STRONG>" . STATE_TEXT . ": </STRONG>" .
+                       "<a href=\"member_directory.php?uState=".$state_id."\">". $state_desc . "</a><BR>";
+        }         
 
 		foreach($this->person as $person) {
 			if($person->primary_member == "Y")
