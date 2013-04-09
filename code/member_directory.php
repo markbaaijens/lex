@@ -185,10 +185,7 @@ if($member_list->members) {
 				
 				if (MEM_LIST_DISPLAY_BALANCE==true || $cUser->member_role >= 1) {
 					$output .= "<TD ALIGN=RIGHT><FONT SIZE=2>";
-					if (SHOW_UNITS_DECIMALS == 0)
-  					$output .= round($member->balance);
-  				else
-   					$output .= $member->balance;					
+  					$output .= $member->FormattedBalance();
 					$output .= "</FONT></TD>";
         }					
 				$output .= "</TR>";

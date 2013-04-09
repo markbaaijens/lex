@@ -18,12 +18,7 @@
 		$member->LoadMember($_REQUEST["member_id"]);
 		$p->page_title .= " ".$lng_for." ".$member->PrimaryName();
 	}
-	
-	if ($member->balance >= 0)
-		$color = "black"; 
-	else
-		$color = "red"; 
-	
+		
 	$from_date = $_REQUEST["from"];
 	if ($_REQUEST["from"] == NULL ) $from_date = LONG_LONG_AGO;
 	$from = new cDateTime($from_date);
@@ -32,8 +27,7 @@
 	if ($_REQUEST["to"] == "" ) $to_date = FAR_FAR_AWAY;
 	$to = new cDateTime($to_date);
 	
-	$list  = "<B>".$lng_currente_balance.": </B><FONT COLOR=". $color .">".
-	          $member->FormattedBalance() . "</FONT> ". UNITS."<br>";
+	$list  = "<B>".$lng_currente_balance.": </B>". $member->FormattedBalance() . " " . UNITS."<br>";
 	          
   if (($from_date != LONG_LONG_AGO) and ($to_date != FAR_FAR_AWAY)) {
   	$list .= "<B>".$lng_for_period_from."</B>:  ". $from->ShortDate() ." ".$lng_to_until." ".

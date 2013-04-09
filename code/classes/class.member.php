@@ -73,10 +73,17 @@ class cMember
 	}
 	
 	function FormattedBalance() {
+     $balance = $this->balance;
+     if ($balance < 0) 
+       $color = "red";
+     else      
+       $color = "black";     
+                    		
 	  if (SHOW_UNITS_DECIMALS == 0)
-      return round($this->balance);  	  
-	  else
-		  return $this->balance;
+       $balance = round($balance);  	  
+		  
+     $balance = '<span style="color:'.$color.'">'.$balance.'</span>';
+     return $balance;		  
 	}
 	
 	function LoginFromCookie()
