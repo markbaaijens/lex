@@ -442,24 +442,34 @@ class cMember
 					$reg_phones[] = $person->DisplayPhone(1);
 				}
 				if($person->phone2_number != "") {
-					$phones .= "<br>". $person->DisplayPhone(2); // replaced ", " by "<br>" - by ejkv
+					if ($phones != "") 
+  						$phones .= "<br>";    
+					$phones .= $person->DisplayPhone(2); 
 					$reg_phones[] = $person->DisplayPhone(2);
 				}
 				if($person->fax_number != "") {
-					$phones .= "<br>". $person->DisplayPhone("fax"). " (".$lng_fax.")"; // replaced ", " by "<br>" - by ejkv
+					if ($phones != "") 
+  						$phones .= "<br>";
+					$phones .= $person->DisplayPhone("fax"). " (".$lng_fax.")"; 
 					$fax_phones[] = $person->DisplayPhone("fax");
 				}
 			} else {
 				if($person->phone1_number != "" and array_search($person->DisplayPhone(1), $reg_phones) === false){ 
-					$phones .= "<br>". $person->DisplayPhone(1). " (". $person->first_name .")"; // replaced ", " by "<br>" - by ejkv
+					if ($phones != "") 
+  						$phones .= "<br>";
+					$phones .= $person->DisplayPhone(1). " (". $person->first_name .")"; 
 					$reg_phones[] = $person->DisplayPhone(1);
 				}
 				if($person->phone2_number != "" and array_search($person->DisplayPhone(2), $reg_phones) === false) {
-					$phones .= "<br>". $person->DisplayPhone(2). " (". $person->first_name .")"; // replaced ", " by "<br>" - by ejkv
+					if ($phones != "") 
+  						$phones .= "<br>";
+					$phones .= $person->DisplayPhone(2). " (". $person->first_name .")"; 
 					$reg_phones[] = $person->DisplayPhone(2);
 				}
 				if($person->fax_number != "" and array_search($person->DisplayPhone("fax"), $fax_phones) === false) {
-					$phones .= "<br>". $person->DisplayPhone("fax"). " (". $person->first_name .$lng_s_fax.")"; // replaced ", " by "<br>" - by ejkv
+					if ($phones != "") 
+  						$phones .= "<br>";
+					$phones .= $person->DisplayPhone("fax"). " (". $person->first_name .$lng_s_fax.")"; 
 					$fax_phones[] = $person->DisplayPhone("fax");
 				}
 			}	
