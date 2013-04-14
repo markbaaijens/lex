@@ -73,18 +73,22 @@ class cMember
 	}
 	
 	function FormattedBalance() {
-     $balance = $this->balance;
+     $balance = $this->FormattedBalanceNoLayout();
      if ($balance < 0) 
        $color = "red";
      else      
        $color = "black";     
-                    		
-	  if (SHOW_UNITS_DECIMALS == 0)
-       $balance = round($balance);  	  
-		  
+                    				  
      $balance = '<span style="color:'.$color.'">'.$balance.'</span>';
      return $balance;		  
 	}
+	
+	function FormattedBalanceNoLayout() {
+     $balance = $this->balance;
+	  if (SHOW_UNITS_DECIMALS == 0)
+       $balance = round($balance);  	  
+     return $balance;		  
+	}	
 	
 	function LoginFromCookie()
 	{
@@ -1128,7 +1132,7 @@ class cMemberReport {
 			$text = $text . " | " . $this->state_list[$member->person[0]->address_state_code];	
 			$text = $text . " | " . $member->PrimaryAddress();		
 			$text = str_pad($text, 115);
-			$text = $text . str_pad($member->FormattedBalance(), 5, " ", STR_PAD_LEFT);
+			$text = $text . str_pad($member->FormattedBalanceNoLayout(), 5, " ", STR_PAD_LEFT);
 									
 			$this->PrintLine($text);
 		}
