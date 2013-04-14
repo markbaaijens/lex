@@ -61,10 +61,8 @@ if (SEARCHABLE_MEMBERS_LIST==true) {
 $output .= "<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=3 WIDTH=\"100%\">
   <TR BGCOLOR=\"#d8dbea\">
     <TD><FONT SIZE=2><B>".$lng_member."</B></FONT></TD>
-    <TD><FONT SIZE=2><B>".$lng_phone."</B></FONT></TD>
-    <TD><FONT SIZE=2><B>" . ADDRESS_LINE_3 . "</B></FONT></TD>
-	<TD><FONT SIZE=2><B>" . STATE_TEXT . "</B></FONT></TD>
-    <TD><FONT SIZE=2><B>" . ZIP_TEXT . "</B></FONT></TD>";
+    <TD><FONT SIZE=2><B>".$lng_contact_information_cap."</B></FONT></TD>
+    <TD><FONT SIZE=2><B>" . ADDRESS_LINE_3 . "</B></FONT></TD>";
 
 if (MEM_LIST_DISPLAY_BALANCE==true || $cUser->member_role >= 1)  {   
 	$output .= "<TD ALIGN=RIGHT><FONT SIZE=2><B>".$lng_balance."</B></FONT></TD>";
@@ -175,42 +173,61 @@ if($member_list->members) {
 
         // Show photo-icon if member has profile photo
         // Function file_exists() can not handle wildcards, so we have to use glob()
-        $photo_exists = glob("uploads/"."mphoto_".$member->member_id.".*");
-        if (!empty($photo_exists)) {
-          $photo_icon = "<img src=\"images/camera.png\" width=\"21\" align=\"top\" title=\"Profielfoto aanwezig\"/>";
+        $member_photo_list = glob("uploads/"."mphoto_".$member->member_id.".*");
+        if (!empty($member_photo_list)) {
+          $member_photo_url = $member_photo_list[0];
         } else {
-          $photo_icon = "";
+			 $member_photo_url = DEFAULT_PHOTO;          
         }
-        unset($photo_exists);
+        $photo_icon = "<img src=\"".$member_photo_url."\""." align=\"left\" width=\"40\" heigth=\"40\" border=\"1\"/>";                
+        unset($member_photo_list);
         
         // Show listing-icon if member has any     
         $listings = new cListingGroup(OFFER_LISTING);
         $listings->LoadListingGroup(null, null, $member->member_id);
-        if ($listings->num_listings > 0)
-          $listing_icon = "<img src=\"images/cart.png\" width=\"21\" align=\"top\" title=\"". $listings->num_listings .
-          " aanbod-advertentie(s) aanwezig\"/>";        
+        if ($listings->num_listings > 0) {
+			 $listing_icon_title = $lng_offers . " (". $listings->num_listings . ")";   
+          $listing_icon = "<img src=\"images/cart.png\" width=\"21\" align=\"top\" title=\"". $listing_icon_title ."\"/>";
+        }        
         else
           $listing_icon = "";   
         unset($listings);  
 
+        // Shorten description of email because long addresses forces the (contact) column too
+        // broad: then there is not much left for the other columns 
+		  $member_email_desc = $member->person[0]->email; 
+		  if (strlen($member_email_desc) > 27) {
+			  $member_email_desc = substr($member_email_desc, 0, 25) . "...";
+		  }
+        
 				$state_id = $member->person[0]->address_state_code;
 				$state_desc = "";
             if ($state_id <> 0) {
-            	// Link in output will only shown if $state_desc has a value
+            	// Link in output (see below) will only shown if $state_desc has a value
 					$state_desc = $state_list[$state_id];				 
 				}          		
 				$output .= 
+					// Column 1: member-info
 					"<TR VALIGN=TOP BGCOLOR=". $bgcolor .">
-					   <TD><FONT SIZE=2>". $member->MemberLink() . " " . $member->AllNames(). 
-					   "$photo_icon $listing_icon $partner_icon
-					       </FONT></TD>
-					   <TD><FONT SIZE=2>". $member->AllPhones() ."</FONT></TD>
-					   <TD><FONT SIZE=2>". $member->person[0]->address_city . "</FONT></TD>
-					   <TD><FONT SIZE=2><a href=\"member_directory.php?uState=".$state_id."\">".
-					       $state_desc . "</a></FONT></TD> 
-					   <TD><FONT SIZE=2>". $member->person[0]->address_post_code ."</FONT></TD>";
-					   
-					   				   
+					  <TD><FONT SIZE=2>".
+						  $photo_icon .
+					      "<b>". $member->AllNames()."</b><br>" .
+					      $member->MemberLink() . "&nbsp; $listing_icon".
+	   	       "</FONT></TD>".
+  					 // Column 2: contact-info
+					  "<TD><FONT SIZE=2>". 
+					   	"<A HREF=email.php?email_to=".$member->person[0]->email.
+						      "&member_to=". $member->member_id . " title=\"".$member->person[0]->email."\" >".
+						      $member_email_desc . "</a>". "<br>".
+     					   $member->AllPhones() .
+				    "</FONT></TD>".
+  					 // Column 3: location-info				    
+					  "<TD><FONT SIZE=2>". $member->person[0]->address_street1."<br>".
+					   	$member->person[0]->address_post_code . " " .
+					   	$member->person[0]->address_city . "<br>" . 
+					      "<a href=\"member_directory.php?uState=".$state_id."\">".
+	  					       $state_desc . "</a>".
+  					  "</FONT></TD>";					   				   
 				
 				if (MEM_LIST_DISPLAY_BALANCE==true || $cUser->member_role >= 1) {
 					$output .= "<TD ALIGN=RIGHT><FONT SIZE=2>";
