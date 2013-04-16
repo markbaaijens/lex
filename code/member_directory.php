@@ -60,9 +60,9 @@ if (SEARCHABLE_MEMBERS_LIST==true) {
 
 $output .= "<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=3 WIDTH=\"100%\">
   <TR BGCOLOR=\"#d8dbea\">
-    <TD><FONT SIZE=2><B>".$lng_member."</B></FONT></TD>
-    <TD><FONT SIZE=2><B>".$lng_contact_information_cap."</B></FONT></TD>
-    <TD><FONT SIZE=2><B>" . ADDRESS_LINE_3 . "</B></FONT></TD>";
+    <TD width=\"35%\"><FONT SIZE=2><B>".$lng_member."</B></FONT></TD>
+    <TD width=\"30%\"><FONT SIZE=2><B>".$lng_contact_information_cap."</B></FONT></TD>
+    <TD width=\"30%\"><FONT SIZE=2><B>" . ADDRESS_LINE_3 . "</B></FONT></TD>";
 
 if (MEM_LIST_DISPLAY_BALANCE==true || $cUser->member_role >= 1)  {   
 	$output .= "<TD ALIGN=RIGHT><FONT SIZE=2><B>".$lng_balance."</B></FONT></TD>";
