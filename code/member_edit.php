@@ -25,7 +25,7 @@ if($_REQUEST["mode"] == "admin") {  // Administrator is editing a member's accou
 	if($_REQUEST["member_id"] == "ADMIN") {
 		$form->addElement("hidden","member_role","9");
 	} else {
-		$form->addElement("select", "member_role", $lng_member_role, array("0"=>$lng_member, "1"=>$lng_committee, "2"=>$lng_admin));
+		$form->addElement("select", "member_role", $lng_member_role, array("0"=>$lng_member, "1"=>$lng_committee, "2"=>$lng_admin, "9"=>$lng_admin."+"));
 	}
 	$acct_types = array("S"=>$lng_single, "J"=>$lng_joint, "H"=>$lng_household, "O"=>$lng_organisation, "B"=>$lng_business, "F"=>$lng_fund);
 	$form->addElement("select", "account_type", $lng_account_type, $acct_types);
