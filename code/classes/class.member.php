@@ -1122,15 +1122,21 @@ class cMemberReport {
 			if ($member->account_type == "F")
 				continue;	// Skip fund accounts
 				
-      $text = $member->PrimaryName();			
+      $text = str_pad($member->PrimaryName(),30);
+         $phone = "";			
 			if($member->person[0]->phone1_number) {
-				$text = $text. " | " . $member->person[0]->DisplayPhone(1);
+				$phone = $member->person[0]->DisplayPhone(1);
 			} else {	
 				if($member->person[0]->phone2_number)
-					$text = $text. " | " . $member->person[0]->DisplayPhone(2);
-			}
-			$text = $text . " | " . $this->state_list[$member->person[0]->address_state_code];	
-			$text = $text . " | " . $member->PrimaryAddress();		
+					$phone = $member->person[0]->DisplayPhone(2);
+				else 
+				   $phone = str_repeat(" ",12);
+			}			
+			$phone = substr($phone, 0, 12);			
+			$text = $text. " | " . str_pad($phone, 12);
+			
+			$text = $text . " | " . str_pad($this->state_list[$member->person[0]->address_state_code],30);	
+			$text = $text . " | " . $member->person[0]->address_street1;		
 			$text = str_pad($text, 115);
 			$text = $text . str_pad($member->FormattedBalanceNoLayout(), 5, " ", STR_PAD_LEFT);
 									
