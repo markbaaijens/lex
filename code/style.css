@@ -24,7 +24,9 @@ body {scrollbar-shadow-color: #6C81C6; scrollbar-highlight-color: #6C81C6; scrol
 #mainTable {
 	width: 85%; /* changed from 800px to 85% by ejkv */
 	color: #FBE697;
-	border: ridge;
+	border-collapse: collapse;	
+	border: 1px solid;
+	border-color: black;
 	background: #FBFBFB;
 
 			/*/*line-height: 1.5em; /* */
