@@ -186,10 +186,10 @@ if($member_list->members) {
         $listings = new cListingGroup(OFFER_LISTING);
         $listings->LoadListingGroup(null, null, $member->member_id, null, false); // Exclude expired listings (par5)
         if ($listings->num_listings > 0) {
-			 $listing_icon_title = $lng_offers . " (". $listings->num_listings . "): ";   
+			 $listing_icon_title = $lng_offers . " (". $listings->num_listings . ")";   
 			 // Combine all the listings title's to a single text 
 			 foreach ($listings->listing as $listing)
-  			   $listing_icon_title .= $listing->title . " | "; 		 
+  			   $listing_icon_title .= " | ".$listing->title; 		 
           $listing_icon = "<img src=\"images/cart.png\" width=\"21\" align=\"top\" title=\"". $listing_icon_title ."\"/>";
         }        
         else
