@@ -19,7 +19,7 @@ $form->addElement("hidden", "email_to", $_REQUEST["email_to"]);
 $form->addElement("hidden", "member_to", $_REQUEST["member_to"]);
 $member_to = new cMember;
 $member_to->LoadMember($_REQUEST["member_to"]);
-$form->addElement("static", null, $lng_to.": <I>". $_REQUEST["email_to"] . " (". $member_to->member_id .")</I>");
+$form->addElement("header", null, $lng_to.": <I>". $_REQUEST["email_to"] . " (". $member_to->member_id .")</I>");
 $form->addElement("text", "subject", $lng_subject.": ", array('size' => 35, 'maxlength' => 100));
 if (!SAFE_MODE_ON) $form->addElement("select", "cc", $lng_would_you_receive_copy, array("Y"=>$lng_yes, "N"=>$lng_no)); // - changed by ejkv
 // $form->addElement("select", "cc", $lng_would_you_receive_copy, array("Y"=>$lng_yes, "N"=>$lng_no));
