@@ -1092,7 +1092,7 @@ class cMemberReport {
 		$this->margin = 15;
 		$this->font = "Times"; // Times
 		$this->font_size = 10;
-		$this->font_spacing = 5;
+		$this->font_spacing = 3;
 		$this->pdf = &File_PDF::factory("P", "mm", "A4");
 		$this->pdf->open();
 		$this->pdf->addPage("P");
@@ -1157,7 +1157,7 @@ class cMemberReport {
 		
 	function PrintFirstPage() {
 		$this->pdf->setFont($this->font,"BI",26);
-		$this->pdf->Write(8,SITE_LONG_TITLE ." - ");
+		$this->pdf->Write(8,SITE_SHORT_TITLE);
 		$this->pdf->Write(8,$lng_members_directory."\n");
 		$this->pdf->setFont($this->font,"",$this->font_size);
 	}
