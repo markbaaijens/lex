@@ -54,10 +54,9 @@ function process_data ($values) {
 			$errors .= ", ";
 		
 		if($member->person[0]->email != "") {
-  		$mailed = mail($member->person[0]->email, 
-  		                $values["subject"], 
-  		                wordwrap($values["message"], 64) , 
-  		                "From:". EMAIL_FROM); 
+  		$mailed = mailex($member->person[0]->email, 
+  		                  $values["subject"], 
+  		                  wordwrap($values["message"], 64));
 		} 
 		else
 			$mailed = true;

@@ -916,7 +916,9 @@ class cMemberGroup {
 		
 		foreach($this->members as $member) {						
 			if($member->email_updates == $interval and $member->person[0]->email) {
-				mail($member->person[0]->email, SITE_SHORT_TITLE .": ".$lng_new_updated_listings_during_last." ". $period, wordwrap($email_text, 64), "From:". EMAIL_ADMIN ."\nMIME-Version: 1.0\n" . "Content-type: text/html; charset=utf-8"); // replaced $lng_from.":" by "From:" - by ejkv
+				mailex($member->person[0]->email, 
+				       $lng_new_updated_listings_during_last." ". $period, 
+				       wordwrap($email_text, 64));
 			}
 		
 		}
@@ -948,7 +950,9 @@ class cMemberGroup {
 						$want_listings->ExpireAll($expire_date);
 				
 					if($member->person[0]->email != null) {
-						mail($member->person[0]->email, $lng_important_information_about." ". SITE_SHORT_TITLE ." ".$lng_account_lc, wordwrap(EXPIRED_LISTINGS_MESSAGE, 64), "From:". EMAIL_ADMIN); // replaced $lng_from_colon by "From:" - by ejkv
+						mailex($member->person[0]->email, 
+						       $lng_important_information_about." ".$lng_account_lc, 
+						       wordwrap(EXPIRED_LISTINGS_MESSAGE, 64)); 
 						$note = "";
 						$subject_note = "";
 					} else {
@@ -956,7 +960,9 @@ class cMemberGroup {
 						$subject_note = " (member has no email)";
 					}
 					
-					mail(EMAIL_ADMIN, SITE_SHORT_TITLE ." ".$lng_listing_expired_for." ". $member->member_id. $subject_note, wordwrap($lng_all_listings_auto_espired. $note, 64) , "From:". EMAIL_ADMIN); // replaced $lng_from_colon by "From:" - by ejkv
+					mailex(EMAIL_ADMIN, 
+					       $lng_listing_expired_for." ". $member->member_id. $subject_note, 
+					       wordwrap($lng_all_listings_auto_espired. $note, 64)); 
 				}
 			}
 		}

@@ -50,7 +50,9 @@ if ($form->validate()) { // Form is validated so processes the data
 function process_data ($values) {
 	global $p, $heard_from, $lng_contact_form, $lng_from, $lng_phone, $lng_heard_from, $lng_thank_you, $lng_problem_sending_email; 
 	
-	$mailed = mail(EMAIL_ADMIN, SITE_SHORT_TITLE ." ".$lng_contact_form, $lng_from.": ". $values["name"]. "\n". $lng_phone.": ". $values["phone"] ."\n". $lng_heard_from.": ". $heard_from[$values["how_heard"]] ."\n\n". wordwrap($values["message"], 64) , "From:". $values["email"]); 
+	$mailed = mailex(EMAIL_ADMIN, 
+	                  $lng_contact_form, 
+	                  $lng_from.": ". $values["name"]. "\n". $lng_phone.": ". $values["phone"] ."\n". $lng_heard_from.": ". $heard_from[$values["how_heard"]] ."\n\n". wordwrap($values["message"], 64) , "From:". $values["email"]); 
 	
 	if($mailed)
 		$output = $lng_thank_you;

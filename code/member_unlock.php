@@ -42,14 +42,16 @@ function process_data ($values) {
 	
 	if ($_REQUEST["emailTyp"]=='welcome') {
 		
-		$mailed = mail($member->person[0]->email, NEW_MEMBER_SUBJECT, NEW_MEMBER_MESSAGE . "\n\n".$lng_member_id.": ". $member->member_id ."\n". $lng_pwd.": ". $password, "From:".EMAIL_FROM); // added "From:". - by ejkv
+		$mailed = mailex($member->person[0]->email, 
+  		                NEW_MEMBER_SUBJECT, 
+	  	                NEW_MEMBER_MESSAGE . "\n\n".$lng_member_id.": ". $member->member_id ."\n". $lng_pwd.": ". $password);
 			
 		$whEmail = "'Welcome'";
 	}
 	else {
-		$mailed = mail($member->person[0]->email, PASSWORD_RESET_SUBJECT, PASSWORD_RESET_MESSAGE . "\n\n".$lng_member_id.": ". $member->member_id ."\n".$lng_new_pwd.": ". $password, "From:".EMAIL_FROM); // added "From:". - by ejkv
-
-		mail(EMAIL_ADMIN, "Copy of password reset: ".$member->person[0]->email, PASSWORD_RESET_MESSAGE . "\n\n".$lng_member_id.": ". $member->member_id ."\n".$lng_new_pwd.": ". $password, "From:".EMAIL_FROM); // added "From:". - by ejkv
+		$mailed = mailex($member->person[0]->email, 
+		                  PASSWORD_RESET_SUBJECT, 
+		                  PASSWORD_RESET_MESSAGE . "\n\n".$lng_member_id.": ". $member->member_id ."\n".$lng_new_pwd.": ". $password);
 		
 		$whEmail = $lng_password_reset;
 	}

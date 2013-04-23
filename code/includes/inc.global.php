@@ -132,4 +132,28 @@ if(DOWN_FOR_MAINTENANCE and !$running_upgrade_script) {
 // [chris] Uncomment this line to surpress non-fatal Warning and Notice errors
 //error_reporting(E_ALL &~ (E_NOTICE | E_WARNING));	
 
+/*
+	Generic functions
+*/
+function mailex($to, $subject, $message, $from, $cc) {
+  if ($from == "")	
+    $from = EMAIL_FROM; // Generic from-address as fallback
+	
+  $headers = "From: ".$from. "\r\n" .
+              "Reply-To: ".$from. "\r\n" .  						              // To prevent to be marked as a spam-subject         
+              "Content-type: text/html; charset=iso-8859-1". "\r\n";	// To sent HTML-content
+              
+  if ($cc) { 
+    $headers .= "Cc: ".$from. "\r\n"; 
+  }
+                  
+  $mailed = mail($to, 
+                  $subject." - ".SITE_SHORT_TITLE, 
+                  $message,
+                  $headers);
+	
+	return $mailed;
+}
+
+
 ?>

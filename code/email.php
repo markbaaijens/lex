@@ -63,24 +63,34 @@ function process_data ($values) {
 	}
 
 	$body = wordwrap($values["message"], 64); // replaced $copy by $body with message-body - by ejkv
-	if (!SAFE_MODE_ON) { // - added safe mode check by ejkv
+/*	if (!SAFE_MODE_ON) { // - added safe mode check by ejkv
 		if($values["cc"] == "Y") {
 			$body = "Cc: ". $cUser->person[0]->email . "\r\n\r\n" . wordwrap($values["message"], 64);
 	    }
-    }
+    }*/
 
     if(known_email_addressp($_REQUEST["email_to"])) {
-	// added SAFE_MODE check, and removed 5th parameter, if safe mode = ON - by ejkv
-	// replaced message-body by $body, $lng_from_colon by "From:" and '. $copy' by ', $cUser->person[0]->email' - by ejkv
-	    if (SAFE_MODE_ON) {
-			$mailed = mail($_REQUEST["email_to"], SITE_SHORT_TITLE .": ". $values["subject"], $body, "From:". $cUser->person[0]->email);
+    	// added SAFE_MODE check, and removed 5th parameter, if safe mode = ON - by ejkv
+	   // replaced message-body by $body, $lng_from_colon by "From:" and '. $copy' by ', $cUser->person[0]->email' - by ejkv
+      if (SAFE_MODE_ON) {
+			$mailed = mailex($_REQUEST["email_to"], 
+								   $values["subject"], 
+								   $body, 
+								   $cUser->person[0]->email);
 		}
-		else {
+		else { // SAFE_MODE_ON = off
 			if($values["cc"] == "Y") {
-				$mailed = mail($_REQUEST["email_to"], SITE_SHORT_TITLE .": ". $values["subject"], $body, "From:". $cUser->person[0]->email, $cUser->person[0]->email);
+				$mailed = mailex($_REQUEST["email_to"], 
+									   $values["subject"], 
+									   $body, 
+									   $cUser->person[0]->email, 
+									   true);
 			}
 			else {
-				$mailed = mail($_REQUEST["email_to"], SITE_SHORT_TITLE .": ". $values["subject"], $body, "From:". $cUser->person[0]->email);
+				$mailed = mailex($_REQUEST["email_to"], 
+									   $values["subject"], 
+									   $body, 
+									   $cUser->person[0]->email);
 			}
 		}
     }

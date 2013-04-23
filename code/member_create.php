@@ -160,7 +160,9 @@ function process_data ($values) {
 		if($values['email'] == "") {
 			$list .= $lng_member_no_email_address." ('". $values["member_id"]. "') ".$lng_and_pwd." ('". $values["password"] ."').";	
 		} else {
-			$mailed = mail($values['email'], NEW_MEMBER_SUBJECT, NEW_MEMBER_MESSAGE . "\n\n".$lng_member_id.": ". $values['member_id'] ."\n". $lng_pwd.": ". $values['password'], "From:".EMAIL_FROM); // added "From:" - by ejkv
+			$mailed = mailex($values['email'], 
+			                  NEW_MEMBER_SUBJECT, 
+			                  NEW_MEMBER_MESSAGE . "\n\n".$lng_member_id.": ". $values['member_id'] ."\n". $lng_pwd.": ". $values['password']);
 			if($mailed)
 				$list .= $lng_email_has_been_send_to." '". $values["email"] ."' ".$lng_containing_userid_and_pwd.".";
 			else

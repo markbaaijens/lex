@@ -36,7 +36,9 @@ function process_data ($values) {
 	$member->UnlockAccount();
 	
 	$list = $lng_pwd_reset_change_after_login."<P>";
-	$mailed = mail($values['email'], PASSWORD_RESET_SUBJECT, PASSWORD_RESET_MESSAGE . "\n\n".$lng_new_pwd.": ". $password, "From:".EMAIL_FROM); // added "From:" - by ejkv
+	$mailed = mailex($values['email'], 
+	                  PASSWORD_RESET_SUBJECT, 
+	                  PASSWORD_RESET_MESSAGE . "\n\n".$lng_new_pwd.": ". $password); 
 	if($mailed)
 		$list .= $lng_new_pwd_has_been_sent;
 	else

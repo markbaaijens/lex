@@ -120,20 +120,30 @@ function process_data ($values) {
 	[chris] For transaction approval
 	*/
 	
-	if ($_REQUEST["typ"]==1 || $member_to->confirm_payments==1) { // Member wishes to confirm payments made to him OR this is an invoice
+	// Member wishes to confirm payments made to him OR this is an invoice?
+	if ($_REQUEST["typ"]==1 || $member_to->confirm_payments==1) { 
 		
 		if (htmlspecialchars($values['units']) >= 0 && $member_to_id != $member->member_id) {
 			
 			global $cDB;
+
+			// Is this is a payment? "typ" 1 = Invoice			
+			if ($_REQUEST["typ"]!=1) { 
 			
-			if ($_REQUEST["typ"]!=1) { // This is a payment
+				// Yes, this is a payment, so teh other side of the OR-statement above must be true:
+				// $member_to->confirm_payments==1 -> member_to wants to confirm payments 
 				
+				// Is the member_from restricted?
 				if ($member->restriction==1) {
 					$list .= "<p>".LEECH_NOTICE;
 				}
-				else if ($cDB->Query("INSERT INTO trades_pending (trade_date, member_id_from, member_id_to, amount, category, description, typ) VALUES (now(), ". 	$cDB->EscTxt($member->member_id) .", ". $cDB->EscTxt($member_to_id) .", ". $cDB->EscTxt($values["units"]) .", ". $cDB->EscTxt($values["category"]) .", ". 	$cDB->EscTxt($values["description"]) .", \"T\");")) {
+				else
+					// This is a payment, member_from is not restricted, member_to wants to confirm the payment  
+					if ($cDB->Query("INSERT INTO trades_pending (trade_date, member_id_from, member_id_to, amount, category, description, typ) VALUES (now(), ". 	$cDB->EscTxt($member->member_id) .", ". $cDB->EscTxt($member_to_id) .", ". $cDB->EscTxt($values["units"]) .", ". $cDB->EscTxt($values["category"]) .", ". 	$cDB->EscTxt($values["description"]) .", \"T\");")) {
 					
-					$mailed = mail($member_to->person[0]->email, $lng_payment_received_on." ".SITE_LONG_TITLE."", $lng_hi_cap." ".$member_to_id.",\n\n".$lng_let_know_received_payment_from." ".$member->member_id."\n\n".$lng_elected_to_confirm_payment."\n\n"."trades_pending.php?action=incoming", "From:".EMAIL_FROM); // added "FROM:". - by ejkv
+					$mailed = mailex($member_to->person[0]->email, 
+										   $lng_payment_received_on, 
+										   $lng_hi_cap." ".$member_to_id.",\n\n".$lng_let_know_received_payment_from." ".$member->member_id."\n\n".$lng_elected_to_confirm_payment."\n\n"."trades_pending.php?action=incoming");
 			
 					$list .= $lng_member_id." ".$member_to_id." ".$lng_notified_you_wish_transfer." ". $values['units'] ." ". strtolower(UNITS) ." ".$lng_to_him_her.".<p>".$lng_member_opted_to_confirm.".<p>". // added $lng_member_id by ejkv
 							$lng_would_you_like_to." <A HREF=trade.php?mode=".$_REQUEST["mode"]."&member_id=". $_REQUEST["member_id"].">".$lng_record_another."</A> ".$lng_exchange."?";
@@ -141,13 +151,19 @@ function process_data ($values) {
 				else
 					$list .= $lng_trade_failed." ".$lng_try_again_later;	
 			}
-			else if ($_REQUEST["typ"]==1) {
+			else 
+			// Is this an invoice?
+			if ($_REQUEST["typ"]==1) {
 				
 				if (MEMBERS_CAN_INVOICE!=true) // Invoicing is turned off, user has no right to be here!
 					$list .= $lng_invoice_facility_disabled;	
-				else if ($cDB->Query("INSERT INTO trades_pending (trade_date, member_id_from, member_id_to, amount, category, description, typ) VALUES (now(), ". 	$cDB->EscTxt($member->member_id) .", ". $cDB->EscTxt($member_to_id) .", ". $cDB->EscTxt($values["units"]) .", ". $cDB->EscTxt($values["category"]) .", ". 	$cDB->EscTxt($values["description"]) .", \"I\");")) {
+				else
+					// This is an invoice 
+					if ($cDB->Query("INSERT INTO trades_pending (trade_date, member_id_from, member_id_to, amount, category, description, typ) VALUES (now(), ". 	$cDB->EscTxt($member->member_id) .", ". $cDB->EscTxt($member_to_id) .", ". $cDB->EscTxt($values["units"]) .", ". $cDB->EscTxt($values["category"]) .", ". 	$cDB->EscTxt($values["description"]) .", \"I\");")) {
 					
-					$mailed = mail($member_to->person[0]->email, $lng_invoice_received_on." ".SITE_LONG_TITLE."", $lng_hi_cap." ".$member_to_id.",\n\n".$lng_let_know_invoice_from." ".$member->member_id."\n\n".$lng_log_in_to_pay_reject_invoice."\n\n"."trades_pending.php?action=outgoing", "From:".EMAIL_FROM); // added "From:". - by ejkv
+					$mailed = mailex($member_to->person[0]->email, 
+  					                $lng_invoice_received_on, 
+					                  $lng_hi_cap." ".$member_to_id.",\n\n".$lng_let_know_invoice_from." ".$member->member_id."\n\n".$lng_log_in_to_pay_reject_invoice."\n\n"."trades_pending.php?action=outgoing"); 
 			
 					$list .= $member_to_id." ".$lng_has_been_send_invoice_for." ". $values['units'] ." ". strtolower(UNITS) .".<p> ".$lng_will_informed_when_member_pays.".<p>".
 						$lng_would_you_like_to." <A HREF=trade.php?mode=".$_REQUEST["mode"]."&member_id=". $_REQUEST["member_id"].">".$lng_record_another."</A> ".$lng_exchange."?";
@@ -158,7 +174,7 @@ function process_data ($values) {
 			
 		}
 	}
-	else { // Make the trade
+	else { // Regular trade: no invoice AND member_to does NOT want to confirm payments
 		
 		$trade = new cTrade($member, $member_to, htmlspecialchars($values['units']), htmlspecialchars($values['category']), htmlspecialchars($values['description']), $type);
 		
@@ -184,7 +200,9 @@ function process_data ($values) {
   			$list .= $lng_or_would_you_like_to_leave." <A HREF=feedback.php?mode=". $_REQUEST["mode"] ."&author=". $member->member_id ."&about=". $member_to_id ."&trade_id=". $trade->trade_id .">".$lng_feedback."</A> ".$lng_for_this_member."?"; 
 			}
 
-      mail($member_to->person[0]->email, $lng_payment_received_on." ".SITE_LONG_TITLE."", $lng_let_know_received_payment_from." ".$member->member_id."\n\n".$lng_elected_to_confirm_payment, "From:".EMAIL_FROM);
+      mailex($member_to->person[0]->email, 
+             $lng_payment_received_on, 
+             $lng_let_know_received_payment_from." ".$member->member_id."\n\n".$lng_elected_to_confirm_payment);
 		
   		// Has the recipient got an income tie set-up? If so, we need to transfer a percentage of this elsewhere...
 			$recipTie = cIncomeTies::getTie($member_to_id);

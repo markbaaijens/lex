@@ -19,8 +19,6 @@ $all_members->LoadMemberGroup();
 $output = "";
 
 foreach ($all_members->members as $member) {
-	if ($member->member_id == 'francis' or $member->member_id == 'lia')
-		continue;
 	
 	$password = $member->GeneratePassword();
 	$changed = $member->ChangePassword($password);
@@ -31,7 +29,9 @@ foreach ($all_members->members as $member) {
 	}
 
 // $member->person[0]->email
-	$mailed = mail($member->person[0]->email, $subject, $message . "\n\n".$lng_member_id.": ". $member->member_id ."\n". $lng_pwd.": ". $password, "From:".EMAIL_FROM); // added "From:" - by ejkv
+	$mailed = mailex($member->person[0]->email, 
+	                  $subject, 
+	                  $message . "\n\n".$lng_member_id.": ". $member->member_id ."\n". $lng_pwd.": ". $password);
 
 	if(!$mailed)
 		$output .= $lng_could_not_email." ". $member->member_id .".  ".$lng_his_her_pwd_is." '". $password ."'.<BR>";
