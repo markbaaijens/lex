@@ -155,5 +155,35 @@ function mailex($to, $subject, $message, $from, $cc) {
 	return $mailed;
 }
 
+function login_form($request_type) {
+  /*
+    Generic login page
+  */  
+  global $lng_member_id, $lng_pwd, $lng_login, $lng_no_account, $lng_forget_password;
+  
+  if ($request_type == "server")
+    $location = $_SERVER["REQUEST_URI"];
+  else {
+    if ($request_type == "session")
+      $location = $_SESSION["REQUEST_URI"];
+  }
+      
+  return
+    "<div style='width=60%; padding: 5px;'>".
+    "<form action=login.php method=post>".
+    "<input type=hidden name=action value=login>".
+    "<input type=hidden name=location value='".$location."'>".
+    "<table class=noborder>".
+    "<tr><td align=left>".$lng_member_id.":</td>".
+        "<td align=left><input type=text size=12 name=user></td></tr>".
+    "<tr><td align=right>".$lng_pwd.":</td>".
+        "<td align=left><input type=password size=12 name=pass></td></tr>".
+    "</table>".
+    "<div align='left'><input type=submit value=".$lng_login."></div>".
+    "</form></div>".  
+    "<small><a href=contact.php>".$lng_no_account."</a>"." | ".
+    "<a href=\"password_reset.php\">".$lng_forget_password."</a></small>";
+        
+}
 
 ?>

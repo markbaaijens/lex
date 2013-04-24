@@ -891,4 +891,6 @@ $lng_reports = "Reports";
 $lng_select_report = "Select a report";
 $lng_report_spreadheet = "From the selected report, a spreadsheet will be generated.";
 $lng_transactions_last_month = "Transactions of the last month";
+$lng_no_account = "No account?";
+$lng_forget_password = "Forgot your password?";
 ?>

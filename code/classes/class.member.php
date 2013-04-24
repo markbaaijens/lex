@@ -208,18 +208,7 @@ class cMember
 	}
 
 	function UserLoginPage() // A free-standing login page
-	{   global $lng_member_id, $lng_pwd, $lng_login, $lng_if_you_dont_have_account;
-		$output = "<DIV STYLE='width=60%; padding: 5px;'><FORM ACTION="."login.php METHOD=POST>
-					<INPUT TYPE=HIDDEN NAME=action VALUE=login>
-					<INPUT TYPE=HIDDEN NAME=location VALUE='".$_SERVER["REQUEST_URI"]."'>
-					<TABLE class=NoBorder><TR><TD ALIGN=LEFT>".$lng_member_id.":</TD><TD ALIGN=LEFT><INPUT TYPE=TEXT SIZE=12 NAME=user></TD></TR>
-					<TR><TD ALIGN=LEFT>".$lng_pwd." :</TD><TD ALIGN=LEFT><INPUT TYPE=PASSWORD SIZE=12 NAME=pass></TD></TR></TABLE>
-					<DIV align=LEFT><INPUT TYPE=SUBMIT VALUE=".$lng_login."></DIV>
-					</FORM></DIV>
-					<BR>
-					".$lng_if_you_dont_have_account."
-					<BR>";	
-		return $output;
+	{ return login_form("server");
 	}
 
 	function UserLoginLogout() {
