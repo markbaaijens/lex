@@ -177,7 +177,7 @@ if ($_REQUEST["backup"]==true) {
 		{
 $i = 0;
 $stunden = date ("H:i");
-header("Content-disposition: filename=$dbname-".date('y-m-d',time()).".sql");
+header("Content-disposition: filename=$dbname-".date('Ymd-Hi',time()).".sql");
 header("Content-type: application/octetstream");
 header("Pragma: no-cache");
 header("Expires: 0");
