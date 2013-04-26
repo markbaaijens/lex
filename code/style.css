@@ -40,8 +40,8 @@ a:hover {
 
 #maincontent {
  	width: 650px; 	
-	border-left: 1px solid #6C81C6;
-	border-right: 1px solid #6C81C6;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
  	font-size: 13px;
 	color: #000033;
 	padding: 25px;
