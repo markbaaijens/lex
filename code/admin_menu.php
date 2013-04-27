@@ -33,8 +33,6 @@ if ($cUser->member_role > 1) {
 $list .= "<A HREF=member_contact_create.php?mode=admin><FONT SIZE=2>".$lng_add_joint_member_to_exiting_account."</FONT></A><BR>";
 $list .= "<A HREF=member_contact_to_edit.php><FONT SIZE=2>".$lng_edit_delete_joint_member."</FONT></A><BR>";
 
-echo OVRIDE_BALANCES;
-
 if (OVRIDE_BALANCES==true && $cUser->member_role > 1) // Only display Override Balance link if it is turned on in config file
 	$list .= "<A HREF=balance_to_edit.php><FONT SIZE=2>".$lng_override_member_account_balance."</FONT></A><BR>";
 
