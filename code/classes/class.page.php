@@ -46,10 +46,16 @@ class cPage {
 		else
 			$title = "";
 		
-		$output = '<HTML><HEAD><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><link rel="shortcut icon" href="images/favicon.ico"><link rel="stylesheet" href="'. SITE_STYLESHEET .'" type="text/css"></link><meta name="description" content="'.$this->page_title.'"><meta NAME="keywords" content="'. $this->keywords .'"><TITLE>'. PAGE_TITLE_HEADER . $title .'</TITLE></HEAD><BODY>';
-		
-		//$output .= "<HTML><BODY>";
-		//$output .= $this->page_header.$cUser->UserLoginLogout()."</h1></td></tr>";
+		$output = '<HTML><HEAD><meta http-equiv="content-type" content="text/html; charset=UTF-8" >
+		              <link rel="shortcut icon" href="images/favicon.ico">
+		              <link rel="stylesheet" href="'. SITE_STYLESHEET .'" type="text/css"></link>
+		              <meta name="description" content="'.$this->page_title.'">
+		              <meta NAME="keywords" content="'. $this->keywords .'">
+		              <TITLE>'. PAGE_TITLE_HEADER . $title .'</TITLE>
+		             </HEAD>
+		             <BODY>
+		             <table align=center cellpadding=15 cellspacing=0 id=maintable >';
+		             
 		$output .= $this->page_header ;
 	
 		return $output;
@@ -93,8 +99,7 @@ class cPage {
 			<a href=".$_SERVER["PHP_SELF"]."?printer_view=1&".$_SERVER["QUERY_STRING"]." target=_blank><img src=".IMAGES_PATH ."print.gif border=0><br><font size=1>".$lng_printer_friendly_view."</font></a><br>";
 		}
 		
-		$tmp .= "</TD></TR>". $this->page_footer ."";
-	
+		$tmp .= "</TD></TR>". $this->page_footer ."</table><br>";
 		$tmp .= "</BODY></HTML>";
 		
 		return $tmp;

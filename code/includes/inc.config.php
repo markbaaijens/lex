@@ -126,11 +126,24 @@ define ("HOME_LOGO", "localx_black.png");
 define ("HOME_PIC", "localx_home.png");
 
 // What content should be in the site header, home page and footer?
-define ("PAGE_HEADER_CONTENT", "<table align=center cellpadding=15 cellspacing=0 id=\"mainTable\"><tr><td id=\"header\" align=center><a href=\"index.php\"><img src=\"" . "images/". HEADER_LOGO ."\" alt=\"". SITE_SHORT_TITLE . " logo\" border=0></a></td><td id=\"header\"><h1 align=right><img src=\"" . "images/". HEADER_TITLE ."\"></h1></td></tr>");
+define ("PAGE_HEADER_CONTENT", 
+    "<tr>
+        <td id=\"header\" align=center width=\"120\">
+          <a href=\"index.php\"><img src=\"" . "images/". HEADER_LOGO ."\" alt=\"". SITE_SHORT_TITLE . " logo\" border=0></a></td>
+        <td id=\"header\"><h1 align=right><img src=\"" . "images/". HEADER_TITLE ."\"></h1>
+     </td>
+     </tr>");
 
 define ("PAGE_HOME_TEXT", $lng_home_text);
 
-define ("PAGE_FOOTER_CONTENT", "<tr><td id=\"footer\" colspan=2><p align=center><strong>". SITE_LONG_TITLE ." </strong><br><a href=\"mailto:". EMAIL_ADMIN ."\">" . EMAIL_ADMIN ."</a> &#8226; ". PHONE_ADMIN ."<br><font size=\"-2\">".$lng_licenced_under." <a href=\"http://www.gnu.org/copyleft/gpl.html\">".$lng_gpl."</a> &#8226; ".$lng_local_exchange_uk_ver." ".LOCALX_VERSION." <a href=\""."info-credits.php\">".$lng_credits."</a></td></tr></table><br>");
+define ("PAGE_FOOTER_CONTENT", 
+    "<tr>
+      <td id=\"footer\" colspan=2>
+        <p align=center><strong>". SITE_LONG_TITLE ." </strong><br>
+        <a href=\"mailto:". EMAIL_ADMIN ."\">" . EMAIL_ADMIN ."</a> ". PHONE_ADMIN ."<br>
+        <font size=\"-2\">".$lng_licenced_under." <a href=\"http://www.gnu.org/copyleft/gpl.html\">".$lng_gpl."</a> &#8226; ".$lng_local_exchange_uk_ver." ".LOCALX_VERSION." <a href=\""."info-credits.php\">".$lng_credits."</a>
+      </td>
+    </tr>");
 
 /**********************************************************/
 /**************** DEFINE SIDEBAR MENU *********************/
