@@ -29,13 +29,17 @@ a:hover {
   text-decoration: underline;
 }
 
-#mainTable {
+#maintable {
 	width: 85%;
 	color: #FBE697;
 	border-collapse: collapse;	
 	border: 1px solid;
 	border-color: black;
 	background: #FBFBFB;
+	/* The following properties, prevents that a large logo 
+	   inluences the width of column below (i.e. the menu) */
+	overflow: visible;    
+	table-layout: fixed;	
 }
 
 #maincontent {
@@ -44,7 +48,7 @@ a:hover {
 	border-right: 1px solid black;
  	font-size: 13px;
 	color: #000033;
-	padding: 25px;
+	padding: 25px;	
 }
  
 #sidebar {
