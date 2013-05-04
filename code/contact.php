@@ -8,7 +8,10 @@ include("includes/inc.forms.php");
 //
 // First, we define the form
 //
-$form->addElement("header", null, $lng_for_more_information, null);
+$form->addElement("header", null, 
+                     $lng_for_more_information." ".
+                     "<a href=mailto:".EMAIL_ADMIN.">".EMAIL_ADMIN."</a>", null);
+
 if (ALT_JOIN_PAGE_URL == "") {
 
   $form->addElement("static", null, null, null);
@@ -28,6 +31,7 @@ else {
   // Show alternative join-page, just the url
   $form->addElement("static", null, "<a href=\"".ALT_JOIN_PAGE_URL."\" target=\"_blank\"><b>$lng_go_to_join_page</b></a>", null);
 }
+
 
 //
 // Define form rules

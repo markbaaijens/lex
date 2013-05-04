@@ -145,7 +145,7 @@ $lng_submit = "Verstuur"; //"Submit";
 $lng_choose_member_balance_to_edit = "Kies de deelnemer waarvan je het saldo wilt bewerken"; //"Choose Member whose Balance you wish to Edit"; - changed text by ejkv
 $lng_member = "Deelnemer"; //"Member";
 $lng_edit_balance = "Bewerk saldo"; //"Edit Balance";
-$lng_for_more_information = "Voor meer informatie of om te weten hoe je deelnemer kunt worden, kun je een informatie-aanvraag invullen. Wij nemen dan snel contact met je op."; //"For more information on the";
+$lng_for_more_information = "Voor meer informatie of om te weten hoe je deelnemer kunt worden, kun je een informatie-aanvraag invullen. Wij nemen dan snel contact met je op. Voor vragen over het programma zelf, mail ons op"; //"For more information on the";
 $lng_name = "Naam"; //"Name";
 $lng_email = "E-mailadres"; //"Email";
 $lng_phone = "Telefoon"; //"Phone";
@@ -550,7 +550,7 @@ $lng_reset_pwd = "Reset wachtwoord"; //"Reset Password";
 $lng_enter_member_id = "Voer inlognaam in"; //"Enter your Member ID";
 $lng_enter_eml_addr_for_your_acc = "Voer e-mailadres voor je deelnemersrekening in"; //"Enter the Email Address for your Account";
 $lng_address_or_member_id_incorrect = "Adres of inlognaam is niet correct"; //"Address or member id is incorrect";
-$lng_if_not_remember_id_or_eml_please = "Wachtwoord of e-mailadres vergeten? Neem"; //"If you cannot remember your member id or email address, please";
+$lng_if_not_remember_id_or_eml_please = "Inlognaam of e-mailadres vergeten? Neem"; //"If you cannot remember your member id or email address, please";
 $lng_us = "met ons op"; //"us";
 $lng_pwd_reset_change_after_login = "Je wachtwoord is ge-reset. Je kunt je wachtwoord wijzigen onder de knop 'Profiel' op de website."; //"Your password has been reset.  You can change the new password after you login by going into the Member Profile section of the web site."; // changed by ejkv
 $lng_new_pwd_has_been_sent = "Je nieuwe wachtwoord wordt naar je e-mailadres gestuurd."; //"The new password has been sent to your email address.";   // replaced "JE" by "je" - by ejkv
@@ -931,4 +931,9 @@ $lng_report_spreadheet = "Van het geselecteerde rapport zal een spreadsheet word
 $lng_transactions_last_month = "Transacties van de laatste maand";
 $lng_no_account = "Geen deelnemersrekening?";
 $lng_forget_password = "Wachtwoord vergeten?";
+$lng_password_reset_help = "Door het invullen van dit formulier wordt er een mail verzonden ".
+                              "met daarin het nieuwe wachtwoord. Als je daarmee ingelogd bent, ".
+                              "kun je het beste je wachtwoord veranderen in iets wat je ".
+                              "goed kunt onthouden.";
+
 ?>

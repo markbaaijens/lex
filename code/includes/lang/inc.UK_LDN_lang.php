@@ -144,7 +144,7 @@ $lng_submit = "Submit";
 $lng_choose_member_balance_to_edit = "Choose Member whose Balance you wish to Edit";
 $lng_member = "Member";
 $lng_edit_balance = "Edit Balance";
-$lng_for_more_information = "For more information or to find out how to become a member, please fill out our information request. Someone will get back to you soon.";
+$lng_for_more_information = "For more information or to find out how to become a member, please fill out our information request. Someone will get back to you soon. For questions about the program it self, mail us at";
 $lng_name = "Name";
 $lng_email = "Email";
 $lng_phone = "Phone";
@@ -893,4 +893,9 @@ $lng_report_spreadheet = "From the selected report, a spreadsheet will be genera
 $lng_transactions_last_month = "Transactions of the last month";
 $lng_no_account = "No account?";
 $lng_forget_password = "Forgot your password?";
+$lng_password_reset_help = "By filling in this form, a mail will be sent ".
+                              "with the new password. If you have been logged in with that, ".
+                              "you best change your password in something you can ".
+                              "easily remember.";
+
 ?>

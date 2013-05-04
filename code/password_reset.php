@@ -1,11 +1,11 @@
 <?php
 include_once("includes/inc.global.php");
-$p->site_section = SITE_SECTION_OFFER_LIST;
+$p->site_section = SECTION_EMAIL;
+$p->page_title = $lng_reset_pwd;
 
 include("includes/inc.forms.php");
 
-$form->addElement("header", null, $lng_reset_pwd);
-$form->addElement("html", "<TR></TR>");
+$form->addElement("header", null, $lng_password_reset_help, null);
 
 $form->addElement("text", "member_id", $lng_enter_member_id);
 $form->addElement("text", "email", $lng_enter_eml_addr_for_your_acc);
@@ -16,7 +16,7 @@ $form->addElement("submit", "btnSubmit", $lng_reset_pwd);
 $form->registerRule('verify_email','function','verify_email');
 $form->addRule('email',$lng_address_or_member_id_incorrect,'verify_email');
 $form->addElement("static", null, null, null);
-$form->addElement("static", 'contact', $lng_if_not_remember_id_or_eml_please." <A HREF=contact.php>".$lng_contact."</A> ".$lng_us.".", null);
+$form->addElement("header", 'contact', $lng_if_not_remember_id_or_eml_please." <A HREF=contact.php>".$lng_contact."</A> ".$lng_us.".", null);
 
 if ($form->validate()) { // Form is validated so processes the data
    $form->freeze();
