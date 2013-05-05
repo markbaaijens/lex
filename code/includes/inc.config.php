@@ -209,7 +209,7 @@ define("ALT_JOIN_PAGE_URL", "");
 //   wget "<server>/<location>/mysql_backup.php?backup=true&key=xxx" -O backup.sql
 // After execution, check if the contents of backup.sql begins with "<html>": if that is the case, the 
 // remote backup did not pass authentication
-define("REMOTE_BACKUP_KEY", "bmukKFtNbmBRoRNbKFhTvALfdhrcJR");
+define("REMOTE_BACKUP_KEY", "");
  
 /**************** Monthly fee related settings ********************/
 define("SYSTEM_ACCOUNT_ID", "system");
