@@ -3,7 +3,16 @@ include_once("includes/inc.global.php");
 $p->site_section = ADMINISTRATION;
 $p->page_title = "MySQL Backup";
 
-$cUser->MustBeLevel(3); // changed level 2 to level 3 - by ejkv
+// Check if a remote backup is being done; authentication is then done  by checking parameter backupkey
+// against variable REMOTE_BACKUP_KEY in inc.config.php 
+$remote_backup==false;
+if (REMOTE_BACKUP_KEY != "") {
+  if (($_REQUEST["backup"]==true) and ($_REQUEST["key"]==REMOTE_BACKUP_KEY))  
+    $remote_backup=true;
+}
+
+if ($remote_backup==false)
+  $cUser->MustBeLevel(3); // changed level 2 to level 3 - by ejkv
 
 global $cDB;
 
