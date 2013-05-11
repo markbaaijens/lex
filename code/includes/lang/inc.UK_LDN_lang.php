@@ -897,5 +897,6 @@ $lng_password_reset_help = "By filling in this form, a mail will be sent ".
                               "with the new password. If you have been logged in with that, ".
                               "you best change your password in something you can ".
                               "easily remember.";
+$lng_transaction = "Transaction";                              
 
 ?>

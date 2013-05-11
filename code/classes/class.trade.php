@@ -293,7 +293,7 @@ class cTradeGroup {
 	}
 	
 	function DisplayTradeGroup() {
-		global $cDB, $cUser, $lng_date, $lng_from, $lng_to, $lng_category, $lng_description;
+		global $cDB, $cUser, $lng_date, $lng_from, $lng_to, $lng_category, $lng_description, $lng_transaction;
 		
 		$output = "<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=3 WIDTH=\"100%\"><TR BGCOLOR=\"#d8dbea\"><TD><FONT SIZE=2><B>".$lng_date."</B></FONT></TD><TD><FONT SIZE=2><B>".$lng_from."</B></FONT></TD><TD><FONT SIZE=2><B>".$lng_to."</B></FONT></TD><TD ALIGN=RIGHT><FONT SIZE=2><B>". UNITS ."&nbsp;</B></FONT></TD><TD><FONT SIZE=2><B>&nbsp;".$lng_category."&nbsp;</B></FONT></TD><TD><FONT SIZE=2><B>&nbsp;".$lng_description."</B></FONT></TD></TR>"; // added catgory by ejkv
 		
@@ -322,7 +322,7 @@ class cTradeGroup {
 			
 			$trade_date = new cDateTime($trade->trade_date);			
 			
-			$output .= "<TR VALIGN=TOP BGCOLOR=". $bgcolor ."><TD width=\"85\"><FONT SIZE=2 COLOR=".$fcolor.">". $trade_date->ShortDate()."</FONT></TD><TD><FONT SIZE=2 COLOR=".$fcolor.">";
+			$output .= "<TR VALIGN=TOP BGCOLOR=". $bgcolor ."><TD width=\"85\"><div title=\"$lng_transaction $trade->trade_id\"><FONT SIZE=2 COLOR=".$fcolor.">". $trade_date->ShortDate()."</FONT></div></TD><TD><FONT SIZE=2 COLOR=".$fcolor.">";
 			$output .= "<A HREF=member_summary.php?member_id=". $trade->member_from->member_id .">". $trade->member_from->member_id ."</A>";						
 			$output .= "</FONT></TD><TD><FONT SIZE=2 COLOR=".$fcolor.">";
 			$output .= "<A HREF=member_summary.php?member_id=". $trade->member_to->member_id .">". $trade->member_to->member_id ."</A>";			
