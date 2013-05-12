@@ -109,8 +109,9 @@ class cTrade {
 	
 	// It is very important that this function prevent the database from going out balance.
 	function MakeTrade($reversed_trade_id=null) { 
-		global $cDB, $cErr, $lng_dbase_out_of_balance, $lng_hi_admin, $lng_Message_dbase_out_of_balance, 
-		       $lng_dbase_out_of_bal_pls_contct_admin, $member_limit_use_min_balance_for_restricted_users;
+		global $cDB, $cErr, $lng_dbase_out_of_balance, $lng_hi_admin, $lng_message_dbase_out_of_balance, 
+		       $lng_dbase_out_of_bal_pls_contct_admin, $member_limit_use_min_balance_for_restricted_users,
+		       $lng_transaction,$lng_to,$lng_from,$lng_description;
 		
     // Amount should be positive unless this is a reversal of a previous trade.    
 		if ($this->amount <= 0 and $this->type != TRADE_REVERSAL) 
@@ -159,7 +160,11 @@ class cTrade {
 			if (OOB_EMAIL_ADMIN==true) // Admin wishes to receive an email notifying him/her when db is found to be out-of-balance
 				$mailed = mailex(EMAIL_ADMIN, 
 				                  $lng_dbase_out_of_balance, 
-				                  $lng_hi_admin.",\n\n".$lng_Message_dbase_out_of_balance); 
+				                  $lng_message_dbase_out_of_balance."<br><br>".  
+                          // Value for this->trade_id is not available here because the trade has not been made yet
+				                  $lng_transaction.": ".strtolower($lng_from)." ".$this->member_from->member_id." ".
+				                  strtolower($lng_to)." ".$this->member_to->member_id." (".$this->amount." ".UNITS.")<br>".
+				                  $lng_description.": ".$this->description);
 			
 			switch(OOB_ACTION) { // How should we handle the out-of-balance event?
 				
