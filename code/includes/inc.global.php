@@ -186,4 +186,9 @@ function login_form($request_type) {
         
 }
 
+function server_base_url(){
+  $protocol = ($_SERVER['HTTPS'] && $_SERVER['HTTPS'] != "off") ? "https" : "http";
+  return $protocol . "://" . $_SERVER['HTTP_HOST'];
+}
+
 ?>

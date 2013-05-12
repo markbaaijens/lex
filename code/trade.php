@@ -88,7 +88,17 @@ if ($form->validate()) { // Form is validated so processes the data
 }
 
 function process_data ($values) {
-	global $p, $member, $cErr, $cUser, $lng_nu_units_to_exchange, $lng_trade_failed, $lng_payment_received_on, $lng_hi_cap, $lng_let_know_received_payment_from, $lng_member_id, $lng_notified_you_wish_transfer, $lng_to_him_her, $lng_member_opted_to_confirm, $lng_would_you_like_to, $lng_record_another, $lng_exchange, $lng_invoice_facility_disabled, $lng_invoice_received_on, $lng_let_know_invoice_from, $lng_log_in_to_pay_reject_invoice, $lng_has_been_send_invoice_for, $lng_will_informed_when_member_pays, $lng_you_have, $lng_transferred_to, $lng_or_would_you_like_to_leave, $lng_feedback, $lng_for_this_member, $lng_donation_from,$lng_try_again_later, $lng_balance_too_low, $lng_balance_too_high; 
+	global $p, $member, $cErr, $cUser, $lng_nu_units_to_exchange, $lng_trade_failed, 
+	       $lng_payment_received_on, $lng_hi_cap, $lng_let_know_received_payment_from, 
+	       $lng_member_id, $lng_notified_you_wish_transfer, $lng_to_him_her, 
+	       $lng_member_opted_to_confirm, $lng_would_you_like_to, $lng_record_another, 
+	       $lng_exchange, $lng_invoice_facility_disabled, $lng_invoice_received_on, 
+	       $lng_let_know_invoice_from, $lng_log_in_to_pay_reject_invoice, 
+	       $lng_has_been_send_invoice_for, $lng_will_informed_when_member_pays, 
+	       $lng_you_have, $lng_transferred_to, $lng_or_would_you_like_to_leave, $lng_feedback, 
+	       $lng_for_this_member, $lng_donation_from,$lng_try_again_later, $lng_balance_too_low, 
+	       $lng_balance_too_high,$lng_elected_to_confirm_payment,
+	       $lng_transaction,$lng_from,$lng_description; 
 	
 	$list = "";
 	
@@ -143,7 +153,7 @@ function process_data ($values) {
 					
 					$mailed = mailex($member_to->person[0]->email, 
 										   $lng_payment_received_on, 
-										   $lng_hi_cap." ".$member_to_id.",\n\n".$lng_let_know_received_payment_from." ".$member->member_id."\n\n".$lng_elected_to_confirm_payment."\n\n"."trades_pending.php?action=incoming");
+										   $lng_let_know_received_payment_from." ".$member->member_id."\n\n".$lng_elected_to_confirm_payment."<br><br>"."trades_pending.php?action=incoming");
 			
 					$list .= $lng_member_id." ".$member_to_id." ".$lng_notified_you_wish_transfer." ". $values['units'] ." ". strtolower(UNITS) ." ".$lng_to_him_her.".<p>".$lng_member_opted_to_confirm.".<p>". // added $lng_member_id by ejkv
 							$lng_would_you_like_to." <A HREF=trade.php?mode=".$_REQUEST["mode"]."&member_id=". $_REQUEST["member_id"].">".$lng_record_another."</A> ".$lng_exchange."?";
@@ -202,7 +212,11 @@ function process_data ($values) {
 
       mailex($member_to->person[0]->email, 
              $lng_payment_received_on, 
-             $lng_let_know_received_payment_from." ".$member->member_id."\n\n".$lng_elected_to_confirm_payment);
+             $lng_let_know_received_payment_from." ".$member->member_id." (".$trade->amount." ".UNITS.")<br>".
+             $lng_description.": ".$trade->description.
+             "<br><br>".
+             "<a href=\"".server_base_url()."/lex/trade_history.php?mode=self\">Transactiegeschiedenis</a>"
+             );
 		
   		// Has the recipient got an income tie set-up? If so, we need to transfer a percentage of this elsewhere...
 			$recipTie = cIncomeTies::getTie($member_to_id);
