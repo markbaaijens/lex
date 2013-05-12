@@ -188,7 +188,15 @@ function login_form($request_type) {
 
 function server_base_url(){
   $protocol = ($_SERVER['HTTPS'] && $_SERVER['HTTPS'] != "off") ? "https" : "http";
-  return $protocol . "://" . $_SERVER['HTTP_HOST'];
+  $url = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+  
+  // The url now contains also the name of the page accessed; this is not what we want
+  // because we want to see the server-address appended by the root-dir, something like this: 
+  // http://<domain name>/<root dir> 
+  // To retrieve that, we strip the full url after '/', assuming the program always starts
+  // pages from root. 
+  $url = substr($url, 0, strrpos($url, "/"));  
+  return $protocol . "://" . $url;
 }
 
 ?>
