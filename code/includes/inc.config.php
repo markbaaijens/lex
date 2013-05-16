@@ -280,11 +280,15 @@ define ("MONTH_FIRST", false);
 define ("DATE_SEPARATOR", "-");
 define ("DATE_SHOW_CENTURY", true);								
 
-define ("PASSWORD_RESET_SUBJECT", $lng_your." ". SITE_LONG_TITLE ." ".$lng_account);
-define ("PASSWORD_RESET_MESSAGE", $lng_your_password_for." ". SITE_LONG_TITLE ." ".$lng_has_has_been_reset." ".PHONE_ADMIN.".\n\n".$lng_your_user_id_and_pwrd_are_listed_in_this_email);
-define ("NEW_MEMBER_SUBJECT", $lng_welcome_to." ". SITE_LONG_TITLE);
-define ("NEW_MEMBER_MESSAGE", $lng_hello_and_welcome_to." ". SITE_LONG_TITLE ." ".$lng_community."\n\n".$lng_a_member_account_has_been_created.":\n"."member_login.php\n\n".$lng_please_login_and_create_listings."\n\n".$lng_thank_you_for_joining_us);
-
+define ("PASSWORD_RESET_SUBJECT", $lng_password_reset);
+define ("PASSWORD_RESET_MESSAGE", $lng_your_password_for." ".$lng_has_has_been_reset." ".
+              $lng_your_user_id_and_pwrd_are_listed_in_this_email);
+define ("NEW_MEMBER_SUBJECT", $lng_welcome_to);
+define ("NEW_MEMBER_MESSAGE", $lng_hello_and_welcome_to." ". SITE_LONG_TITLE."!<br><br>".
+       $lng_a_member_account_has_been_created." ".
+       $lng_please_login_and_create_listings."<br><br>".
+       $lng_thank_you_for_joining_us);
+       
 /********************************************************************/
 /************************* ADVANCED SETTINGS ************************/
 // Normally, the defaults for the settings that follow don't need

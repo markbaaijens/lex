@@ -162,7 +162,10 @@ function process_data ($values) {
 		} else {
 			$mailed = mailex($values['email'], 
 			                  NEW_MEMBER_SUBJECT, 
-			                  NEW_MEMBER_MESSAGE . "\n\n".$lng_member_id.": ". $values['member_id'] ."\n". $lng_pwd.": ". $values['password']);
+			                  NEW_MEMBER_MESSAGE . "<br><br>".
+			                        $lng_member_id.": ". $values['member_id']."<br>". 
+			                        $lng_pwd.": ". $values['password']."<br><br>".
+			                        "<a href=\"".server_base_url()."/member_login.php\">"."Inloggen"."</a>");
 			if($mailed)
 				$list .= $lng_email_has_been_send_to." '". $values["email"] ."' ".$lng_containing_userid_and_pwd.".";
 			else

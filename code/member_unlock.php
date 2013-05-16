@@ -25,8 +25,11 @@ if ($form->validate()) { // Form is validated so processes the data
 }
 
 function process_data ($values) {
-	global $p, $lng_member_locked_due_to, $lng_consecutive_login_failures,$lng_has_been_unlocked_if_attempts_more_than, $lng_cause_could_indicate_hacker, $lng_pwd_has_been_reset, $lng_member_id, $lng_pwd, $lng_new_pwd, $lng_and_eml_sent_to_member, $lng_eml_new_pwd_failed; // added variable $lng_new_pwd to global variables, due to variable not shown in text (e.g. welcome mail) - by ejkv
-	
+	global $p, $lng_member_locked_due_to, $lng_consecutive_login_failures,
+        	$lng_has_been_unlocked_if_attempts_more_than, $lng_cause_could_indicate_hacker, 
+        	$lng_pwd_has_been_reset, $lng_member_id, $lng_pwd, $lng_new_pwd, $lng_and_eml_sent_to_member, 
+	        $lng_eml_new_pwd_failed, $lng_login; 
+  	
 	$list = "";
 	$member = new cMember;
 	$member->LoadMember($values["member_id"]);
@@ -44,16 +47,18 @@ function process_data ($values) {
 		
 		$mailed = mailex($member->person[0]->email, 
   		                NEW_MEMBER_SUBJECT, 
-	  	                NEW_MEMBER_MESSAGE . "\n\n".$lng_member_id.": ". $member->member_id ."\n". $lng_pwd.": ". $password);
-			
-		$whEmail = "'Welcome'";
+	  	                NEW_MEMBER_MESSAGE . "<br><br>".
+			                        $lng_member_id.": ". $values['member_id']."<br>". 
+			                        $lng_pwd.": ". $password."<br><br>".
+			                        "<a href=\"".server_base_url()."/member_login.php\">".$lng_login."</a>");
 	}
 	else {
 		$mailed = mailex($member->person[0]->email, 
 		                  PASSWORD_RESET_SUBJECT, 
-		                  PASSWORD_RESET_MESSAGE . "\n\n".$lng_member_id.": ". $member->member_id ."\n".$lng_new_pwd.": ". $password);
-		
-		$whEmail = $lng_password_reset;
+		                  PASSWORD_RESET_MESSAGE . "<br><br>".
+    		                  $lng_member_id.": ". $member->member_id ."<br>".
+	     	                  $lng_new_pwd.": ". $password."<br><br>".
+	                        "<a href=\"".server_base_url()."/member_login.php\">".$lng_login."</a>");
 	}
 
 	if($mailed)
