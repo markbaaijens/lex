@@ -116,6 +116,9 @@ define ("SITE_KEYWORDS", $lng_sitekeywords. SITE_LONG_TITLE .",php");
 // Logo Graphic for Header
 define ("HEADER_LOGO", "images/localx_logo.png"); 
 
+// Favicon
+define ("FAV_ICON", "images/favicon.ico");
+
 // Title Graphic for Header
 define ("HEADER_TITLE", "localx_title.png");
 

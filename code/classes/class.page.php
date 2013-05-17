@@ -47,7 +47,7 @@ class cPage {
 			$title = "";
 		
 		$output = '<HTML><HEAD><meta http-equiv="content-type" content="text/html; charset=UTF-8" >
-		              <link rel="shortcut icon" href="images/favicon.ico">
+		              <link rel="shortcut icon" href="'.FAV_ICON.'">
 		              <link rel="stylesheet" href="'. SITE_STYLESHEET .'" type="text/css"></link>
 		              <meta name="description" content="'.$this->page_title.'">
 		              <meta NAME="keywords" content="'. $this->keywords .'">
