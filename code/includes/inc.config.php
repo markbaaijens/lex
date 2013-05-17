@@ -114,7 +114,7 @@ define ("PAGE_TITLE_HEADER", SITE_LONG_TITLE);
 define ("SITE_KEYWORDS", $lng_sitekeywords. SITE_LONG_TITLE .",php");
 
 // Logo Graphic for Header
-define ("HEADER_LOGO", "localx_logo.png"); 
+define ("HEADER_LOGO", "images/localx_logo.png"); 
 
 // Title Graphic for Header
 define ("HEADER_TITLE", "localx_title.png");
@@ -129,7 +129,7 @@ define ("HOME_PIC", "localx_home.png");
 define ("PAGE_HEADER_CONTENT", 
     "<tr>
         <td id=\"header\" align=center width=\"120\">
-          <a href=\"index.php\"><img src=\"" . "images/". HEADER_LOGO ."\" alt=\"". SITE_SHORT_TITLE . " logo\" border=0></a></td>
+          <a href=\"index.php\"><img src=\"" . HEADER_LOGO ."\" alt=\"". SITE_SHORT_TITLE . " logo\" border=0></a></td>
         <td id=\"header\"><h1 align=right><img src=\"" . "images/". HEADER_TITLE ."\"></h1>
      </td>
      </tr>");
