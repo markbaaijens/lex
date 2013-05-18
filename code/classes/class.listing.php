@@ -261,7 +261,7 @@ class cListingGroup
 	{
 		/*[chris]*/ // made some changes to way listings displayed, for better or for worse...
 		
-		global $cUser,$cDB, $lng_no_listings_found;
+		global $cUser,$cDB, $lng_no_listings_found, $lng_learn_more;
 
 		$output = "";
 		$current_cat = "";
@@ -272,70 +272,84 @@ class cListingGroup
 				if($active_only and $listing->status != ACTIVE)
 					continue; // Skip inactive items
 					
+        // Category
 				if($current_cat != $listing->category->id) {
-					$output .= "<P><STRONG>" . $listing->category->description . "</STRONG><P>";
+					$output .= "<br><h2>" . $listing->category->description . "</h2>";
 				}
 				else
 					$output .= "<br>";
+
+        // Title
+				$output .= "<b>".$listing->title."</b><br>";
 				
+        // Details
 				if ($listing->description != "")
 					$details = " ".  nl2br($listing->description); // RF - simple space is fine
 				else
-					//$details = "<em>Not supplied</em>"; // Better than leaving a blank space?
-					$details = " --- "; // if no details, fill with --- changed by ejkv
-				
-				$query = $cDB->Query("SELECT * FROM person WHERE member_id  = ". $cDB->EscTxt($listing->member_id) . " limit 0,1;");
-				
-				$row = mysql_fetch_array($query);
-	
-				// a small change to the way member info is displayed i.e. (joe bloggs - 212)
-				$memInfo = " (<em>".stripslashes($row["first_name"])." ".stripslashes($row["mid_name"])." ".stripslashes($row["last_name"])."</em> - <a href=member_summary.php?member_id=".$listing->member_id.">". $listing->member_id ."</a>)"; // added mid_name, moved ")", removed </center> - by ejkv
-				
-				if ($cUser->IsLoggedOn())
-					$output .= "<A HREF=" . "listing_detail.php?type=". $this->type ."&title=" . urlencode($listing->title) ."&member_id=". $listing->member_id .">" . $listing->title ."</A><br>". $details; // removed <FONT SIZE=2> .. </FONT>, line-break added by ejkv
-				else
-					$output .= "<A HREF=" . "member_login.php>" . $listing->title ."</A><br>". $details; // link to login page, removed <FONT SIZE=2> .. </FONT>, and line-break added by ejkv
-						
-				// Rate
+					$details = " --- "; 
+				$output .= "<div id=textblock>".$details."</div>"; 
+
+        // Rate
+				$rate = "";
 				if (SHOW_RATE_ON_LISTINGS==true && $listing->rate) {
-  					$output .= " (".$listing->rate;
+            $rate .= "<img src=\"images/tag.png\" width=\"16\" height=\"16\" align=\"center\"/> ";
+  					$rate .= $listing->rate;
 
             // To avoid doubled mentioning of the units description: check if '<units>' is already mentioned in the price (rate);
             // if NOT, add the units description.
             $pos = strpos( strtolower($listing->rate), strtolower(UNITS));
             if ($pos === false) {
-    					$output .= " ".UNITS;
-            } 
-  					$output .= ")<br>";  					
+    					$rate .= " ".UNITS;
+            }   					
 					}
-				else // added by ejkv
-					$output .= "<br>"; // line-break added by ejkv
-			
-				if ($show_ids)
-					$output .= "$memInfo"."<br>"; // removed <FONT SIZE=2> .. </FONT>, line-break added by ejkv
-				
-				// Do we want to display the PostCode alongside the listing?
-				if (SHOW_POSTCODE_ON_LISTINGS==true && $cUser->IsLoggedOn()) { // Only show postcode to logged i members
+				$output .= "<small>".$rate."</small> ";
+										
+				// Info-line: member
+				$output .= "<small>"; 				
 
-					$pcode = stripslashes($row["address_post_code"]);
-					$pcode = str_replace(array("\n", "\r", "\t", " ", "\o", "\xOB"), '', $pcode); // Remove any white spaces as these will screw up our character count below
-					
-					$short_pcode = '';
-					
-					// Only display X number of characters from the postcode
-					for ($i=0;$i<(NUM_CHARS_POSTCODE_SHOW_ON_LISTINGS);$i++) {
-						
-						$short_pcode .= $pcode{$i};	
-						
-					}
+				$query = $cDB->Query("SELECT * FROM person WHERE member_id  = ". $cDB->EscTxt($listing->member_id) . " limit 0,1;");				
+				$row = mysql_fetch_array($query);
+				$memInfo = "<a href=member_summary.php?member_id=".
+				       $listing->member_id.">".stripslashes($row["first_name"])." ".stripslashes($row["mid_name"])." ".
+				       stripslashes($row["last_name"])." (". $listing->member_id .")</a> | ";
+			
+				if ($show_ids) {
+          $output .= "<img src=\"images/member.png\" width=\"16\" height=\"16\" align=\"center\"/>";
+					$output .= " "."$memInfo"." ";				
 				
-				$states = new cStateList; // added by ejkv
-				$state_list = $states->MakeStateArray(); // added by ejkv
-				$state_list[0]="---"; // added by ejkv
+  				// Do we want to display the PostCode alongside the listing?
+  				if (SHOW_POSTCODE_ON_LISTINGS==true) { // Only show postcode to logged in members
+  
+  					$pcode = stripslashes($row["address_post_code"]);
+  					$pcode = str_replace(array("\n", "\r", "\t", " ", "\o", "\xOB"), '', $pcode); // Remove any white spaces as these will screw up our character count below
+  					
+  					$short_pcode = '';
+  					
+  					// Only display X number of characters from the postcode
+  					for ($i=0;$i<(NUM_CHARS_POSTCODE_SHOW_ON_LISTINGS);$i++) {
+  						$short_pcode .= $pcode{$i};						
+  					}
+  					$output .= " ".$short_pcode." | ";
+          }					
+
+          // Show state				
+  				$states = new cStateList; // added by ejkv
+	 			  $state_list = $states->MakeStateArray(); // added by ejkv
+  				$state_list[0]="---"; // added by ejkv
+  				$state_id = $row["address_state_code"];
+  				$state_desc = $state_list[$state_id];
 	
-				$output .= " ".$short_pcode." - ".$state_list[$row["address_state_code"]]."<br>"; // added address_state_code and line-break by ejkv
+	   			$output .= "<a href=\"member_directory.php?uState=".$state_id."\">".$state_desc . "</a> ";				   			
 				}
+
+				// Info-line: more info
+        $output .= "<img src=\"images/info.png\" width=\"16\" height=\"16\" align=\"center\"/>";
+				$output .= "<a href=" . "listing_detail.php?type=". 
+            				$this->type ."&title=" . urlencode($listing->title) ."&member_id=". $listing->member_id .">" . 
+            				$lng_learn_more ."</a>";
+				$output .= "</small><br>";            				 				
 	
+        // Prepare for next listing
 				$current_cat = $listing->category->id;
 				$current_title = $listing->title;
 			}
