@@ -12,16 +12,18 @@ $member->LoadMember($_REQUEST["member_id"]);
 $p->page_title = $lng_summary_for." ".$member->PrimaryName();
 
 if ($cUser->IsLevel(2))	{
-	   $output  = "<a href=member_edit.php?mode=admin&member_id=".$member->member_id."><small>".
-	               $lng_edit_a_member_account."</small></a> | ";		
-	   $output .= "<a href=member_photo_upload.php?mode=admin&member_id=".$member->member_id."><small>".
-	               $lng_edit_a_member_photo."</small></a><br><br>";
+     $output  = "<img src=\"images/write.png\" width=\"16\" height=\"16\" align=\"center\"/> ";  
+	   $output .= "<a href=member_edit.php?mode=admin&member_id=".$member->member_id.">".
+	               $lng_edit_a_member_account."</a> | ";		
+	   $output .= "<a href=member_photo_upload.php?mode=admin&member_id=".$member->member_id.">".
+	               $lng_edit_a_member_photo."</a><br><br>";
 	}
 else {
 	if ($cUser->member_id == $member->member_id) {
-	   $output  = "<a href=member_edit.php?mode=self><small>".$lng_edit_my_pers_info."</small></a> | ";
-		$output .= "<a href=member_photo_upload.php?mode=self><small>".$lng_upload_change_photo."</small></a> | ";
-		$output .= "<a href=password_change.php><small>".$lng_change_my_pwd."</small></a><br><br>";
+    $output  = "<img src=\"images/write.png\" width=\"16\" height=\"16\" align=\"center\"/> ";	  
+	  $output .= "<a href=member_edit.php?mode=self>".$lng_edit_my_pers_info."</a> | ";
+		$output .= "<a href=member_photo_upload.php?mode=self>".$lng_upload_change_photo."</a> | ";
+		$output .= "<a href=password_change.php>".$lng_change_my_pwd."</a><br><br>";
 	}
 }
 	

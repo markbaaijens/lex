@@ -148,10 +148,9 @@ class cListing
 	{   global $lng_description, $lng_rate;
 		$output = "";
 		if($this->description != "")
-			$output .= "<STRONG>".$lng_description.":</STRONG> ". nl2br($this->description) ."<BR>";
-		if($this->rate != "")
-			$output .= "<STRONG>".$lng_rate.":</STRONG> ". $this->rate ."<BR>";		
-		$output .= "<br><hr><br>";
+			$output .= "<div id=textblock>".nl2br($this->description)."</div>";
+		$output .= "<small>".ShowRate($this->rate)."</small> ";				
+		$output .= "<br><br><hr><br>";
 		$output .= $this->member->DisplayMember();
 		return $output;
 	}	
@@ -290,19 +289,7 @@ class cListingGroup
 				$output .= "<div id=textblock>".$details."</div>"; 
 
         // Rate
-				$rate = "";
-				if (SHOW_RATE_ON_LISTINGS==true && $listing->rate) {
-            $rate .= "<img src=\"images/tag.png\" width=\"16\" height=\"16\" align=\"center\"/> ";
-  					$rate .= $listing->rate;
-
-            // To avoid doubled mentioning of the units description: check if '<units>' is already mentioned in the price (rate);
-            // if NOT, add the units description.
-            $pos = strpos( strtolower($listing->rate), strtolower(UNITS));
-            if ($pos === false) {
-    					$rate .= " ".UNITS;
-            }   					
-					}
-				$output .= "<small>".$rate."</small> ";
+				$output .= "<small>".ShowRate($listing->rate)."</small> ";
 										
 				// Info-line: member
 				$output .= "<small>"; 				
@@ -361,10 +348,7 @@ class cListingGroup
 								
 		return $output;		
 	}
-
 }
-
-
 
 class cTitleList  // This class circumvents the cListing class for performance reasons
 {
@@ -597,5 +581,23 @@ class cListingReport {
 		$this->column = 2;	
 	}
 }
+
+function ShowRate($rate) { 		
+	$output = "";
+	if (SHOW_RATE_ON_LISTINGS==true && $rate) {
+    $output .= "<img src=\"images/tag.png\" width=\"16\" height=\"16\" align=\"center\"/> ";
+		$output .= $rate;
+
+    // To avoid doubled mentioning of the units description: check if '<units>' is already mentioned in the price (rate);
+    // if NOT, add the units description.
+    $pos = strpos( strtolower($rate), strtolower(UNITS));
+    if ($pos === false) {
+			$output .= " ".UNITS;
+    }   					
+	} 
+	return $output;
+}
+
+
 
 ?>
