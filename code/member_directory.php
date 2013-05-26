@@ -51,6 +51,7 @@ if (SEARCHABLE_MEMBERS_LIST==true) {
 		            <option value='nh' ".$orderBySel["nh"].">".$lng_neighbourhood."</option>
 		            <option value='loc' ".$orderBySel["loc"].">".$lng_town."</option>
 		            <option value='pc' ".$orderBySel["pc"].">".$lng_postcode."</option>
+		            <option value='jd' ".$orderBySel["jd"].">".$lng_joined."</option>		            
 		          </select></TD></TR>";
 		          		          
 	$output .= "</TABLE>"; 
@@ -99,6 +100,10 @@ switch($_REQUEST["orderBy"]) {
 	
 	case("lf"):
 		$orderBy = 'ORDER BY last_name, first_name';
+	break;
+	
+	case("jd"):
+		$orderBy = 'ORDER BY join_date desc';
 	break;
 	
 	default:
@@ -171,7 +176,7 @@ if($member_list->members) {
 				else
 					$bgcolor = "#FFFFFF";
 
-        // Show photo-icon if member has profile photo
+        // Show photo-icon if member has profile photo; also so join_dat as a hint        
         // Function file_exists() can not handle wildcards, so we have to use glob()
         $member_photo_list = glob("uploads/"."mphoto_".$member->member_id.".*");
         if (!empty($member_photo_list)) {
@@ -179,7 +184,10 @@ if($member_list->members) {
         } else {
 			 $member_photo_url = DEFAULT_PHOTO;          
         }
-        $photo_icon = "<img src=\"".$member_photo_url."\""." align=\"left\" width=\"40\" heigth=\"40\" border=\"1\"/>";                
+		  $joined = new cDateTime($member->join_date);    
+        $photo_icon = "<img src=\"".$member_photo_url."\"".
+        				" align=\"left\" width=\"40\" heigth=\"40\" border=\"1\" title=\"".
+        				$lng_joined.": ". $joined->ShortDate()."\"/>";                
         unset($member_photo_list);
         
         // Show listing-icon if member has any     
