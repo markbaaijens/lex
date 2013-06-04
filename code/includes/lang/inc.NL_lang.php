@@ -935,6 +935,8 @@ $lng_password_reset_help = "Door het invullen van dit formulier wordt er een mai
                               "met daarin het nieuwe wachtwoord. Als je daarmee ingelogd bent, ".
                               "kun je het beste je wachtwoord veranderen in iets wat je ".
                               "goed kunt onthouden.";
-$lng_transaction = "Transactie";                              
+$lng_transaction = "Transactie";
+$lng_dont_answer = "Antwoord niet op deze mail, deze wordt namelijk automatisch verzonden. ". 
+                     "Eventuele antwoorden worden niet gelezen.";                              
 
 ?>

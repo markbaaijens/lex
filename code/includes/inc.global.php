@@ -136,6 +136,8 @@ if(DOWN_FOR_MAINTENANCE and !$running_upgrade_script) {
 	Generic functions
 */
 function mailex($to, $subject, $message, $from, $cc) {
+  global $lng_dont_answer;
+  
   if ($from == "")	
     $from = EMAIL_FROM; // Generic from-address as fallback
 	
@@ -146,12 +148,15 @@ function mailex($to, $subject, $message, $from, $cc) {
   if ($cc) { 
     $headers .= "Cc: ".$from. "\r\n"; 
   }
+
+  $message .= "<br><br>
+                <small>$lng_dont_answer</small>";
                   
   $mailed = mail($to, 
                   $subject." - ".SITE_SHORT_TITLE, 
                   $message,
                   $headers);
-	
+                  	
 	return $mailed;
 }
 

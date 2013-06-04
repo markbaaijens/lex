@@ -898,5 +898,6 @@ $lng_password_reset_help = "By filling in this form, a mail will be sent ".
                               "you best change your password in something you can ".
                               "easily remember.";
 $lng_transaction = "Transaction";                              
-                              
+$lng_dont_answer = "Do not answer this mail, because it is automatically generated. ". 
+                   "Any answer will not be read.";                                                            
 ?>
