@@ -45,7 +45,7 @@ $list .= "</td><td>";
 if ($cUser->member_role > 1) {
 	$list .= "<STRONG>".$lng_exchanges."</STRONG><P>";
 	$list .= "<A HREF=member_choose.php?action=trade><FONT SIZE=2>".$lng_record_exchange_for_member."</FONT></A><BR>";
-	$list .= "<A HREF=trade_reverse.php><FONT SIZE=2>".$lng_reverse_exchange_made_in_error."</FONT></A><BR>";
+	$list .= "<A HREF=timeframe_choose.php?action=trade_reverse><FONT SIZE=2>".$lng_reverse_exchange_made_in_error."</FONT></A><BR>";
 	$list .= "<A HREF=member_choose.php?action=feedback_choose><FONT SIZE=2>".$lng_record_feedback_for_member."</FONT></A><P>";
 }
 $list .= "</td></tr>";

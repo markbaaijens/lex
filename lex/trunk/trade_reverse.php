@@ -12,7 +12,7 @@ include("includes/inc.forms.php");
 //
 // Define form elements
 //
-$trades = new cTradeGroup;
+$trades = new cTradeGroup("%", $_REQUEST["from"], $_REQUEST["to"]);
 $trades->LoadTradeGroup();
 $form->addElement("select", "trade_id", $lng_choose_exchange_to_reverse, $trades->MakeTradeArray());
 $form->addElement("html", "<TR></TR>");
