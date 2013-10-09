@@ -236,7 +236,7 @@ function process_data ($values) {
 				$charity_to = new cMember;
 				$charity_to->LoadMember($recipTie->tie_id);
 	
-				$trade2 = new cTrade($member_to, $charity_to, htmlspecialchars($theAmount), htmlspecialchars(12), htmlspecialchars($lng_donation_from." ".$member_to_id.""), 'T');
+				$trade2 = new cTrade($member_to, $charity_to, htmlspecialchars($theAmount), htmlspecialchars(INCOME_TIE_CATEGORY_ID), htmlspecialchars($lng_donation_from." ".$member_to_id.""), 'T');
 		
 				$status = $trade2->MakeTrade();
 			}

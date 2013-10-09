@@ -221,7 +221,8 @@ define("SYSTEM_ACCOUNT_ID", "system");
 $monthly_fee_exempt_list = array("admin", "system"); 
 define("MONTHLY_FEE_CATEGORY_ID", "1");
 
-// End of monthly fee related settings.
+/**************** Refund related settings ********************/
+define("INCOME_TIE_CATEGORY_ID", "1");
 
 /**************** Member limitations ********************/
 define("MEMBER_LIMIT_MAX_BALANCE", 400);       // Maximum balance for every member
