@@ -102,6 +102,7 @@ define("SEARCHABLE_MEMBERS_LIST",true);
 // email addresses & phone number to be listed in the site
 define ("EMAIL_FEATURE_REQUEST",""); // (is this actually used anywhere???)
 define ("EMAIL_ADMIN","[inc.config.php: email_admin]"); 
+define ("EMAIL_NOREPLY","[inc.config.php: email_noreply]");
 
 define ("PHONE_ADMIN",""); // an email address may be substituted...
 

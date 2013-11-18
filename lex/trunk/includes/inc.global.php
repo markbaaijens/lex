@@ -138,26 +138,27 @@ if(DOWN_FOR_MAINTENANCE and !$running_upgrade_script) {
 function mailex($to, $subject, $message, $from, $cc) {
   global $lng_dont_answer;
   
-  if ($from == "")	
-    $from = EMAIL_FROM; // Generic from-address as fallback
+  if ($from == "") {
+    $from = EMAIL_NOREPLY; // Generic from-address as fallback
+    
+    $message .= "<br><br>
+                 <small>$lng_dont_answer</small>";    
+  }             
 	
   $headers = "From: ".$from. "\r\n" .
-              "Reply-To: ".$from. "\r\n" .  						              // To prevent to be marked as a spam-subject         
-              "Content-type: text/html; charset=iso-8859-1". "\r\n";	// To sent HTML-content
+             "Reply-To: ".$from. "\r\n" .  						         // To prevent to be marked as a spam-subject         
+             "Content-type: text/html; charset=iso-8859-1". "\r\n";	// To sent HTML-content
               
   if ($cc) { 
     $headers .= "Cc: ".$from. "\r\n"; 
   }
-
-  $message .= "<br><br>
-                <small>$lng_dont_answer</small>";
-                  
+                                  
   $mailed = mail($to, 
                   $subject." - ".SITE_SHORT_TITLE, 
                   $message,
                   $headers);
                   	
-	return $mailed;
+  return $mailed;
 }
 
 function login_form($request_type) {
