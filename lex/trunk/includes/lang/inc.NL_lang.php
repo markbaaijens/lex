@@ -937,6 +937,7 @@ $lng_password_reset_help = "Door het invullen van dit formulier wordt er een mai
                               "goed kunt onthouden.";
 $lng_transaction = "Transactie";
 $lng_dont_answer = "Antwoord niet op deze mail, deze wordt namelijk automatisch verzonden. ". 
-                     "Eventuele antwoorden worden niet gelezen.";                              
-
+                     "Eventuele antwoorden worden niet gelezen.";   
+$lng_member_inactive = "Inactief";                     
+$lng_member_locked = "Geblokkeerd";
 ?>

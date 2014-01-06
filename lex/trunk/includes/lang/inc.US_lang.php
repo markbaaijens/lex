@@ -899,5 +899,6 @@ $lng_password_reset_help = "By filling in this form, a mail will be sent ".
                               "easily remember.";
 $lng_transaction = "Transaction";                              
 $lng_dont_answer = "Do not answer this mail, because it is automatically generated. ". 
-                   "Any answer will not be read.";                                                            
+                   "Any answer will not be read.";                              $lng_member_inactive = "Inactive";                     
+$lng_member_locked = "Locked";                              
 ?>

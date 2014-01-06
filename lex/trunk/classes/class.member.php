@@ -818,12 +818,19 @@ class cMemberGroup {
 	}	
 	
 	function MakeIDArray() {
-		global $cDB, $cErr;
+		global $cDB, $cErr, $lng_member_inactive, $lng_member_locked;
 		
 		$ids="";		
 		if($this->members) {
 			foreach($this->members as $member) {
 					$ids[$member->member_id] = $member->PrimaryName() ." (". $member->member_id .")";
+
+          // Show some extra status info, if needed
+					if ($member->status == "I")
+					  $ids[$member->member_id] = $ids[$member->member_id] . strtoupper(" - $lng_member_inactive");
+					if ($member->status == "L")
+					  $ids[$member->member_id] = $ids[$member->member_id] . strtoupper(" - $lng_member_locked");					
+					
 			}		
 		}
 		
