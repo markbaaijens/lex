@@ -1135,10 +1135,10 @@ class cMemberReport {
 				   $phone = str_repeat(" ",12);
 			}			
 			$phone = substr($phone, 0, 12);			
-			$text = $text. " | " . str_pad($phone, 12);
-			
-			$text = $text . " | " . str_pad($this->state_list[$member->person[0]->address_state_code],30);	
+			$text = $text . " | " . str_pad($phone, 12);
 			$text = $text . " | " . $member->person[0]->address_street1;		
+			$text = $text . " " . $member->person[0]->address_post_code;		
+			$text = $text . " " . $member->person[0]->address_city;		
 			$text = str_pad($text, 115);
 			$text = $text . str_pad($member->FormattedBalanceNoLayout(), 5, " ", STR_PAD_LEFT);
 									
