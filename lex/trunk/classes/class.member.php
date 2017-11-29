@@ -1109,11 +1109,12 @@ class cMemberReport {
 	}
 	
 	function DownloadReport () {	
-    global $lng_members_list, $lng_member_information, $lng_balance;
+    global $lng_members_list, $lng_member_information, $lng_print_date;
 	
 		$this->PrintFirstPage();
-	
-		$this->PrintSectionHeader($lng_member_information." (".$lng_balance.")",FIRST);
+		$this->PrintSectionHeader($lng_member_information,FIRST);
+        $this->PrintLine($lng_print_date.": ".date("d-m-Y"));
+        $this->PrintLine(); 
 		$this->PrintMembers();
 			
 		$this->pdf->Output($lng_members_list.".pdf",true);

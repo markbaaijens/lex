@@ -901,5 +901,6 @@ $lng_transaction = "Transaction";
 $lng_dont_answer = "Do not answer this mail, because it is automatically generated. ". 
                      "Any answer will not be read.";                              
 $lng_member_inactive = "Inactive";                     
-$lng_member_locked = "Locked";                              
+$lng_member_locked = "Locked"; 
+$lng_print_date = "Print date";                             
 ?>

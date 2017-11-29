@@ -940,4 +940,5 @@ $lng_dont_answer = "Antwoord niet op deze mail, deze wordt namelijk automatisch 
                      "Eventuele antwoorden worden niet gelezen.";   
 $lng_member_inactive = "Inactief";                     
 $lng_member_locked = "Geblokkeerd";
+$lng_print_date = "Afdrukdatum";
 ?>
